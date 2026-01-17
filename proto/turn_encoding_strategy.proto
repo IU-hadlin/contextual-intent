@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package sivako;
+
+enum TurnEncodeStrategy {
+    TURN_ENCODE_STRATEGY_UNSPECIFIED = 0;
+    TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY = 1;
+    TURN_ENCODE_STRATEGY_TURN_CONTENT_WITH_META_AND_FACTS = 2;
+}

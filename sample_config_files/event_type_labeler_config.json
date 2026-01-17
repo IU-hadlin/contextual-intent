@@ -1,0 +1,30 @@
+{
+    "event_type_labeler_config": {
+        "turns_jsonl_path": "path/to/turns.jsonl",
+        "dataset_name": null,
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-5-mini",
+            "max_tokens": 20000,
+            "temperature": 1.0,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        },
+        "encoder_config": {
+            "provider": "EMBEDDING_MODEL_PROVIDER_AZURE_OPENAI",
+            "max_concurrent": 64,
+            "model_name": "azure/text-embedding-3-small",
+            "cost_per_1M_tokens": 0.1,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        },
+        "event_type_assignments_output_path": "path/to/event_type_assignments.json",
+        "max_workers": 10
+    }
+}

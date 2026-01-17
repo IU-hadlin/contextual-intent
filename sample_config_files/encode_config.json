@@ -1,0 +1,25 @@
+{
+    "dataset_name": null,
+    "encoder_config": {
+        "provider": "EMBEDDING_MODEL_PROVIDER_AZURE_OPENAI",
+        "max_concurrent": 64,
+        "model_name": "azure/text-embedding-3-small", 
+        "cost_per_1M_tokens": 0.01,
+        "azure_openai_config": {
+          "api_key": "${AZURE_API_KEY}",
+          "api_base": "${AZURE_API_BASE}",
+          "api_version": "${AZURE_API_VERSION}"
+        }
+    },
+    "qdrant_config": {
+        "url": "${QDRANT_URL}",
+        "api_key": "${QDRANT_API_KEY}",
+        "collection": null,
+        "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY",
+        "vector_size": 1536
+    },
+    "turns_jsonl_path": "path/to/turns.jsonl",
+    "batch_upload_size": 80,
+    "reset_collection": true,
+    "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
+}

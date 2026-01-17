@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package sivako;
+
+import "language_model_provider.proto";
+import "answer_generation.proto";
+
+message AnswerEvaluatorConfig {
+    // the config for the turn collection
+    string generated_answer_jsonl_path = 1;
+
+    // the path to the questions jsonl file
+    string questions_jsonl_path = 2;
+
+    // the answer evaluation strategy to use
+    string answer_evaluation_strategy = 3;
+
+    // the concurrent number of answer evaluations
+    int32 concurrent = 4;
+
+    // the dataset name
+    string dataset_name = 5;
+
+    // the output directory
+    string output_dir = 6;
+
+    // the language model provider config
+    sivako.LanguageModelProviderConfig adapter_language_model_provider_config = 7;
+}
+
+enum AnswerEvaluationStrategyType {
+    ANSWER_EVALUATION_STRATEGY_TYPE_UNDEFINED = 0;
+    ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v1 = 1;
+    ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v2 = 2;
+}
+
+message DirectAnswerEvaluationConfig {
+    // the language model provider config
+    sivako.LanguageModelProviderConfig language_model_provider_config = 1;
+}
+
+
+message DatasetAnswerEvaluationRequest {
+    // the answer evaluation config
+    AnswerEvaluatorConfig answer_evaluator_config = 1;
+    
+    // answer evaluation strategy type
+    AnswerEvaluationStrategyType answer_evaluation_strategy_type = 2;
+
+    // the questions to evaluate answers for
+    oneof answer_evaluation_strategy_config {
+        DirectAnswerEvaluationConfig answer_evaluation_v1_config = 3;
+        DirectAnswerEvaluationConfig answer_evaluation_v2_config = 4;
+    }
+}
+
+message QuestionAnswerEvaluationResult {
+    // the question that was answered
+    sivako.QuestionAnswerGenerationResult question_answer_generation_result = 1;
+
+    // the evaluation message
+    string evaluation_message = 2;
+
+    // whether the answer evaluation was successful
+    bool success = 3;
+
+    // the error message if the answer evaluation was not successful
+    optional string error_message = 4;
+
+    // whether the answer is considered correct (typically means full recall of all ground truth candidates)
+    bool is_correct_frq = 5;
+
+    // precision of candidates found in the answer
+    float precision = 6;
+
+    // recall of ground truth candidates found in the answer
+    float recall = 7;
+
+    // f1 score based on precision and recall
+    float f1 = 8;
+}
+
+
+message DatasetAnswerEvaluationResult {
+    // the answer evaluation strategy that was used
+    string answer_evaluation_strategy = 1;
+
+    // the dataset name
+    string dataset_name = 2;
+
+    // the answer evaluation results for each question
+    repeated QuestionAnswerEvaluationResult question_answer_evaluation_results = 3;
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package sivako;
+
+option go_package = "./proto";
+
+enum CostType {
+    COST_TYPE_UNSPECIFIED = 0;
+    COST_TYPE_LM = 1;
+    COST_TYPE_RETRIEVER = 2;
+    COST_TYPE_EMBEDDING = 3;
+}
+
+message CostEntry {
+    CostType type = 1;
+    string description = 2;
+    float cost = 3;
+}
+
+message CostLog {
+    repeated CostEntry entries = 1;
+    float total_cost = 2;
+}
+
+message LogEntry {
+    string message = 1;
+    string level = 2;
+    string timestamp = 3;
+    string context = 4;
+}

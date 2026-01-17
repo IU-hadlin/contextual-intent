@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+package sivako;
+
+import "qdrant_config.proto";
+import "embedding_model_provider.proto";
+import "language_model_provider.proto";
+import "project_dataset_uniform.proto";
+
+message RetrievalConfig {
+    // the config for the turn collection
+    string questions_jsonl_path = 1;
+
+    // the topk turns to retrieve
+    int32 topk = 2;
+
+    // the topk tags to retrieve
+    int32 topk_tags = 3;
+
+    // the retrieval strategy to use
+    string retrieval_strategy = 4;
+
+    // the concurrent number of retrievals
+    int32 concurrent = 5;
+
+    // the dataset name
+    string dataset_name = 6;
+
+    // the output directory
+    string output_dir = 7;
+
+    // the embedding model provider config
+    sivako.EmbeddingModelProviderConfig query_embedding_model_provider_config = 8;
+}
+
+enum RetrievalStrategyType {
+    RETRIEVAL_STRATEGY_TYPE_UNDEFINED = 0;
+    RETRIEVAL_STRATEGY_TYPE_BASELINE_RAG_DENSE_RETRIEVAL = 1;
+    RETRIEVAL_STRATEGY_TYPE_CONTEXT_REDUCTION_RETRIEVAL = 2;
+    
+    RETRIEVAL_STRATEGY_TYPE_BASELINE_RAG_DENSE_RETRIEVAL_WITH_RERANK = 3;
+    RETRIEVAL_STRATEGY_TYPE_BASELINE_FULL_CONTEXT_RETRIEVAL = 4;
+    RETRIEVAL_STRATEGY_TYPE_ORACLE = 5;
+}
+
+message BaselineRagDenseRetrievalConfig {
+    // the config for the turn collection
+    sivako.QdrantConfig qdrant_config_turn_collection = 1;
+}
+
+message BaselineRagDenseRetrievalWithRerankConfig {
+    // the config for the turn collection
+    sivako.QdrantConfig qdrant_config_turn_collection = 1;
+
+    // the language model provider config
+    sivako.LanguageModelProviderConfig rerank_language_model_provider_config = 2;
+
+    // the topk turns to retrieve
+    int32 topk = 3;
+}
+
+message ContextReductionRetrievalConfig {
+
+    string turns_jsonl_path = 1;
+
+    // the config for the turn collection
+    sivako.QdrantConfig qdrant_config_turn_collection = 2;
+
+    // the qdrant config for the episode collection
+    sivako.QdrantConfig qdrant_config_episode_collection = 3;
+
+    // the language model provider config
+    sivako.LanguageModelProviderConfig language_model_provider_config = 4;
+
+    // optional qdrant config for the topic collection
+    sivako.QdrantConfig qdrant_config_topic_collection = 5;
+
+    // optional path to context notes jsonl providing conversation-level summaries
+    string segment_level_notes_jsonl_path = 6;
+
+    // optional encoder config for event type matching in structured note generation
+    sivako.EmbeddingModelProviderConfig encoder_config = 7;
+
+    // optional output path for structured notes
+    string structured_notes_output_path = 8;
+
+    // optional segment size for segment-level note generation
+    int32 segment_level_note_segment_size = 9;
+
+    // optional dataset name for event type label generation
+    string dataset_name = 10;
+
+    // optional path to save/load event type assignments
+    string event_type_assignments_path = 11;
+}
+
+message BaselineFullContextRetrievalConfig {
+    // the config for the turn collection
+    sivako.QdrantConfig qdrant_config_turn_collection = 1;
+}
+
+message OracleRetrievalConfig {
+    // the config for the turn collection
+    sivako.QdrantConfig qdrant_config_turn_collection = 1;
+}
+
+message DatasetRetrievalRequest {
+    // the retrieval config
+    RetrievalConfig retrieval_config = 1;
+    
+    // retrieval strategy type
+    RetrievalStrategyType retrieval_strategy_type = 2;
+
+    // the questions to retrieve turns for
+    oneof retrieval_strategy_config {
+        BaselineRagDenseRetrievalConfig baseline_rag_dense_retrieval_config = 3;
+        ContextReductionRetrievalConfig context_reduction_retrieval_config = 4;
+        BaselineRagDenseRetrievalWithRerankConfig baseline_rag_dense_retrieval_with_rerank_config = 5;
+        BaselineFullContextRetrievalConfig baseline_full_context_retrieval_config = 6;
+        OracleRetrievalConfig oracle_retrieval_config = 7;
+    }
+}
+
+message QuestionRetrievalResult {
+    // the question that was retrieved
+    sivako.Question question = 1;
+
+    // the turns that were retrieved
+    repeated string turn_ids = 2;
+
+
+    // whether the retrieval was successful
+    bool success = 3;
+
+    // the error message if the retrieval was not successful
+    optional string error_message = 4;
+
+    // the reasoning for the retrieval for each turn. key is the turn id, value is the reasoning
+    map<string, string> turn_retrieval_reasoning = 5;
+
+    // from some cases, retreived turns are not raw turns, but memory snippets
+    repeated string memory_snippets = 6;
+}
+
+message DatasetRetrievalResult {
+    // the topk turns that were retrieved
+    int32 topk = 1;
+
+    // the retrieval strategy that was used
+    string retrieval_strategy = 2;
+
+    // the dataset name
+    string dataset_name = 3;
+
+    // the retrieval results for each question
+    repeated QuestionRetrievalResult question_retrieval_results = 4;
+}

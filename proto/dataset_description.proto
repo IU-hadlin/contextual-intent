@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package sivako;
+
+import "language_model_provider.proto";
+
+message DatasetDescriptionConfig {
+  string turns_jsonl_path = 1;
+  string dataset_type = 2;
+  float sample_rate = 3;
+  sivako.LanguageModelProviderConfig language_model_provider_config = 4;
+  string output_path = 5;
+}
+

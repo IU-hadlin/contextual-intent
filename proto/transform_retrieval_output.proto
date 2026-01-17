@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package sivako;
+
+message TransformRetrievalOutputConfig {
+  string summary_json_path = 1;
+  string questions_jsonl_path = 2;
+  string output_json_path = 3;
+  string dataset_name = 4;
+  string retrieval_strategy = 5;
+  int32 topk = 6;
+  string structured_notes_jsonl_path = 7;
+  string segment_notes_jsonl_path = 8;
+}

@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package sivako;
+
+import "project_dataset_uniform.proto";
+import "language_model_provider.proto";
+
+message AnswerGenerationConfig {
+    // the config for the turn collection
+    string questions_jsonl_path = 1;
+
+    // the path to the turns jsonl file
+    string turns_jsonl_path = 2;
+
+    // the path to the retrieval result jsonl file
+    string retrieval_result_jsonl_path = 3;
+
+    // the answer generation strategy to use
+    string answer_generation_strategy = 4;
+
+    // the concurrent number of answer generations
+    int32 concurrent = 5;
+
+    // the dataset name
+    string dataset_name = 6;
+
+    // the output directory
+    string output_dir = 7;
+
+    // the language model provider config
+    sivako.LanguageModelProviderConfig adapter_language_model_provider_config = 8;
+
+    // max tokens for retrieved results
+    optional int32 max_tokens_for_retrieved_results = 9;
+}
+
+enum AnswerGenerationStrategyType {
+    ANSWER_GENERATION_STRATEGY_TYPE_UNDEFINED = 0;
+    ANSWER_GENERATION_STRATEGY_TYPE_DIRECT_ANSWER_GENERATION = 1;
+}
+
+message DirectAnswerGenerationConfig {
+    // the language model provider config
+    sivako.LanguageModelProviderConfig language_model_provider_config = 1;
+}
+
+
+message DatasetAnswerGenerationRequest {
+    // the answer generation config
+    AnswerGenerationConfig answer_generation_config = 1;
+    
+    // answer generation strategy type
+    AnswerGenerationStrategyType answer_generation_strategy_type = 2;
+
+    // the questions to generate answers for
+    oneof answer_generation_strategy_config {
+        DirectAnswerGenerationConfig direct_answer_generation_config = 3;
+    }
+}
+
+message QuestionAnswerGenerationResult {
+    // the question that was answered
+    sivako.Question question = 1;
+
+    // the answer generation result
+    sivako.Answer answer = 2;
+
+    // whether the answer generation was successful
+    bool success = 3;
+
+    // the error message if the answer generation was not successful
+    optional string error_message = 4;
+}
+
+
+message DatasetAnswerGenerationResult {
+    // the answer generation strategy that was used
+    string answer_generation_strategy = 1;
+
+    // the dataset name
+    string dataset_name = 2;
+
+    // the answer generation results for each question
+    repeated QuestionAnswerGenerationResult question_answer_generation_results = 3;
+}

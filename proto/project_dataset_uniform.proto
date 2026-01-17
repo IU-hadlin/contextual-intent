@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package sivako;
+
+import "embedding_model_provider.proto";
+
+message Turn {
+    // turn_id is the id of the turn
+    string id = 1;
+
+    // role is the role of the turn
+    string role = 2;
+
+    // content is the content of the turn
+    string content = 3;
+
+    // timestamp is mapping from the partition to the timestamp (in case of multiple partitions)
+    map<string, string> timestamp_mapping = 4;
+
+    // partition of the turn in the dataset (e.g. the question id, session id, etc. which is used to filter during retrieval)
+    repeated string partition = 5;
+
+    // action is the action of the turn
+    optional string action = 6;
+
+    // action_object is the object of the action
+    optional string action_object = 7;
+}
+
+// Answer format enum (separate from question type)
+enum AnswerType {
+    ANSWER_TYPE_UNDEFINED = 0;
+    ANSWER_TYPE_FREEFORM = 1;
+    ANSWER_TYPE_FREEFORM_LOCOMO = 2;
+    ANSWER_TYPE_FREEFORM_DEBATE = 3;
+    ANSWER_TYPE_MULTIPLE_CHOICE_SINGLE = 4;    // Single selection
+    ANSWER_TYPE_MULTIPLE_CHOICE_MULTIPLE = 5;  // Multiple selection
+}
+
+// Choice option for MC questions
+message Choice {
+    string id = 1;          // e.g., "A", "B", "C"
+    string content = 2;     // Choice text
+}
+
+// Structured answer to handle different formats
+message Answer {
+    oneof answer_type {
+        string free_form_answer = 1;
+        string single_choice_id = 2;           // Single MC answer
+        MultipleChoiceAnswer multiple_choice_ids = 3; // Multiple MC answers
+    }
+
+    optional string answer_reasoning = 4;
+}
+
+message MultipleChoiceAnswer {
+    repeated string choice_ids = 1;
+}
+
+message Tag {
+    string subject = 1;
+    string verb = 2;
+    string object = 3;
+    optional string timestamp = 4;
+    optional string location = 5;
+}
+
+   
+message Question {
+    // question_id is the id of the question
+    string id = 1;
+
+    // question_type is the type of the question
+    optional string type = 2; // optional, can be empty
+
+    // question is the question
+    string content = 3;
+
+    Answer answer = 4;
+
+    // question_date is the date of the question
+    optional string date = 5; // optional, can be empty
+
+    // question_turn_ids is the ids of the turns that are part of the question
+    repeated string question_turn_ids = 6;
+
+    // answer_turn_ids is the ids of the turns that are part of the answer
+    repeated string answer_turn_ids = 7;
+
+    AnswerType answer_type = 8;
+}
+
+message Dataset {
+    // the name of the dataset
+    string name = 1;
+    
+    // aggregated all turns in the dataset (combine all turns across questions)
+    repeated Turn turns = 2;
+
+    // questions in the dataset
+    repeated Question questions = 3;
+}
+
+
+message TurnEncodingRequest {
+    sivako.EmbeddingModelProviderConfig embedding_model_provider_config = 1;
+    repeated Turn turns = 2;
+}
+
+message TurnEncodingResponse {
+    string id = 1;
+    repeated float embedding = 2;
+    Turn turn = 3;
+    bool success = 4;
+}

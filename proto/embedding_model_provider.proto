@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package sivako;
+
+import "ai_provider_config.proto";
+
+enum EmbeddingModelProvider {
+  EMBEDDING_MODEL_PROVIDER_UNSPECIFIED = 0;
+  EMBEDDING_MODEL_PROVIDER_AZURE_OPENAI = 1;
+  EMBEDDING_MODEL_PROVIDER_OPENAI = 2;
+  EMBEDDING_MODEL_PROVIDER_HUGGINGFACE = 3;
+}
+
+message EmbeddingModelProviderConfig {
+  EmbeddingModelProvider provider = 1;
+  int32 max_concurrent = 2;
+  string model_name = 3;
+  float cost_per_1M_tokens = 4;
+  oneof config {
+    sivako.AzureOpenAIConfig azure_openai_config = 5;
+    sivako.OpenAIConfig openai_config = 6;
+    sivako.HuggingFaceConfig huggingface_config = 7;
+  }
+}

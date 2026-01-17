@@ -1,0 +1,37 @@
+{
+    "answer_evaluator_config": {
+        "generated_answer_jsonl_path": "path/to/answer_generation_results.json",
+        "questions_jsonl_path": "path/to/questions.jsonl",
+        "answer_evaluation_strategy": "answer_evaluation_v2",
+        "concurrent": 32,
+        "dataset_name": null,
+        "output_dir": "path/to/answer_evaluation_results",
+        "adapter_language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-4o-mini",
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "top_p": 0.9,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        }
+    },
+    "answer_evaluation_strategy_type": "ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v2",
+    "answer_evaluation_v2_config": {
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-4.1-mini",
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "top_p": 0.9,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        }
+    }
+}

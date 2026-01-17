@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package sivako;
+
+import "language_model_provider.proto";
+import "qdrant_config.proto";
+import "project_dataset_uniform.proto";
+import "embedding_model_provider.proto";
+
+
+
+
+message ContextReductionConfig {
+    // the config for the turn collection
+    string turns_jsonl_path = 1;
+
+    // the name of the turns collection
+    string turns_collection_name = 2;
+
+    // the path to the notes jsonl file
+    string notes_jsonl_path = 3;
+
+    // the qdrant config for the notes collection
+    QdrantConfig qdrant_config_notes_collection = 4;
+
+    // the language model provider config
+    sivako.LanguageModelProviderConfig language_model_provider_config = 5;
+
+    // the concurrent number of context reductions
+    int32 concurrent = 6;
+
+    // the dataset name
+    string dataset_name = 7;
+
+    // the output directory
+    string output_dir = 8;
+}
+
+message NotesUploadConfig {
+    // Path to the notes JSONL output
+    string notes_jsonl_path = 1;
+
+    // the name of the notes collection 
+    string notes_collection_name = 2;
+
+    // Path to the turns JSONL for reconstructing turn content
+    string turns_jsonl_path = 3;
+
+    // Qdrant configuration for the notes collection
+    QdrantConfig qdrant_notes_collection = 4;
+
+    // Embedding model identifier passed to LiteLLM
+    string embedding_model_name = 5;
+
+    // Additional keyword arguments forwarded to LiteLLM embedding call
+    map<string, string> embedding_model_kwargs = 6;
+
+    // Batch size for embedding uploads
+    int32 batch_size = 7;
+
+    // Whether to reset the target collections before upload
+    bool reset_collections = 8;
+}
+
+message EventTypeLabelerConfig {
+    // Path to the turns JSONL file
+    string turns_jsonl_path = 1;
+
+    // Optional dataset name used when logging or prompting the LLM
+    string dataset_name = 2;
+
+    // Language model configuration for label generation and validation
+    sivako.LanguageModelProviderConfig language_model_provider_config = 3;
+
+    // Encoder configuration used to embed event labels and turns
+    sivako.EmbeddingModelProviderConfig encoder_config = 4;
+
+    // Output path for the produced event type assignments JSON
+    string event_type_assignments_output_path = 5;
+
+    // Maximum number of concurrent workers for parallel processing (default: 5)
+    int32 max_workers = 6;
+}
+
+message TurnLevelNoteGeneratorConfig {
+    // Path to the turns JSONL file
+    string turns_jsonl_path = 1;
+
+    // Optional dataset name used when logging or prompting the LLM
+    string dataset_name = 2;
+
+    // Language model configuration for turn-level note taking
+    sivako.LanguageModelProviderConfig language_model_provider_config = 3;
+
+    // Optional segment-level notes JSONL providing conversation summaries
+    string segment_level_notes_jsonl_path = 4;
+
+    // Optional event type assignments JSON produced by the labeler stage
+    string event_type_assignments_path = 5;
+
+    // Output path for structured turn notes (JSONL)
+    string structured_notes_output_path = 6;
+
+    // Optional output path for the leading-turn mapping JSON
+    string turn_mapping_output_path = 7;
+
+    // Optional context scope assignments JSON produced prior to segment notes
+    string context_scope_assignments_path = 8;
+}
+
+message LabelBasedContextRetrievalConfig {
+    // Structured turn notes enriched with context_scope, event_types, target, etc.
+    string structured_notes_jsonl_path = 1;
+
+    // Mapping of leading turn indices to the list of consecutive turn indices.
+    string turn_mapping_json_path = 2;
+
+    // Questions JSONL to drive retrieval (same schema as DatasetRetrievalRequest.retrieval_config.questions_jsonl_path).
+    string questions_jsonl_path = 3;
+
+    // Destination path for the retrieval summary JSON.
+    string output_json_path = 4;
+
+    // Maximum number of label-filtered turns kept before applying dense retrieval (default handled in code).
+    int32 max_label_selected_turns = 5;
+
+    // Number of dense retrieval candidates to keep after similarity scoring (default handled in code).
+    int32 embedding_topk = 6;
+
+    // LLM configuration used to select label candidates for each question.
+    sivako.LanguageModelProviderConfig label_selector_language_model_provider_config = 7;
+
+    // Embedding model provider used to embed questions and turn candidates.
+    sivako.EmbeddingModelProviderConfig query_embedding_model_provider_config = 8;
+
+    // Qdrant collection containing the encoded turns to fetch payloads for dense scoring.
+    sivako.QdrantConfig qdrant_config_turn_collection = 9;
+}
+
+enum ContextReductionStrategyType {
+    CONTEXT_REDUCTION_STRATEGY_TYPE_UNDEFINED = 0;
+    CONTEXT_REDUCTION_STRATEGY_TYPE_NOTES_CONTEXT_REDUCTION = 1;
+}
+
+message DirectContextReductionConfig {
+    // the language model provider config
+    sivako.LanguageModelProviderConfig language_model_provider_config = 1;
+}
+
+
+message DatasetContextReductionRequest {
+    // the answer evaluation config
+    ContextReductionConfig context_reduction_config = 1;
+    
+    // answer evaluation strategy type
+    ContextReductionStrategyType context_reduction_strategy_type = 2;
+
+    // the questions to evaluate answers for
+    oneof context_reduction_strategy_config {
+        DirectContextReductionConfig direct_context_reduction_config = 3;
+    }
+}
+
+
+
+message DatasetContextReductionResult {
+    // the answer evaluation strategy that was used
+    string context_reduction_strategy = 1;
+
+    // the dataset name
+    string dataset_name = 2;
+
+    // the answer evaluation results for each question
+    repeated QuestionContextReductionResult question_context_reduction_results = 3;
+}
+
+message QuestionContextReductionResult {
+    // the identifier of the evaluated question
+    string question_id = 1;
+
+    // the turns selected during context reduction
+    repeated sivako.Turn turns = 2;
+}

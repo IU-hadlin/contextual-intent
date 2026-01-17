@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package longmemeval;
+
+message ChatMessage {
+  string role = 1;
+  string content = 2;
+  optional bool has_answer = 3;
+}
+
+message ChatSession {
+  repeated ChatMessage messages = 1;
+}
+
+message LongMemEvalItem {
+  string question_id = 1;
+  string question_type = 2;
+  string question = 3;
+  string answer = 4;
+  string question_date = 5; // kept as string to match sample.json
+  repeated string haystack_dates = 6; // kept as strings to match sample.json
+  repeated string haystack_session_ids = 7;
+  repeated ChatSession haystack_sessions = 8;
+  repeated string answer_session_ids = 9;
+}
+
+message LongMemEvalDataset {
+  repeated LongMemEvalItem items = 1;
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package sivako;
+
+option go_package = "./proto";
+
+import "ai_provider_config.proto";
+
+enum LanguageModelProvider {
+  LANGUAGE_MODEL_PROVIDER_UNSPECIFIED = 0;
+  LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI = 1;
+  LANGUAGE_MODEL_PROVIDER_OPENAI = 2;
+  LANGUAGE_MODEL_PROVIDER_TOGETHERAI = 3;
+  LANGUAGE_MODEL_PROVIDER_OPENROUTER = 4;
+  LANGUAGE_MODEL_PROVIDER_DEEPINFRA = 5;
+  LANGUAGE_MODEL_PROVIDER_ANTHROPIC = 6;
+  LANGUAGE_MODEL_PROVIDER_GEMINI = 7;
+  LANGUAGE_MODEL_PROVIDER_BEDROCK = 8;
+  LANGUAGE_MODEL_PROVIDER_VERTEX_AI = 9;
+  LANGUAGE_MODEL_PROVIDER_OLLAMA = 10;
+  LANGUAGE_MODEL_PROVIDER_SAGEMAKER = 11;
+  LANGUAGE_MODEL_PROVIDER_HUGGINGFACE = 12;
+  LANGUAGE_MODEL_PROVIDER_COHERE = 13;
+  LANGUAGE_MODEL_PROVIDER_MISTRAL = 14;
+  LANGUAGE_MODEL_PROVIDER_GROQ = 15;
+}
+
+message LanguageModelProviderConfig {
+  LanguageModelProvider provider = 1;
+  string model_name = 2;
+  float temperature = 3;
+  float top_p = 4;
+  int32 max_tokens = 5;
+  oneof config {
+    sivako.AzureOpenAIConfig azure_openai_config = 6;
+    sivako.OpenAIConfig openai_config = 7;
+    sivako.TogetherAIConfig togetherai_config = 8;
+    sivako.OpenRouterConfig openrouter_config = 9;
+    sivako.DeepInfraConfig deepinfra_config = 10;
+    sivako.AnthropicConfig anthropic_config = 11;
+    sivako.GeminiConfig gemini_config = 12;
+    sivako.BedrockConfig bedrock_config = 13;
+    sivako.VertexAIConfig vertex_ai_config = 14;
+    sivako.OllamaConfig ollama_config = 15;
+    sivako.SageMakerConfig sagemaker_config = 16;
+    sivako.HuggingFaceConfig huggingface_config = 17;
+    sivako.CohereConfig cohere_config = 18;
+    sivako.MistralConfig mistral_config = 19;
+    sivako.GroqConfig groq_config = 20;
+  }
+}

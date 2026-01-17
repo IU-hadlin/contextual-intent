@@ -1,0 +1,20 @@
+{
+    "dataset_description_config": {
+        "turns_jsonl_path": "path/to/turns.jsonl",
+        "dataset_type": null,
+        "sample_rate": 0.2,
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-5-mini",
+            "temperature": 1.0,
+            "max_tokens": 20000,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        },
+        "output_path": "path/to/dataset_description.txt"
+    }
+}
+

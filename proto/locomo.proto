@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package locomo;
+
+message ChatMessage {
+    string speaker = 1;
+    string dia_id = 2;
+    string text = 3;
+}
+
+message ChatSession {
+    string timestamp = 1;
+    repeated ChatMessage chat_messages = 2;
+}
+
+message Conversation {
+    string speaker_a = 1;
+    string speaker_b = 2;
+    repeated ChatSession chat_sessions = 3;
+}
+
+message Question {
+    string question = 1;
+    string answer = 2;
+    repeated string evidence = 3;
+    string category = 4;
+}
+
+message LocomoItem {
+    repeated Question question = 1;
+    Conversation conversation = 2;
+}
+
+message LocomoDataset {
+    repeated LocomoItem items = 1;
+}

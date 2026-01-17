@@ -1,0 +1,37 @@
+{
+  "structured_notes_jsonl_path": "path/to/structured_turn_notes.jsonl",
+  "turn_mapping_json_path": "path/to/turn_mapping.json",
+  "questions_jsonl_path": "path/to/questions.jsonl",
+  "output_json_path": "path/to/label_based_retrieval.json",
+  "label_selection_output_path": "path/to/selected_labels.json",
+  "max_label_selected_turns": 20,
+  "embedding_topk": 20,
+  "label_selector_language_model_provider_config": {
+    "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+    "model_name": "azure/gpt-5-mini",
+    "temperature": 1.0,
+    "max_tokens": 20000,
+    "azure_openai_config": {
+      "api_key": "${AZURE_API_KEY}",
+      "api_base": "${AZURE_API_BASE}",
+      "api_version": "${AZURE_API_VERSION}"
+    }
+  },
+  "query_embedding_model_provider_config": {
+    "provider": "EMBEDDING_MODEL_PROVIDER_AZURE_OPENAI",
+    "model_name": "text-embedding-3-small",
+    "cost_per_1M_tokens": 0.1,
+    "azure_openai_config": {
+      "api_key": "${AZURE_API_KEY}",
+      "api_base": "${AZURE_API_BASE}",
+      "api_version": "${AZURE_API_VERSION}"
+    }
+  },
+  "qdrant_config_turn_collection": {
+    "url": "${QDRANT_URL}",
+    "api_key": "${QDRANT_API_KEY}",
+    "collection": null,
+    "vector_size": 1536,
+    "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
+  }
+}

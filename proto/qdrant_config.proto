@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package sivako;
+
+import "turn_encoding_strategy.proto";
+
+message QdrantConfig {
+    string url = 1;
+    string api_key = 2;
+    string collection = 3;
+    int32 vector_size = 4;
+    sivako.TurnEncodeStrategy turn_encode_strategy = 5;
+}

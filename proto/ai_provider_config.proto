@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package sivako;
+
+message AzureOpenAIConfig {
+  string api_key = 1;
+  string api_base = 2;
+  string api_version = 3;
+}
+
+message OpenAIConfig {
+  string api_key = 1; // OPENAI_API_KEY
+  optional string organization = 2;
+  optional string api_base = 3;
+}
+
+message AnthropicConfig {
+  string api_key = 1; // ANTHROPIC_API_KEY
+  optional string api_base = 2;
+}
+
+message GeminiConfig {
+  string api_key = 1; // GEMINI_API_KEY
+}
+
+message HuggingFaceConfig {
+  string api_key = 1;
+  optional string api_base = 2;
+}
+
+message TogetherAIConfig {
+  string api_key = 1;
+}
+
+message OpenRouterConfig {
+  string api_key = 1;
+  string site_url = 2;
+  string app_name = 3;
+}
+
+message DeepInfraConfig {
+  string api_key = 1;
+}
+
+message BedrockConfig {
+  string aws_access_key_id = 1;
+  string aws_secret_access_key = 2;
+  string region_name = 3;
+}
+
+message VertexAIConfig {
+  string project = 1;
+  string location = 2;
+  string credentials_path = 3;
+}
+
+message OllamaConfig {
+  string api_base = 1;
+}
+
+message SageMakerConfig {
+  string aws_access_key_id = 1;
+  string aws_secret_access_key = 2;
+  string region_name = 3;
+}
+
+message CohereConfig {
+  string api_key = 1;
+}
+
+message MistralConfig {
+  string api_key = 1;
+}
+
+message GroqConfig {
+  string api_key = 1;
+}

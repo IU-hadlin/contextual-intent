@@ -1,0 +1,22 @@
+{
+    "context_reduction_retrieval_config": {
+        "turns_jsonl_path": "path/to/turns.jsonl",
+        "notes_output_path": "path/to/turn_notes.jsonl",
+        "segment_level_notes_output_path": "path/to/segment_level_notes.jsonl",
+        "context_scope_assignments_output_path": "path/to/context_scope_assignments.json",
+        "dataset_name": null,
+        "scope_history_window": 50,
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-5-mini",
+            "max_tokens": 20000,
+            "temperature": 1.0,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        },  
+        "structured_notes_output_path": "path/to/structured_turn_notes.jsonl"
+    }
+}

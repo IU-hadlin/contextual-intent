@@ -1,0 +1,36 @@
+{
+    "answer_generation_config": {
+        "questions_jsonl_path": "path/to/questions.jsonl",
+        "turns_jsonl_path": "path/to/turns.jsonl",
+        "retrieval_result_jsonl_path": "path/to/retrieval_results.jsonl",
+        "answer_generation_strategy": "direct_answer_generation",
+        "concurrent": 32,
+        "dataset_name": null,
+        "output_dir": "path/to/answer_generation_results",
+        "adapter_language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-4o-mini",
+            "temperature": 1.0,
+            "max_tokens": 20000,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        }
+    },
+    "answer_generation_strategy_type": "ANSWER_GENERATION_STRATEGY_TYPE_DIRECT_ANSWER_GENERATION",
+    "direct_answer_generation_config": {
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
+            "model_name": "azure/gpt-5-mini",
+            "temperature": 1.0,
+            "max_tokens": 20000,
+            "azure_openai_config": {
+                "api_key": "${AZURE_API_KEY}",
+                "api_base": "${AZURE_API_BASE}",
+                "api_version": "${AZURE_API_VERSION}"
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "summary_json_path": "path/to/label_based_retrieval.json",
+  "questions_jsonl_path": "path/to/questions.jsonl",
+  "output_json_path": "path/to/label_based_retrieval_tranformed.json",
+  "label_selection_output_path": "path/to/selected_labels.json",
+  "dataset_name": null,
+  "retrieval_strategy": "label_based_filtering",
+  "topk": 20,
+  "structured_notes_jsonl_path": "path/to/structured_turn_notes.jsonl",
+  "segment_notes_jsonl_path": "path/to/segment_level_notes.jsonl"
+}

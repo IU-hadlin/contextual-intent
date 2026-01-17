@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package sivako;
+
+import "qdrant_config.proto";
+import "embedding_model_provider.proto";
+import "language_model_provider.proto";
+import "turn_encoding_strategy.proto";
+
+message DatasetTurnEncodeRequest {
+    // the dataset name
+    string dataset_name = 1;
+    
+    // the encoder config
+    sivako.EmbeddingModelProviderConfig encoder_config = 2;
+
+    // the qdrant config for the dataset turn collection
+    sivako.QdrantConfig qdrant_config = 3;
+
+    // the path to the turns jsonl file
+    string turns_jsonl_path = 4;
+
+    // the batch size for uploading to qdrant
+    int32 batch_upload_size = 5;
+
+    // whether to reset the collection
+    optional bool reset_collection = 6;
+
+    // the encode strategy
+    sivako.TurnEncodeStrategy turn_encode_strategy = 7;
+
+    // the language model provider config for strategy that need language model
+    sivako.LanguageModelProviderConfig language_model_provider_config = 8;
+}
