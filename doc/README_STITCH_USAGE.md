@@ -73,6 +73,9 @@ We provide a master script to run the full pipeline end-to-end.
 bash scripts/sample_run.sh
 ```
 
+**Note:** If you are using STITCH to run CAME-Bench, we recommend using the provided answer generator and evaluator scripts. However, for other benchmarks or custom datasets, please follow their specific answer generation and evaluation procedures and prompts.
+
+
 This script will sequentially execute:
 1. **Proto Generation**: Ensures message types are ready.
 2. **Encoding**: Embeds your `turns.jsonl` for retrieval.

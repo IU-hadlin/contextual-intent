@@ -149,10 +149,11 @@ class LLMAnswerEvaluator(AnswerEvaluator):
             for item in answer:
                 item_str = str(item).strip()
                 if item_str:
-                    # Check if this item contains semicolons
-                    if ";" in item_str:
-                        # Split by semicolons and add each part
-                        parts = [part.strip() for part in item_str.split(";") if part.strip()]
+                    # Check if this item contains semicolons/newlines/commas
+                    if any(sep in item_str for sep in [";", ",", "\n"]):
+                        # Split by semicolons/commas/newlines and add each part
+                        normalized = item_str.replace("\n", ";").replace(",", ";")
+                        parts = [part.strip() for part in normalized.split(";") if part.strip()]
                         candidates.extend(parts)
                     else:
                         candidates.append(item_str)
@@ -171,8 +172,9 @@ class LLMAnswerEvaluator(AnswerEvaluator):
         try:
             parsed = json.loads(text)
         except json.JSONDecodeError:
-            # Not JSON, treat as semicolon-separated string
-            separators = [segment.strip() for segment in text.replace("\n", ";").split(";")]
+            # Not JSON, treat as semicolon/newline/comma-separated string
+            normalized = text.replace("\n", ";").replace(",", ";")
+            separators = [segment.strip() for segment in normalized.split(";")]
             candidates = [segment for segment in separators if segment]
             return candidates if candidates else [text]
 
@@ -183,10 +185,11 @@ class LLMAnswerEvaluator(AnswerEvaluator):
             for item in parsed:
                 item_str = str(item).strip()
                 if item_str:
-                    # Check if this item contains semicolons
-                    if ";" in item_str:
-                        # Split by semicolons and add each part
-                        parts = [part.strip() for part in item_str.split(";") if part.strip()]
+                    # Check if this item contains semicolons/newlines/commas
+                    if any(sep in item_str for sep in [";", ",", "\n"]):
+                        # Split by semicolons/commas/newlines and add each part
+                        normalized = item_str.replace("\n", ";").replace(",", ";")
+                        parts = [part.strip() for part in normalized.split(";") if part.strip()]
                         candidates.extend(parts)
                     else:
                         candidates.append(item_str)
@@ -196,9 +199,10 @@ class LLMAnswerEvaluator(AnswerEvaluator):
         single_str = str(parsed).strip()
         if not single_str:
             return []
-        # Check if it contains semicolons
-        if ";" in single_str:
-            separators = [segment.strip() for segment in single_str.split(";")]
+        # Check if it contains semicolons/newlines/commas
+        if any(sep in single_str for sep in [";", ",", "\n"]):
+            normalized = single_str.replace("\n", ";").replace(",", ";")
+            separators = [segment.strip() for segment in normalized.split(";")]
             return [segment for segment in separators if segment]
         return [single_str]
 

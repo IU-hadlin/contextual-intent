@@ -28,10 +28,11 @@ To ensure a fair comparison between different retrieval methods, CAME-Bench stan
 
 1.  **Your Role (Retrieval)**: Your method selects the most relevant information (turn IDs or text snippets) from the history.
 2.  **Standardized Generation**: The benchmark takes your retrieved context and feeds it into a fixed DSPy module with a standardized prompt to generate an answer.
-    *   *Note:* In our paper, we use `gpt-4.1-mini` for this stage.
+    *   *Note:* In our paper, we use `gpt-5-mini` for this stage.
     *   **Constraint**: To ensure fair comparison, we enforce a shared retrieval budget. The inference context is capped at **4,096 tokens** by default. If your retrieved context exceeds this, it will be truncated.
         *   *You can adjust this limit in the `Benchmark` constructor if needed (see below), but 4096 is the standard for fair comparison.*
 3.  **Standardized Evaluation**: A "Judge" LLM compares the generated answer against the ground truth to calculate accuracy.
+    *   *Note:* In our paper, we use `gpt-4.1-mini` for this stage.
 
 ### Basic Workflow
 
@@ -79,7 +80,7 @@ async def main():
     bench = Benchmark()
     
     # 2. Configure the Judge LLM (OpenAI, Azure, Anthropic, etc.)
-    # We recommend using gpt-4o-mini or similar for the answer generation/judgment.
+    # We recommend using gpt-4.1-mini or similar for the answer generation/judgment.
     lm_config = LanguageModelProviderConfig(
         provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
         model_name="gpt-4.1-mini",

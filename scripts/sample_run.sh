@@ -44,6 +44,8 @@ python3 -m method_stitch.recall_evaluator \
   --path_to_question path/to/questions.jsonl \
   --path_to_retrieval_result path/to/label_based_retrieval.json
 
+# Note: This transformation format is optimized for CAME-Bench. 
+# If running other benchmarks, please adapt this step accordingly.
 # Step 3: Transform for answer generation
 python3 -m method_stitch.transform_retrieval_output \
   --config path/to/transform_retrieval_output_config.json
@@ -52,11 +54,11 @@ python3 -m method_stitch.transform_retrieval_output \
 # ANSWER GENERATION & EVALUATION
 ###############################################################################
 
+# Note: If you are running CAME-Bench, use the provided method_stitch scripts below.
+# For other benchmarks, please refer to their specific generation and evaluation guidelines.
+
 # Feed the new config to the answer generator:
-python3 -m src.run_answer_generator_strategy -c path/to/answer_generation_config.json
+# python3 -m method_stitch.run_answer_generator -c path/to/answer_gen.json
 
 # For debate, run the evaluator with:
-python3 -m src.run_debate_answer_evaluator -c path/to/answer_evaluation_config.json
-
-# For travel planning, run the evaluator with:
-python3 -m src.run_travel_planning_evaluator -c path/to/answer_evaluation_config.json
+# python3 -m method_stitch.run_answer_evaluator -c path/to/answer_eval.json
