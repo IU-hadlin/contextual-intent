@@ -2,7 +2,7 @@
 Encode turns with schema of Dataset turns proto (defined in proto/project_dataset_uniform.proto) and upload embeddings to Qdrant.
 
 Usage:
-python -m src.dataset_process.encode_turns -c {path_to_config_json}
+python -m method_stitch.dataset_process.encode_turns -c {path_to_config_json}
 """
 #!/usr/bin/env python3
 from __future__ import annotations

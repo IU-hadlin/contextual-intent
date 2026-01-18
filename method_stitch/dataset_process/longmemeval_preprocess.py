@@ -2,7 +2,7 @@
 Converter: Read JSONL aligned with longmemeval.proto and output Dataset from project_dataset_uniform.proto
 
 Usage:
-  python -m src.dataset_preprocess.longmemeval_preprocess \
+  python -m method_stitch.dataset_preprocess.longmemeval_preprocess \
     --input data/longmemeval-m/longmemeval-m.jsonl \
     --output-dir data/longmemeval-m \
     --name longmemeval-m \
@@ -21,7 +21,7 @@ import json
 import random
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
-from src.utils import write_dataset, load_questions, load_turns
+from came_bench.utils.io import write_dataset, load_questions, load_turns
 from tqdm import tqdm
 from google.protobuf import json_format
 from google.protobuf.json_format import MessageToDict
@@ -406,7 +406,7 @@ def load_dataset_from_files(questions_path: Path, turns_path: Path, dataset_name
     print(f"  Turns: {turns_path}")
     
     questions = load_questions(str(questions_path))
-    turns = load_turns(dataset_name, str(turns_path))
+    turns = load_turns(str(turns_path))
     
     dataset = Dataset()
     dataset.name = dataset_name

@@ -163,7 +163,7 @@ def load_questions(questions_jsonl_path: str) -> List[Question]:
     return questions
 
 
-def load_turns(dataset_name: str, turns_jsonl_path: str) -> List[Turn]:
+def load_turns(turns_jsonl_path: str) -> List[Turn]:
     assert os.path.exists(turns_jsonl_path), f"Turns JSONL file not found: {turns_jsonl_path}"
     total_num_lines = sum(1 for _ in open(turns_jsonl_path, "r"))
     turns: List[Turn] = []
@@ -250,28 +250,6 @@ def parse_turn_reasoning_metadata(reasoning: Optional[str]) -> Dict[str, str]:
             continue
         metadata[key] = value.strip()
     return metadata
-
-
-def construct_dspy_signature_mc_output(signature: dspy.Signature, option_ids: List[str], output_field_description: str, output_as_list: bool = False) -> dspy.Signature:
-    """
-    add the output field named output to the signature. Specified the return type hint as Literal. For example, if the option_ids are ["A", "B", "C"], the return type hint should be output: List[Literal["A", "B", "C"]] or Literal["A", "B", "C"] = dspy.OutputField(description=output_field_description)
-    return signature
-    """
-    from typing import get_origin, get_args
-
-    # Create Literal type from option_ids
-    literal_type = Literal[tuple(option_ids)]
-
-    if output_as_list:
-        output_type = List[literal_type]
-    else:
-        output_type = literal_type
-
-    # Add the output field to the signature
-    return dspy.Signature(
-        {**signature.input_fields, **signature.output_fields},
-        signature.instructions,
-    ).append("answer_reasoning", dspy.OutputField(description="Provide one sentence reasoning on your answer"), type_=str).append("output", dspy.OutputField(description=output_field_description), type_=output_type)
 
 
 def format_retrieved_turn(dataset_name: str, retrieved_turn: Turn, question_id: str) -> str:

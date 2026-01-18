@@ -42,8 +42,8 @@ async def main():
     # Configure LLM for Answer Generation & Evaluation
     # See doc/LLM_CONFIG.md for other providers (Azure, Anthropic, etc.)
     lm_gen_config = LanguageModelProviderConfig(
-        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
-        model_name="gpt-5-mini",
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI,
+        model_name="azure/gpt-5-mini",
         temperature=1.0,
         max_tokens=20000,
         openai_config=OpenAIConfig(
@@ -51,8 +51,8 @@ async def main():
         )
     )
     lm_jud_config = LanguageModelProviderConfig(
-        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
-        model_name="gpt-4.1-mini",
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI,
+        model_name="azure/gpt-4.1-mini",
         temperature=1.0,
         max_tokens=1024,
         top_p=0.9,
@@ -61,13 +61,7 @@ async def main():
         )
     )
 
-    # Check if API key is set
-    if not lm_gen_config.openai_config.api_key:
-        print("Warning: OPENAI_API_KEY not set. Answer generation may fail.")
-    if not lm_jud_config.openai_config.api_key:
-        print("Warning: OPENAI_API_KEY not set. Answer evaluation may fail.")
-
-    # Process each trajectory
+    # Process each trajectory, only one trajectory for now
     for traj_id in traj_ids[:1]:
         print(f"\nProcessing Trajectory: {traj_id}")
 

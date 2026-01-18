@@ -6,7 +6,7 @@ from typing import List, Dict, Any, Tuple, Optional, Set
 from src import Dataset, Turn, Question, AnswerType, Choice, Answer
 from dataset_construction.travel_plan.datatypes import Turn as TravelTurn, EvalQA, AnswerFormat
 import os
-from src.utils import write_dataset
+from came_bench.utils.io import write_dataset
 
 DATASET_NAME = "travel_planning"
 

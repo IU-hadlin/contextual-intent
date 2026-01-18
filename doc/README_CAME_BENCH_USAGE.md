@@ -61,7 +61,7 @@ To ensure a fair comparison between different retrieval methods, CAME-Bench stan
 
 The easiest way to start is using our example script.
 
-**File:** [`scripts/example_run_benchmark.py`](../scripts/example_run_benchmark.py)
+**File:** [`example_run_benchmark.py`](../example_run_benchmark.py)
 
 ```python
 import asyncio

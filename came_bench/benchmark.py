@@ -66,10 +66,7 @@ class Benchmark:
             raise ValueError(f"Trajectory {traj_id} not found.")
 
         turns_path = self.data_path / traj_id / "turns.jsonl"
-        # The dataset_name arg in load_turns is mainly for handling specific logic for debate/travel_planning
-        # We can extract it from meta
-        task = self.traj_map[traj_id].get("task", "unknown")
-        return load_turns(task, str(turns_path))
+        return load_turns(str(turns_path))
 
     def get_questions(self, traj_id: str) -> List[Question]:
         """Get the list of questions for a specific trajectory."""

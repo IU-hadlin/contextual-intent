@@ -1003,7 +1003,7 @@ def main() -> None:
         dataset_name=dataset_name,
         group_consecutive_turns=args.group_consecutive_turns,
     )
-    turns = load_turns(dataset_name, turns_path)
+    turns = load_turns(turns_path)
     logger.info(
         "Loaded %d turns for dataset '%s' from %s",
         len(turns),

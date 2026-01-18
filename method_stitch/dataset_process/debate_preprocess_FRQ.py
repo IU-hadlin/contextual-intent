@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import Dict, List, Set, Tuple, Any, Optional
 from src import Dataset, Turn, Question, AnswerType, Choice, MultipleChoiceAnswer
 from dataset_construction.debate.datatypes import Storyboard, EvalQA, AnswerFormat, DebateTurn, PriorTurn
-from src.utils import write_dataset
-from src.method_development.STITCH.common_utils import _split_into_sentences
+from came_bench.utils.io import write_dataset
+from came_bench.utils.common import _split_into_sentences
 
 DATASET_NAME = "debate"
 

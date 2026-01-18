@@ -1,8 +1,8 @@
 from came_bench.pipeline.generation.base import AnswerGenerator, register_answer_generator
-from came_bench.proto import Question, QuestionRetrievalResult, Turn, AnswerGenerationStrategyType, QuestionAnswerGenerationResult, AnswerType, MultipleChoiceAnswer, DatasetAnswerGenerationRequest
+from came_bench.proto import Question, QuestionRetrievalResult, Turn, AnswerGenerationStrategyType, QuestionAnswerGenerationResult, AnswerType, DatasetAnswerGenerationRequest
 from came_bench.utils.lm import init_lm
 import dspy
-from came_bench.utils.io import construct_dspy_signature_mc_output, format_retrieved_turn, format_question_choices
+from came_bench.utils.io import format_retrieved_turn
 from typing import List
 import re
 import logging
@@ -139,12 +139,6 @@ class DirectAnswerGeneration(AnswerGenerator):
 
         return turns_to_remove
 
-    def _get_mcq_answer_generator(self, option_ids: List[str], output_as_list: bool = False):
-        signature = construct_dspy_signature_mc_output(signature=MCQAnswerGenerator,
-                                                       option_ids=option_ids,
-                                                       output_field_description="The answer to the question",
-                                                       output_as_list=output_as_list)
-        return dspy.Predict(signature)
 
     def _get_answer_generator(self, question: Question):
         if question.answer_type == AnswerType.ANSWER_TYPE_FREEFORM:

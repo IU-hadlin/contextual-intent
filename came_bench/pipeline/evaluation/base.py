@@ -54,14 +54,6 @@ def get_answer_evaluator_class(name: str) -> Type["AnswerEvaluator"]:
 
 def discover_answer_evaluators() -> None:
     """Import evaluator implementation modules so their decorators execute."""
-    # try:
-    #     import src.baseline.evaluator as evaluator_pkg  # type: ignore
-    # except Exception:
-    #     return
-    #
-    # prefix = evaluator_pkg.__name__ + "."
-    # for module_info in pkgutil.iter_modules(evaluator_pkg.__path__, prefix):  # type: ignore[attr-defined]
-    #     import_module(module_info.name)
     pass
 
 

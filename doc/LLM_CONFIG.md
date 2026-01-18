@@ -15,7 +15,7 @@ All configurations are passed via the `LanguageModelProviderConfig` object. Belo
 
 ### OpenAI (Standard)
 
-Use this for models like `gpt-4o`, `gpt-4-turbo`, etc.
+Use this for models like `gpt-4.1-mini`, `gpt-5-mini`, etc.
 
 ```python
 from came_bench.proto import LanguageModelProvider, LanguageModelProviderConfig, OpenAIConfig
@@ -23,8 +23,10 @@ import os
 
 lm_config = LanguageModelProviderConfig(
     provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
-    model_name="gpt-4o",
-    temperature=0.0,
+    model_name="gpt-4.1-mini",
+    temperature=1.0,
+    max_tokens=16384,
+    top_p=0.9,
     openai_config=OpenAIConfig(
         api_key=os.environ.get("OPENAI_API_KEY"),
         organization=os.environ.get("OPENAI_ORG_ID"),  # Optional

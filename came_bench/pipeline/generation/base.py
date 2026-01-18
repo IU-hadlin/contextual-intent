@@ -94,15 +94,7 @@ def get_answer_generator_class(
 def discover_answer_generators() -> None:
     """
     Import answer generator implementation modules so their registration decorators run.
-    Currently scans the `src.strategies` package.
     """
-    # try:
-    #     import src.strategies.answer_generator as strategies_answer_generator_pkg  # type: ignore
-    # except Exception:
-    #     return
-    # prefix = strategies_answer_generator_pkg.__name__ + "."
-    # for module_info in pkgutil.iter_modules(strategies_answer_generator_pkg.__path__, prefix):  # type: ignore[attr-defined]
-    #     import_module(module_info.name)
     pass
 
 
@@ -111,8 +103,7 @@ class AnswerGenerator:
         # load raw data
         self.questions: List[Question] = load_questions(
             dataset_answer_generation_request.answer_generation_config.questions_jsonl_path)
-        self.turns: List[Turn] = load_turns(dataset_answer_generation_request.answer_generation_config.dataset_name,
-                                            dataset_answer_generation_request.answer_generation_config.turns_jsonl_path)
+        self.turns: List[Turn] = load_turns(dataset_answer_generation_request.answer_generation_config.turns_jsonl_path)
         self.retrieval_result: DatasetRetrievalResult = load_retrieval_result(
             dataset_answer_generation_request.answer_generation_config.retrieval_result_jsonl_path)
         # load config

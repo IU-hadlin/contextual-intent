@@ -2,7 +2,7 @@
 python3 scripts/generate_proto_universal.py 
 
 # Encode the turns for semantic retrieval
-python3 -m src.dataset_process.encode_turns \
+python3 -m method_stitch.dataset_process.encode_turns \
   -c path/to/encode_config.json
 
 # Generate dataset description and functional-type seeds
