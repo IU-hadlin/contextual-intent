@@ -11,7 +11,7 @@
             "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
             "model_name": "azure/gpt-4o-mini",
             "temperature": 1.0,
-            "max_tokens": 20000,
+            "max_tokens": 16384,
             "azure_openai_config": {
                 "api_key": "${AZURE_API_KEY}",
                 "api_base": "${AZURE_API_BASE}",

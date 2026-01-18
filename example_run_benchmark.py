@@ -41,19 +41,31 @@ async def main():
 
     # Configure LLM for Answer Generation & Evaluation
     # See doc/LLM_CONFIG.md for other providers (Azure, Anthropic, etc.)
-    lm_config = LanguageModelProviderConfig(
+    lm_gen_config = LanguageModelProviderConfig(
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
+        model_name="gpt-5-mini",
+        temperature=1.0,
+        max_tokens=20000,
+        openai_config=OpenAIConfig(
+            api_key=os.environ.get("OPENAI_API_KEY", "")
+        )
+    )
+    lm_jud_config = LanguageModelProviderConfig(
         provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
         model_name="gpt-4.1-mini",
-        temperature=0.0,
-        max_tokens=16384,
+        temperature=1.0,
+        max_tokens=1024,
+        top_p=0.9,
         openai_config=OpenAIConfig(
             api_key=os.environ.get("OPENAI_API_KEY", "")
         )
     )
 
     # Check if API key is set
-    if not lm_config.openai_config.api_key:
-        print("Warning: OPENAI_API_KEY not set. Evaluation may fail.")
+    if not lm_gen_config.openai_config.api_key:
+        print("Warning: OPENAI_API_KEY not set. Answer generation may fail.")
+    if not lm_jud_config.openai_config.api_key:
+        print("Warning: OPENAI_API_KEY not set. Answer evaluation may fail.")
 
     # Process each trajectory
     for traj_id in traj_ids[:1]:
@@ -83,7 +95,8 @@ async def main():
         result = await bench.evaluate(
             traj_id=traj_id,
             retrieval_results=retrieval_results,
-            lm_config=lm_config,
+            lm_gen_config=lm_gen_config,
+            lm_jud_config=lm_jud_config,
             output_dir=f"results/{traj_id}"
         )
 

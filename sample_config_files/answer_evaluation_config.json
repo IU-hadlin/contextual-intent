@@ -2,7 +2,7 @@
     "answer_evaluator_config": {
         "generated_answer_jsonl_path": "path/to/answer_generation_results.json",
         "questions_jsonl_path": "path/to/questions.jsonl",
-        "answer_evaluation_strategy": "answer_evaluation_v2",
+        "answer_evaluation_strategy": "answer_evaluation_v1",
         "concurrent": 32,
         "dataset_name": null,
         "output_dir": "path/to/answer_evaluation_results",
@@ -19,8 +19,8 @@
             }
         }
     },
-    "answer_evaluation_strategy_type": "ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v2",
-    "answer_evaluation_v2_config": {
+    "answer_evaluation_strategy_type": "ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v1",
+    "answer_evaluation_v1_config": {
         "language_model_provider_config": {
             "provider": "LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI",
             "model_name": "azure/gpt-4.1-mini",

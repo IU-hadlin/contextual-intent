@@ -81,7 +81,8 @@ This script will sequentially execute:
 2. **Encoding**: Embeds your `turns.jsonl` for retrieval.
 3. **Intent Tracking (STITCH Core)**:
    - Describes the dataset structure.
-   - Generates segment-level summaries.
+   - Discover goal-oriented functional details.
+   - Generates context scoped segment-level summaries.
    - Labels event types and intents.
    - Builds turn-level structured notes.
 4. **Retrieval**: Retrieves context for your questions using the structured notes.

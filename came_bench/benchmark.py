@@ -83,7 +83,8 @@ class Benchmark:
         self,
         traj_id: str,
         retrieval_results: List[Union[QuestionRetrievalResult, Dict[str, Any]]],
-        lm_config: LanguageModelProviderConfig,
+        lm_gen_config: LanguageModelProviderConfig,
+        lm_jud_config: LanguageModelProviderConfig,
         output_dir: str = "results",
         questions_map: Optional[Dict[str, Question]] = None
     ) -> DatasetAnswerEvaluationResult:
@@ -94,7 +95,8 @@ class Benchmark:
             traj_id: The trajectory ID.
             retrieval_results: List of retrieval results. Can be QuestionRetrievalResult objects
                                or dicts with keys (question_id, turn_ids OR memory_snippets).
-            lm_config: Configuration for the LLM to use for generation and evaluation.
+            lm_gen_config: Configuration for the LLM to use for generation.
+            lm_jud_config: Configuration for the LLM to use for judgment.
             output_dir: Directory to save results.
             questions_map: Optional mapping from question ID to Question object.
                           If provided, avoids reloading questions from disk.
@@ -160,7 +162,7 @@ class Benchmark:
             concurrent=5,
             dataset_name=task,
             output_dir=output_dir,
-            adapter_language_model_provider_config=lm_config,
+            adapter_language_model_provider_config=lm_gen_config,
             max_tokens_for_retrieved_results=self.token_limit
         )
 
@@ -168,7 +170,7 @@ class Benchmark:
             answer_generation_config=gen_config,
             answer_generation_strategy_type=AnswerGenerationStrategyType.ANSWER_GENERATION_STRATEGY_TYPE_DIRECT_ANSWER_GENERATION,
             direct_answer_generation_config=DirectAnswerGenerationConfig(
-                language_model_provider_config=lm_config
+                language_model_provider_config=lm_gen_config
             )
         )
 
@@ -189,14 +191,14 @@ class Benchmark:
             concurrent=5,
             dataset_name=task,
             output_dir=output_dir,
-            adapter_language_model_provider_config=lm_config
+            adapter_language_model_provider_config=lm_jud_config
         )
 
         eval_request = DatasetAnswerEvaluationRequest(
             answer_evaluator_config=eval_config,
             answer_evaluation_strategy_type=AnswerEvaluationStrategyType.ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v1,
             answer_evaluation_v1_config=DirectAnswerEvaluationConfig(
-                language_model_provider_config=lm_config
+                language_model_provider_config=lm_jud_config
             )
         )
 

@@ -80,10 +80,21 @@ async def main():
     bench = Benchmark()
     
     # 2. Configure the Judge LLM (OpenAI, Azure, Anthropic, etc.)
-    # We recommend using gpt-4.1-mini or similar for the answer generation/judgment.
-    lm_config = LanguageModelProviderConfig(
+    # We recommend using gpt-5-mini for the answer generation and gpt-4.1-mini for the judgment.
+    lm_gen_config = LanguageModelProviderConfig(
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
+        model_name="gpt-5-mini",
+        temperature=1.0,
+        max_tokens=20000,
+        openai_config=OpenAIConfig(api_key="sk-...")
+    )
+    
+    lm_jud_config = LanguageModelProviderConfig(
         provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
         model_name="gpt-4.1-mini",
+        temperature=1.0,
+        max_tokens=1024,
+        top_p=0.9,
         openai_config=OpenAIConfig(api_key="sk-...")
     )
 
@@ -104,7 +115,8 @@ async def main():
         result = await bench.evaluate(
             traj_id=traj_id,
             retrieval_results=results,
-            lm_config=lm_config
+            lm_gen_config=lm_gen_config,
+            lm_jud_config=lm_jud_config
         )
         
         print(f"Accuracy: {result.accuracy}")
