@@ -2,6 +2,9 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2601.10702-b31b1b.svg)](https://arxiv.org/abs/2601.10702) [![Website](https://img.shields.io/badge/Website-contextual--intent.github.io-blue.svg)](https://contextual-intent.github.io) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-CAME--Bench-yellow)](https://huggingface.co/datasets/Seattleyrz/CAME-Bench)
 
+## Latest News 🔥
+- **[2026-01-18]** Our paper and CAME-Bench dataset are released! Check out the [paper](https://arxiv.org/abs/2601.10702), [website](https://contextual-intent.github.io), and [dataset](https://huggingface.co/datasets/Seattleyrz/CAME-Bench).
+
 <div align="center">
 
 <img src="img/stitch_web_main.png" alt="STITCH Overview" width="100%">
