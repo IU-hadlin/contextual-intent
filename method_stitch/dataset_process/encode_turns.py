@@ -25,11 +25,11 @@ import tiktoken
 import dspy
 
 # Local imports
-from src import Turn, TurnEncodingResponse, DatasetTurnEncodeRequest, TurnEncodeStrategy, LanguageModelProvider
-from ..encoder import Encoder
-from ..utils import load_config, load_turns
+from came_bench.proto import Turn, TurnEncodingResponse, DatasetTurnEncodeRequest, TurnEncodeStrategy, LanguageModelProvider
+from came_bench.utils.encoder import Encoder
+from came_bench.utils.io import load_config, load_turns
 import logging
-from ..lm import init_lm, get_lm_cost
+from came_bench.utils.lm import init_lm, get_lm_cost
 
 # Configure root logger to ERROR so dependencies only emit errors
 logging.basicConfig(level=logging.ERROR)
@@ -134,7 +134,7 @@ async def get_all_turn_ids(client: AsyncQdrantClient, collection_name: str) -> S
 
 async def async_embed_and_upsert(dataset_turn_encode_request: DatasetTurnEncodeRequest):
 
-    turns = load_turns(dataset_turn_encode_request.dataset_name, dataset_turn_encode_request.turns_jsonl_path)
+    turns = load_turns(dataset_turn_encode_request.turns_jsonl_path)
     encoder = Encoder(dataset_turn_encode_request.encoder_config)
     lm = None
     if dataset_turn_encode_request.language_model_provider_config.provider != LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_UNSPECIFIED:
