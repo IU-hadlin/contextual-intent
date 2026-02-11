@@ -153,9 +153,9 @@ def load_config(config_path: Union[str, Path], dotenv_path: Union[str, Path, Non
 
 def load_questions(questions_jsonl_path: str) -> List[Question]:
     assert os.path.exists(questions_jsonl_path), f"Questions JSONL file not found: {questions_jsonl_path}"
-    total_num_lines = sum(1 for _ in open(questions_jsonl_path, "r"))
+    total_num_lines = sum(1 for _ in open(questions_jsonl_path, "r", encoding="utf-8"))
     questions: List[Question] = []
-    with open(questions_jsonl_path, "r") as f:
+    with open(questions_jsonl_path, "r", encoding="utf-8") as f:
         for line in tqdm(f, total=total_num_lines, desc="Loading questions from JSONL"):
             question = Question()
             ParseDict(json.loads(line), question)
@@ -165,9 +165,9 @@ def load_questions(questions_jsonl_path: str) -> List[Question]:
 
 def load_turns(turns_jsonl_path: str) -> List[Turn]:
     assert os.path.exists(turns_jsonl_path), f"Turns JSONL file not found: {turns_jsonl_path}"
-    total_num_lines = sum(1 for _ in open(turns_jsonl_path, "r"))
+    total_num_lines = sum(1 for _ in open(turns_jsonl_path, "r", encoding="utf-8"))
     turns: List[Turn] = []
-    with open(turns_jsonl_path, "r") as f:
+    with open(turns_jsonl_path, "r", encoding="utf-8") as f:
         for line in tqdm(f, total=total_num_lines, desc="Loading turns from JSONL"):
             turn = Turn()
             ParseDict(json.loads(line), turn)
