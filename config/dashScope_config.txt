@@ -1,0 +1,1 @@
+：模板来自项目自带的 sample_config_files/，我根据你的环境（DashScope + Qdrant + traj-0 数据）做了适配。

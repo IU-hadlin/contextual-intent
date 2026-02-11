@@ -1,0 +1,28 @@
+{
+    "event_type_labeler_config": {
+        "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
+        "dataset_name": "traj-0",
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
+            "model_name": "openai/qwen-plus",
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "openai_config": {
+                "api_key": "${DASHSCOPE_API_KEY}",
+                "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            }
+        },
+        "encoder_config": {
+            "provider": "EMBEDDING_MODEL_PROVIDER_OPENAI",
+            "max_concurrent": 16,
+            "model_name": "openai/text-embedding-v3",
+            "cost_per_1M_tokens": 0.01,
+            "openai_config": {
+                "api_key": "${DASHSCOPE_API_KEY}",
+                "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            }
+        },
+        "event_type_assignments_output_path": "stitch_output/traj-0/event_type_assignments.json",
+        "max_workers": 10
+    }
+}

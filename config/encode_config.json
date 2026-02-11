@@ -1,0 +1,24 @@
+{
+    "dataset_name": "traj-0",
+    "encoder_config": {
+        "provider": "EMBEDDING_MODEL_PROVIDER_OPENAI",
+        "max_concurrent": 4,
+        "model_name": "openai/text-embedding-v3",
+        "cost_per_1M_tokens": 0.01,
+        "openai_config": {
+            "api_key": "${DASHSCOPE_API_KEY}",
+            "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        }
+    },
+    "qdrant_config": {
+        "url": "${QDRANT_URL}",
+        "api_key": "",
+        "collection": "traj-0",
+        "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY",
+        "vector_size": 1024
+    },
+    "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
+    "batch_upload_size": 80,
+    "reset_collection": false,
+    "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
+}

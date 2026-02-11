@@ -1,0 +1,35 @@
+{
+    "structured_notes_jsonl_path": "stitch_output/traj-0/structured_turn_notes.jsonl",
+    "turn_mapping_json_path": "stitch_output/traj-0/turn_mapping.json",
+    "questions_jsonl_path": "came_bench_data/decoded/traj-0/questions.jsonl",
+    "output_json_path": "stitch_output/traj-0/label_based_retrieval.json",
+    "label_selection_output_path": "stitch_output/traj-0/selected_labels.json",
+    "max_label_selected_turns": 20,
+    "embedding_topk": 20,
+    "label_selector_language_model_provider_config": {
+        "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
+        "model_name": "openai/qwen-plus",
+        "temperature": 1.0,
+        "max_tokens": 4096,
+        "openai_config": {
+            "api_key": "${DASHSCOPE_API_KEY}",
+            "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        }
+    },
+    "query_embedding_model_provider_config": {
+        "provider": "EMBEDDING_MODEL_PROVIDER_OPENAI",
+        "model_name": "openai/text-embedding-v3",
+        "cost_per_1M_tokens": 0.01,
+        "openai_config": {
+            "api_key": "${DASHSCOPE_API_KEY}",
+            "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        }
+    },
+    "qdrant_config_turn_collection": {
+        "url": "${QDRANT_URL}",
+        "api_key": "",
+        "collection": "traj-0",
+        "vector_size": 1024,
+        "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
+    }
+}
