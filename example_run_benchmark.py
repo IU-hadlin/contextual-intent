@@ -1,5 +1,7 @@
 import os
 import asyncio
+from dotenv import load_dotenv
+load_dotenv()
 from typing import List, Dict, Any
 from came_bench import Benchmark
 from came_bench.proto import LanguageModelProvider, LanguageModelProviderConfig, OpenAIConfig, Question, Turn
@@ -40,24 +42,29 @@ async def main():
     print(f"Found {len(traj_ids)} trajectories: {traj_ids}")
 
     # Configure LLM for Answer Generation & Evaluation
-    # See doc/LLM_CONFIG.md for other providers (Azure, Anthropic, etc.)
+    # Using DashScope (Alibaba) via OpenAI-compatible endpoint
+    dashscope_api_key = os.environ.get("DASHSCOPE_API_KEY", "")
+    dashscope_base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+
     lm_gen_config = LanguageModelProviderConfig(
-        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI,
-        model_name="azure/gpt-5-mini",
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
+        model_name="openai/qwen-plus",
         temperature=1.0,
-        max_tokens=20000,
+        max_tokens=4096,
         openai_config=OpenAIConfig(
-            api_key=os.environ.get("OPENAI_API_KEY", "")
+            api_key=dashscope_api_key,
+            api_base=dashscope_base_url
         )
     )
     lm_jud_config = LanguageModelProviderConfig(
-        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_AZURE_OPENAI,
-        model_name="azure/gpt-4.1-mini",
+        provider=LanguageModelProvider.LANGUAGE_MODEL_PROVIDER_OPENAI,
+        model_name="openai/qwen-plus",
         temperature=1.0,
         max_tokens=1024,
         top_p=0.9,
         openai_config=OpenAIConfig(
-            api_key=os.environ.get("OPENAI_API_KEY", "")
+            api_key=dashscope_api_key,
+            api_base=dashscope_base_url
         )
     )
 
