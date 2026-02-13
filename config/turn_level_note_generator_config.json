@@ -1,10 +1,10 @@
 {
     "turn_level_note_generator_config": {
-        "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
-        "segment_level_notes_jsonl_path": "stitch_output/traj-0/segment_level_notes.jsonl",
-        "context_scope_assignments_path": "stitch_output/traj-0/context_scope_assignments.json",
-        "event_type_assignments_path": "stitch_output/traj-0/event_type_assignments.json",
-        "dataset_name": "traj-0",
+        "turns_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/turns.jsonl",
+        "segment_level_notes_jsonl_path": "stitch_output/${DATASET_NAME}/segment_level_notes.jsonl",
+        "context_scope_assignments_path": "stitch_output/${DATASET_NAME}/context_scope_assignments.json",
+        "event_type_assignments_path": "stitch_output/${DATASET_NAME}/event_type_assignments.json",
+        "dataset_name": "${DATASET_NAME}",
         "language_model_provider_config": {
             "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
             "model_name": "openai/qwen-plus",
@@ -15,8 +15,8 @@
                 "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
             }
         },
-        "structured_notes_output_path": "stitch_output/traj-0/structured_turn_notes.jsonl",
-        "turn_mapping_output_path": "stitch_output/traj-0/turn_mapping.json",
-        "functional_type_seeds_path": "stitch_output/traj-0/dataset_description.txt"
+        "structured_notes_output_path": "stitch_output/${DATASET_NAME}/structured_turn_notes.jsonl",
+        "turn_mapping_output_path": "stitch_output/${DATASET_NAME}/turn_mapping.json",
+        "functional_type_seeds_path": "stitch_output/${DATASET_NAME}/dataset_description.txt"
     }
 }

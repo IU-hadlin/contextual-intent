@@ -1,11 +1,11 @@
 {
     "answer_evaluator_config": {
-        "generated_answer_jsonl_path": "stitch_output/traj-0/answer_generation/direct_answer_generation.json",
-        "questions_jsonl_path": "came_bench_data/decoded/traj-0/questions.jsonl",
+        "generated_answer_jsonl_path": "stitch_output/${DATASET_NAME}/answer_generation/direct_answer_generation.json",
+        "questions_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/questions.jsonl",
         "answer_evaluation_strategy": "answer_evaluation_v1",
         "concurrent": 8,
-        "dataset_name": "traj-0",
-        "output_dir": "stitch_output/traj-0/answer_evaluation",
+        "dataset_name": "${DATASET_NAME}",
+        "output_dir": "stitch_output/${DATASET_NAME}/answer_evaluation",
         "adapter_language_model_provider_config": {
             "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
             "model_name": "openai/qwen-plus",

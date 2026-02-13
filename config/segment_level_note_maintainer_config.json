@@ -1,10 +1,10 @@
 {
     "context_reduction_retrieval_config": {
-        "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
-        "notes_output_path": "stitch_output/traj-0/turn_notes.jsonl",
-        "segment_level_notes_output_path": "stitch_output/traj-0/segment_level_notes.jsonl",
-        "context_scope_assignments_output_path": "stitch_output/traj-0/context_scope_assignments.json",
-        "dataset_name": "traj-0",
+        "turns_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/turns.jsonl",
+        "notes_output_path": "stitch_output/${DATASET_NAME}/turn_notes.jsonl",
+        "segment_level_notes_output_path": "stitch_output/${DATASET_NAME}/segment_level_notes.jsonl",
+        "context_scope_assignments_output_path": "stitch_output/${DATASET_NAME}/context_scope_assignments.json",
+        "dataset_name": "${DATASET_NAME}",
         "scope_history_window": 50,
         "language_model_provider_config": {
             "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
@@ -16,6 +16,6 @@
                 "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
             }
         },
-        "structured_notes_output_path": "stitch_output/traj-0/structured_turn_notes.jsonl"
+        "structured_notes_output_path": "stitch_output/${DATASET_NAME}/structured_turn_notes.jsonl"
     }
 }

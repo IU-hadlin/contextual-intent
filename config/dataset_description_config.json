@@ -1,6 +1,6 @@
 {
     "dataset_description_config": {
-        "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
+        "turns_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/turns.jsonl",
         "dataset_type": "debate",
         "sample_rate": 0.2,
         "language_model_provider_config": {
@@ -13,6 +13,6 @@
                 "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
             }
         },
-        "output_path": "stitch_output/traj-0/dataset_description.txt"
+        "output_path": "stitch_output/${DATASET_NAME}/dataset_description.txt"
     }
 }

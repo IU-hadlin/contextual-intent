@@ -1,11 +1,11 @@
 {
-    "summary_json_path": "stitch_output/traj-0/label_based_retrieval.json",
-    "questions_jsonl_path": "came_bench_data/decoded/traj-0/questions.jsonl",
-    "output_json_path": "stitch_output/traj-0/label_based_retrieval_transformed.json",
-    "label_selection_output_path": "stitch_output/traj-0/selected_labels.json",
-    "dataset_name": "traj-0",
+    "summary_json_path": "stitch_output/${DATASET_NAME}/label_based_retrieval.json",
+    "questions_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/questions.jsonl",
+    "output_json_path": "stitch_output/${DATASET_NAME}/label_based_retrieval_transformed.json",
+    "label_selection_output_path": "stitch_output/${DATASET_NAME}/selected_labels.json",
+    "dataset_name": "${DATASET_NAME}",
     "retrieval_strategy": "label_based_filtering",
     "topk": 20,
-    "structured_notes_jsonl_path": "stitch_output/traj-0/structured_turn_notes.jsonl",
-    "segment_notes_jsonl_path": "stitch_output/traj-0/segment_level_notes.jsonl"
+    "structured_notes_jsonl_path": "stitch_output/${DATASET_NAME}/structured_turn_notes.jsonl",
+    "segment_notes_jsonl_path": "stitch_output/${DATASET_NAME}/segment_level_notes.jsonl"
 }

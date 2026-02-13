@@ -1,9 +1,9 @@
 {
-    "structured_notes_jsonl_path": "stitch_output/traj-0/structured_turn_notes.jsonl",
-    "turn_mapping_json_path": "stitch_output/traj-0/turn_mapping.json",
-    "questions_jsonl_path": "came_bench_data/decoded/traj-0/questions.jsonl",
-    "output_json_path": "stitch_output/traj-0/label_based_retrieval.json",
-    "label_selection_output_path": "stitch_output/traj-0/selected_labels.json",
+    "structured_notes_jsonl_path": "stitch_output/${DATASET_NAME}/structured_turn_notes.jsonl",
+    "turn_mapping_json_path": "stitch_output/${DATASET_NAME}/turn_mapping.json",
+    "questions_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/questions.jsonl",
+    "output_json_path": "stitch_output/${DATASET_NAME}/label_based_retrieval.json",
+    "label_selection_output_path": "stitch_output/${DATASET_NAME}/selected_labels.json",
     "max_label_selected_turns": 20,
     "embedding_topk": 20,
     "label_selector_language_model_provider_config": {
@@ -28,7 +28,7 @@
     "qdrant_config_turn_collection": {
         "url": "${QDRANT_URL}",
         "api_key": "",
-        "collection": "traj-0",
+        "collection": "${DATASET_NAME}",
         "vector_size": 1024,
         "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
     }

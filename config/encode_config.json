@@ -1,5 +1,5 @@
 {
-    "dataset_name": "traj-0",
+    "dataset_name": "${DATASET_NAME}",
     "encoder_config": {
         "provider": "EMBEDDING_MODEL_PROVIDER_OPENAI",
         "max_concurrent": 4,
@@ -13,11 +13,11 @@
     "qdrant_config": {
         "url": "${QDRANT_URL}",
         "api_key": "",
-        "collection": "traj-0",
+        "collection": "${DATASET_NAME}",
         "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY",
         "vector_size": 1024
     },
-    "turns_jsonl_path": "came_bench_data/decoded/traj-0/turns.jsonl",
+    "turns_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/turns.jsonl",
     "batch_upload_size": 80,
     "reset_collection": false,
     "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
