@@ -1049,7 +1049,7 @@ def main() -> None:
                 event_assignments_path,
             )
 
-    turns = load_turns(dataset_type, turns_path)
+    turns = load_turns(turns_path)
     logger.info(
         "Loaded %d turns for dataset '%s' from %s",
         len(turns),
