@@ -1039,7 +1039,7 @@ def main() -> None:
             output_path.unlink()
             logger.info("Deleted existing output file: %s", output_path)
 
-    turns = load_turns(dataset_name, turns_path)
+    turns = load_turns(turns_path)
     logger.info(
         "Loaded %d turns for dataset '%s' from %s",
         len(turns),
