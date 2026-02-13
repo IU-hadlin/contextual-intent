@@ -847,7 +847,7 @@ async def embed_texts(
         params.setdefault("deployment_name", deployment_name)
         params.setdefault("api_type", "azure")
 
-    max_batch_size = 128  # keep payloads small for Azure/OpenAI embedding limits
+    max_batch_size = 10  # DashScope embedding API limit is 10 per batch
 
     async def _run_async_batch(batch: List[str]) -> List[List[float]]:
         response = await litellm.aembedding(
