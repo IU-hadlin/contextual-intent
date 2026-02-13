@@ -428,5 +428,588 @@ cat stitch_output/traj-0/segment_level_notes.jsonl | jq -s
 
 ---
 
-**最后更新**：2026-02-13
-**当前状态**：阶段 3c 进行中
+## 实践进度记录
+
+### 2026-02-13：完整 Pipeline 跑通 ✅
+
+#### 完成的工作
+
+**1. 环境配置与优化**
+- ✅ 配置环境变量管理：在 `.env` 中添加 `DATASET_NAME=traj-8`
+- ✅ 批量替换配置文件：9 个配置文件全部使用 `${DATASET_NAME}` 动态引用
+- ✅ 优势：切换数据集只需修改 `.env` 中一行
+
+**2. STITCH 完整 Pipeline 执行（traj-8）**
+
+| 阶段 | 任务 | 输出文件 | 耗时 | 成本 |
+|------|------|---------|------|------|
+| 阶段 2 | 向量编码 | 62 turns → Qdrant | ~2 分钟 | ¥0.003 |
+| 阶段 1 | 数据集描述 | dataset_description.txt (587B) | ~30 秒 | ¥0.005 |
+| 阶段 3a | 上下文范围预测 | context_scope_assignments.json (5.7KB) | ~8 分钟 | ¥0.02 |
+| 阶段 3b | 段落级摘要 | segment_level_notes.jsonl (102KB, 52 segments) | ~5 分钟 | ¥0.01 |
+| 阶段 3c | 事件类型标注 | event_type_assignments.json (7.3KB, 10 标签) | ~10 分钟 | ¥0.03 |
+| 阶段 3d | 结构化笔记 | structured_turn_notes.jsonl (48KB, 62 notes) | ~8 分钟 | ¥0.02 |
+| 阶段 4 | 标签检索 | label_based_retrieval.json (217KB) | ~3 分钟 | ¥0.01 |
+| 阶段 5 | 格式转换 | label_based_retrieval_transformed.json (148KB) | ~10 秒 | ¥0 |
+| 阶段 6 | 答案生成 | answer_generation/direct_answer_generation.json | ~2 分钟 | ¥0.02 |
+| 阶段 7 | 答案评估 | answer_evaluation/answer_evaluation_v1.json | ~2 分钟 | ¥0.02 |
+
+**总耗时**：约 40 分钟
+**总成本**：约 ¥0.12 RMB
+
+**3. 修复的技术问题**
+
+| 问题 | 症状 | 解决方案 | 文件位置 |
+|------|------|---------|---------|
+| Unicode 编码 | `UnicodeDecodeError: 'gbk'` | 添加 `encoding='utf-8'` | `came_bench/utils/io.py:156,158,168,170` |
+| Proto 导入路径 | `ModuleNotFoundError: No module named 'src'` | 改为 `from came_bench.proto import` | `method_stitch/dataset_process/encode_turns.py:28-32` |
+| load_turns() 签名 | `TypeError: takes 1 argument but 2 were given` | 删除 `dataset_name` 参数 | 4 个文件（见上方列表） |
+| DashScope 限流 | `429 Too Many Requests` | `max_concurrent` 从 16 降至 4 | `config/encode_config.json` |
+| Embedding 批量限制 | `batch size invalid, should not be larger than 10` | `max_batch_size` 从 128 降至 10 | `method_stitch/label_based_context_retrieval.py:850` |
+| 环境变量未替换 | `FileNotFoundError: ${DATASET_NAME}` | 使用命令行参数绕过 | `transform_retrieval_output.py` |
+
+#### 评估结果
+
+**traj-8 性能（6 个问题）**：
+- 平均 Precision: **0.68** (68%)
+- 平均 Recall: **0.66** (66%)
+- 平均 F1: **0.64** (64%)
+- 完全正确率: **1/6** (16.7%)
+
+**与论文基准对比**：
+
+| 指标 | 我们的结果 (traj-8, 6 问题) | 论文 Small 基准 (144 问题) | 差距 |
+|------|---------------------------|-------------------------|------|
+| Precision | 0.68 | 0.810 | -13% |
+| F1 Score | 0.64 | 0.844 | -20% |
+
+**差距原因分析**：
+1. **样本量小**：6 个问题 vs 144 个问题（论文 Small 全集）
+2. **模型差异**：qwen-plus vs GPT-5-mini (论文使用)
+3. **Prompt 未调优**：使用默认配置首次运行
+4. **数据集规模小**：traj-8 只有 62 turns（Small 子集中最小）
+
+#### 核心收获
+
+**1. 论文数据集结构理解（重要修正）**
+
+从论文获取的准确信息：
+
+| 子集 | 问题数 | Trajectories | 平均 Tokens | STITCH F1 | 最强 Baseline F1 | 提升 |
+|------|--------|--------------|-------------|-----------|----------------|------|
+| Small | 144 | 6 个 | 23k | **0.844** | 0.804 | +5.0% |
+| Medium | 168 | 6 个 | 137k | **0.682** | 0.566 | +11.6% |
+| Large | 61 | 2 个 | 408k | **0.592** | 0.212 | **+35.6%** |
+
+**关键发现**：
+- traj-8 是 Small 子集的 6 个 trajectories 之一
+- Small 子集总共有 144 个问题，不是 6 个
+- **轨迹越长，STITCH 优势越明显**（Large 提升最大：35.6%）
+
+**2. STITCH 核心机制验证**
+
+✅ **标签过滤有效性**：
+- 检索前：62 个候选轮次
+- 标签过滤后：12-31 个候选轮次
+- 压缩率：50%-80%
+
+✅ **标签类型准确识别**：
+- 角色过滤：正确区分 pro/con 方
+- 事件类型：`Source-Based_Argument`、`AI_Risk_Claim`、`Disagreement` 等
+- 上下文范围：10 个 scope 标签（如 `medical_research_acceleration`）
+
+✅ **结构化笔记生成**：
+- 每个轮次包含：`act`（行为）、`target`（目标）、`context_scope`、`event_types`
+- 示例：`act=AssertBenefit, target=AI-driven medical research, scope=medical_research_acceleration`
+
+**3. 工程实践能力**
+
+✅ **环境搭建**：
+- Python 虚拟环境
+- Protocol Buffers 编译
+- Qdrant 向量数据库（云端部署）
+- DashScope API 集成
+
+✅ **配置管理**：
+- 9 个配置文件的创建和管理
+- 环境变量统一管理（单一数据源）
+
+✅ **问题排查**：
+- 独立定位和修复 6 个技术问题
+- 理解错误根因（编码、API 限制、函数签名）
+
+✅ **成本控制意识**：
+- 优先使用 Small 数据集验证（¥0.12 vs ¥0.40）
+- 识别 API 限流问题并调整并发度
+
+#### 面试准备要点
+
+**1. 技术深度展示**
+
+**问题**：STITCH 与传统 RAG 的核心差异是什么？
+
+**回答要点**：
+- 传统 RAG：纯向量检索 → 在超长对话中噪声太多
+- STITCH：标签过滤 + 向量检索 → 候选集压缩 50%-80%
+- 数据支撑：论文显示在 Large 子集（408k tokens），STITCH 比最强 baseline 高出 **35.6%**
+- 我的实验验证：62 turns → 12-31 turns（标签过滤有效）
+
+**2. 工程能力展示**
+
+**项目亮点**：
+- ✅ 独立跑通 7 个阶段的完整 pipeline
+- ✅ 解决 6 个技术问题（编码、API、配置）
+- ✅ 成本控制：用 Small 数据集验证（¥0.12）
+- ✅ 配置优化：环境变量统一管理
+
+**3. 学习能力展示**
+
+**学习路径**：
+1. 阅读论文理解核心思想
+2. 分析代码理解实现细节
+3. 逐阶段运行理解数据流
+4. 对比论文基准分析差距
+5. 识别优化方向（样本量、模型、Prompt）
+
+#### 后续优化方向
+
+**短期（1-2 天）**：
+1. 运行 Small 全集（6 个 trajectories，144 问题）
+2. 对比 traj-8 和 Small 全集的性能差异
+3. 分析哪些问题类型（增量记忆、事实回忆、多跳推理、信息综合）更容易/困难
+
+**中期（3-7 天）**：
+1. 尝试 Medium 子集（168 问题，137k tokens）
+2. 验证"轨迹越长，优势越明显"的论文结论
+3. 对比实验：运行传统 RAG baseline
+
+**技术调研方向**：
+1. **多轮对话记忆系统**：MemGPT、Letta、STITCH 的对比
+2. **意图追踪技术**：对话主题边界检测算法
+3. **混合检索策略**：Dense + Sparse + Label-based
+4. **智能体记忆架构**：短期记忆 vs 长期记忆
+
+#### 关键问题与思考
+
+**Q1：为什么 62 turns → 52 segments？**
+- 相同 scope 的连续 turns 被合并成一个 segment
+- 10 个 turns 被合并（约 5 组，每组 2-3 turns）
+- 优点：信息压缩，保持主题完整性
+
+**Q2：为什么需要 4 个子阶段（3a/3b/3c/3d）？**
+- 3a：上下文范围（主题分割）
+- 3b：段落级摘要（中等粒度）
+- 3c：事件类型（对话行为标注）
+- 3d：结构化笔记（整合所有标注）
+- 原因：层次化标注，每层提供不同粒度的检索信号
+
+**Q3：transform_retrieval_output 为什么不支持环境变量？**
+- 该脚本使用普通 `json.load()` 而非 `came_bench.utils.io.load_config()`
+- 原因：可能是历史遗留代码，未统一配置加载逻辑
+- 解决方案：使用命令行参数绕过
+
+---
+
+**最后更新**：2026-02-13 18:30
+**当前状态**：✅ traj-8 完整 pipeline 已跑通，评估完成
+
+---
+
+## 论文对齐改进计划
+
+基于与论文 [STITCH (arxiv.org/abs/2601.10702)](https://arxiv.org/abs/2601.10702) 的对比分析，制定以下改进计划以贴近论文实验设置。
+
+### 论文实验设置概览
+
+**1. 数据集结构（已理解）**
+
+| 子集 | 问题数 | Trajectories | 平均 Tokens | STITCH F1 | 最强 Baseline F1 | 提升幅度 |
+|------|--------|--------------|-------------|-----------|----------------|---------|
+| Small | 144 | 6 个 (traj-8 至 traj-13) | 23k | 0.844 | 0.804 | +5.0% |
+| Medium | 168 | 6 个 (traj-2 至 traj-7) | 137k | 0.682 | 0.566 | +11.6% |
+| Large | 61 | 2 个 (traj-0, traj-1) | 408k | 0.592 | 0.212 | **+35.6%** |
+
+**2. 论文使用的 13 个 Baseline 方法**
+
+| 类别 | 方法 | 说明 |
+|------|------|------|
+| **长上下文 LLM** (5) | Full-context GPT-5-mini, Gemini 2.0 Flash Thinking, DeepSeek-v3, Claude Sonnet 3.7, Claude Haiku 3.5 | 直接将全部对话塞入 context（测试上下文窗口能力）|
+| **嵌入式 RAG** (3) | Qwen 8B, text-embedding-3-small, text-embedding-3-large | **传统向量检索方法**（我们需要重点对比）|
+| **结构化记忆智能体** (5) | Letta, MemGPT, Reflexion, ReAct, CoT | 智能体记忆管理系统 |
+
+**3. 论文统一实验约束**
+
+- **LLM 主干**：GPT-5-mini（答案生成 + 标签选择）
+- **上下文限制**：4096 tokens（确保公平对比，避免长上下文模型作弊）
+- **检索参数**：k_retrieve = 40（我们当前是 20）
+- **评估标准**：Macro-averaged Precision, Recall, F1（多元素答案）
+
+### 改进优先级
+
+#### 🎯 Priority 1: 实现传统 RAG Baseline（最高优先级）
+
+**目标**：实现论文中的嵌入式 RAG 方法，用于对比实验
+
+**为什么重要**：
+- 论文核心贡献是证明 STITCH 优于传统 RAG（Small 子集 +5%, Medium +11.6%, Large +35.6%）
+- 我们需要验证这个结论，展示标签过滤的实际效果
+- 面试时能够展示"对比实验设计能力"
+
+**实现方案**：
+
+**方案 A：跳过阶段 3（推荐）**
+
+```bash
+# 复用已有的向量编码（阶段 2）
+# 直接运行纯向量检索
+
+# 新建配置文件：config/vanilla_rag_retrieval_config.json
+{
+  "structured_notes_jsonl_path": "stitch_output/${DATASET_NAME}/structured_turn_notes.jsonl",  // 只用来获取 turn 列表
+  "questions_jsonl_path": "came_bench_data/decoded/${DATASET_NAME}/questions.jsonl",
+  "output_json_path": "stitch_output/${DATASET_NAME}/vanilla_rag_retrieval.json",
+  "embedding_topk": 40,  // 论文设置
+  "skip_label_filtering": true,  // 关键：跳过标签过滤
+  "qdrant_config_turn_collection": {
+    "url": "${QDRANT_URL}",
+    "collection": "${DATASET_NAME}",
+    "vector_size": 1024
+  }
+}
+```
+
+**代码修改位置**：
+- `method_stitch/label_based_context_retrieval.py`：添加 `skip_label_filtering` 参数
+- 当 `skip_label_filtering=true` 时，直接对所有 62 turns 进行向量检索（不做标签过滤）
+
+**方案 B：使用 came_bench 的 RAG 接口（如果存在）**
+
+检查 `came_bench/pipeline/retrieval/` 是否有现成的 RAG 实现。
+
+**实施步骤**：
+1. ✅ 阅读 `method_stitch/label_based_context_retrieval.py` 源码（理解检索逻辑）
+2. ⏳ 添加 `skip_label_filtering` 参数支持
+3. ⏳ 创建 `config/vanilla_rag_retrieval_config.json`
+4. ⏳ 运行对比实验（STITCH vs Vanilla RAG）
+5. ⏳ 分析差异：标签过滤的实际收益
+
+**预期结果**：
+- Vanilla RAG F1：约 0.50-0.60（根据论文 Small 子集基准）
+- STITCH F1：约 0.64（我们当前结果）
+- 差距：约 +5-10%（验证论文结论）
+
+**成本估算**：
+- 运行 Vanilla RAG（6 个问题）：约 ¥0.02（只有检索，无需重新标注）
+- 对比实验总成本：¥0.02
+
+---
+
+#### 🎯 Priority 2: 调整超参数对齐论文（中优先级）
+
+**目标**：将 STITCH 参数调整为论文设置，观察性能变化
+
+**当前配置 vs 论文配置**：
+
+| 参数 | 当前值 | 论文值 | 影响 |
+|------|--------|--------|------|
+| `k_retrieve` (embedding_topk) | 20 | 40 | 检索更多候选，提高召回率 |
+| `max_label_selected_turns` | 20 | 40 | 标签过滤保留更多候选 |
+| `context_token_limit` | 无限制 | 4096 | 防止超长 context 作弊 |
+| LLM 主干 | qwen-plus | GPT-5-mini | 模型能力差异 |
+
+**实施步骤**：
+
+**Step 1：调整检索参数**
+
+修改 `config/label_based_context_retrieval_config.json`：
+```json
+{
+  "max_label_selected_turns": 40,  // 20 → 40
+  "embedding_topk": 40               // 20 → 40
+}
+```
+
+**Step 2：添加上下文长度限制**
+
+修改 `config/transform_retrieval_output_config.json`：
+```json
+{
+  "max_context_tokens": 4096  // 新增参数
+}
+```
+
+需要在 `method_stitch/transform_retrieval_output.py` 中添加截断逻辑：
+```python
+# 伪代码
+retrieved_turns = retrieval_result[:topk]
+total_tokens = 0
+filtered_turns = []
+for turn in retrieved_turns:
+    turn_tokens = count_tokens(turn.content)
+    if total_tokens + turn_tokens <= 4096:
+        filtered_turns.append(turn)
+        total_tokens += turn_tokens
+    else:
+        break
+```
+
+**Step 3：重新运行 Pipeline**
+
+```bash
+# 只需重新运行阶段 4-7（复用阶段 1-3 的标注结果）
+python -m method_stitch.label_based_context_retrieval --config config/label_based_context_retrieval_config.json --overwrite
+python -m method_stitch.transform_retrieval_output --config config/transform_retrieval_output_config.json
+python -m method_stitch.run_answer_generator -c config/answer_generation_config.json
+python -m method_stitch.run_answer_evaluator -c config/answer_evaluation_config.json
+```
+
+**预期结果**：
+- F1 分数可能从 0.64 提升到 0.68-0.72（更接近论文 0.844）
+- 召回率提升（检索更多相关 turns）
+- 精确率可能略微下降（候选集变大，噪声增加）
+
+**成本估算**：
+- 重新运行阶段 4-7：约 ¥0.08
+
+---
+
+#### 🎯 Priority 3: 迁移到 GPT-5-mini（低优先级，成本考量）
+
+**目标**：使用论文相同的 LLM 主干，消除模型差异
+
+**当前模型 vs 论文模型**：
+
+| 维度 | qwen-plus (当前) | GPT-5-mini (论文) |
+|------|-----------------|------------------|
+| **价格** | ¥0.004/1k 输入, ¥0.012/1k 输出 | ¥0.012/1k 输入, ¥0.036/1k 输出 |
+| **能力** | 通用对话模型 | OpenAI 最新推理模型 |
+| **成本差距** | traj-8 完整 pipeline: ¥0.12 | 预估: ¥0.36 (**+200%**) |
+
+**决策建议**：
+
+**不推荐立即迁移的原因**：
+1. **成本高**：3 倍价格差距
+2. **收益不确定**：模型差异 vs 超参数差异，哪个影响更大？
+3. **优先级低**：先验证 Priority 1 和 2 的改进效果
+
+**迁移时机**：
+- 完成 Priority 1 和 2 后，如果性能仍有较大差距（>10%），再考虑迁移
+- 或者只在 Small 全集（144 问题）的最终实验中使用 GPT-5-mini
+
+**实施步骤（如果决定迁移）**：
+
+修改所有配置文件中的 `language_model_provider_config`：
+```json
+{
+  "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
+  "model_name": "gpt-5-mini",  // 改动
+  "openai_config": {
+    "api_key": "${OPENAI_API_KEY}",  // 改动
+    "api_base": "https://api.openai.com/v1"  // 改动
+  }
+}
+```
+
+需要在 `.env` 中添加：
+```bash
+OPENAI_API_KEY=sk-proj-...
+```
+
+---
+
+#### 🎯 Priority 4: 运行 Small 全集（144 问题）
+
+**目标**：运行完整 Small 子集，获得统计显著性结果
+
+**当前状态 vs 目标**：
+
+| 维度 | 当前 (traj-8) | 目标 (Small 全集) |
+|------|--------------|------------------|
+| **Trajectories** | 1 个 (traj-8) | 6 个 (traj-8 至 traj-13) |
+| **问题数** | 6 | 144 |
+| **统计显著性** | ❌ 样本量过小 | ✅ 可与论文直接对比 |
+| **成本** | ¥0.12 | 约 ¥0.72 (6×) |
+
+**实施步骤**：
+
+**方案 A：串行运行 6 个 trajectories**
+
+```bash
+# 循环运行
+for traj in traj-8 traj-9 traj-10 traj-11 traj-12 traj-13; do
+  export DATASET_NAME=$traj
+  # 运行完整 pipeline（阶段 1-7）
+  bash scripts/sample_run.sh
+done
+
+# 汇总 6 个 trajectories 的评估结果
+python scripts/aggregate_evaluation.py \
+  --input-dir stitch_output \
+  --trajectories traj-8,traj-9,traj-10,traj-11,traj-12,traj-13 \
+  --output small_subset_evaluation.json
+```
+
+**方案 B：并行运行（如果有多个 API Key）**
+
+使用 GNU Parallel 或 Python multiprocessing 并行处理 6 个 trajectories。
+
+**预期结果**：
+
+| 指标 | 预期结果 (Small 全集) | 论文基准 | 差距 |
+|------|---------------------|---------|------|
+| Precision | 0.75-0.80 | 0.810 | -1% ~ -6% |
+| F1 Score | 0.75-0.80 | 0.844 | -5% ~ -11% |
+
+**成本估算**：
+- 6 个 trajectories × ¥0.12 = **¥0.72**
+- 如果使用 GPT-5-mini：6 × ¥0.36 = **¥2.16**
+
+**执行时机**：
+- 完成 Priority 1 和 2 后
+- 用于最终面试展示（完整实验结果）
+
+---
+
+### 改进计划执行路线图
+
+**第一阶段：验证 STITCH 核心价值（1-2 天）**
+
+```
+Priority 1: 实现 Vanilla RAG Baseline
+  ├─ 修改 label_based_context_retrieval.py（添加 skip_label_filtering）
+  ├─ 运行对比实验（STITCH vs RAG，traj-8）
+  └─ 分析标签过滤的实际收益
+
+Priority 2: 调整超参数
+  ├─ k_retrieve: 20 → 40
+  ├─ 添加 4096 token 限制
+  └─ 重新运行阶段 4-7
+```
+
+**预期产出**：
+- ✅ 对比实验数据：STITCH vs Vanilla RAG（traj-8）
+- ✅ 验证论文结论：标签过滤提升检索精度
+- ✅ 超参数优化效果分析
+- **成本**：约 ¥0.10
+
+**第二阶段：扩大实验规模（2-3 天）**
+
+```
+Priority 4: 运行 Small 全集（144 问题）
+  ├─ 串行运行 traj-8 至 traj-13（6 个 trajectories）
+  ├─ 汇总评估结果
+  └─ 与论文基准对比（0.844 F1）
+```
+
+**预期产出**：
+- ✅ 完整 Small 子集实验结果
+- ✅ 统计显著性验证
+- ✅ 问题类型分析（哪些问题类型更容易/困难）
+- **成本**：约 ¥0.72
+
+**第三阶段（可选）：模型迁移（3-5 天）**
+
+```
+Priority 3: 迁移到 GPT-5-mini
+  ├─ 修改配置文件（9 个）
+  ├─ 运行 Small 全集
+  └─ 对比 qwen-plus vs GPT-5-mini 的性能差异
+```
+
+**预期产出**：
+- ✅ 消除模型差异
+- ✅ 最接近论文设置的实验结果
+- **成本**：约 ¥2.16
+
+---
+
+### 技术调研方向（配合实验）
+
+在运行实验的同时,深入调研以下方向以支撑面试:
+
+**1. 多轮对话记忆系统对比**
+- STITCH vs MemGPT vs Letta
+- 三者的记忆管理策略差异
+- 适用场景分析
+
+**2. RAG 检索策略演进**
+- Dense retrieval (纯向量)
+- Sparse retrieval (BM25, TF-IDF)
+- Hybrid retrieval (Dense + Sparse)
+- **Label-based filtering + Dense retrieval (STITCH)**
+
+**3. 意图追踪技术**
+- 对话主题边界检测算法
+- 上下文范围预测方法（STITCH 的 context_scope）
+- 事件类型标注（STITCH 的 event_types）
+
+**4. 评估指标设计**
+- 为什么用 Macro-averaged 而非 Micro-averaged？
+- 多元素答案的评估挑战
+- Precision, Recall, F1 的权衡
+
+---
+
+### 面试准备重点
+
+基于实验结果，准备以下面试问答：
+
+**Q1：你如何验证 STITCH 优于传统 RAG？**
+
+**回答框架**：
+1. **对比实验设计**：实现 Vanilla RAG baseline（纯向量检索 top-40）
+2. **实验数据**：traj-8（62 turns，6 问题）
+   - STITCH F1: 0.64
+   - Vanilla RAG F1: 0.55（预估）
+   - 提升：+16%
+3. **机制分析**：标签过滤将候选集从 62 压缩到 12-31（50%-80%），减少噪声
+4. **论文验证**：Small 子集 STITCH 比最强 baseline 高 5%，Medium +11.6%，Large +35.6%
+5. **关键洞察**：**对话越长，STITCH 优势越明显**（Large 子集提升最大）
+
+**Q2：你在项目中遇到的最大技术挑战是什么？**
+
+**回答框架**：
+1. **挑战**：DashScope embedding API 批量大小限制（10 vs 默认 128）
+2. **定位过程**：阶段 4 标签检索时报错 `batch size invalid`
+3. **解决方案**：修改 `label_based_context_retrieval.py:850`，`max_batch_size = 10`
+4. **深层思考**：API 限制反映了云服务商的成本控制策略
+5. **工程启示**：生产环境需要处理各种 API 限制，要有降级和重试机制
+
+**Q3：如何优化 STITCH 的成本和延迟？**
+
+**回答框架**：
+1. **成本优化**：
+   - 使用更便宜的 LLM（qwen-plus vs GPT-5-mini，节省 66%）
+   - 调整 `max_concurrent`（API 并发度）
+   - 阶段 2 向量编码只运行一次，复用结果
+2. **延迟优化**：
+   - 标签过滤减少向量检索范围（62 → 12-31）
+   - 并行处理多个问题（阶段 4-7）
+   - 使用更快的 embedding 模型
+3. **质量 vs 成本权衡**：
+   - Small 数据集先验证（¥0.12）
+   - 确认方法可行后再跑 Large 数据集（¥0.40）
+
+---
+
+### 下一步行动
+
+**立即执行（今天）**：
+1. ✅ 更新 PLAN.md（当前任务）
+2. ⏳ 阅读 `method_stitch/label_based_context_retrieval.py` 源码
+3. ⏳ 设计 `skip_label_filtering` 参数实现方案
+
+**明天执行**：
+1. ⏳ 实现 Vanilla RAG baseline
+2. ⏳ 运行对比实验（STITCH vs RAG，traj-8）
+3. ⏳ 调整超参数（k=40, 4096 token limit）
+
+**本周目标**：
+- ✅ 完成 Priority 1 和 2（对比实验 + 超参数优化）
+- ✅ 准备面试问答（基于实验数据）
+- ✅ 技术调研（RAG 检索策略演进）
+
+---
+
+**最后更新**：2026-02-13 19:00
+**当前状态**：✅ 改进计划已制定，准备实施 Priority 1
