@@ -135,6 +135,10 @@ message LabelBasedContextRetrievalConfig {
 
     // Qdrant collection containing the encoded turns to fetch payloads for dense scoring.
     sivako.QdrantConfig qdrant_config_turn_collection = 9;
+
+    // When set to true, skip label filtering (Steps 1-4) and directly use all allowed turns for semantic similarity ranking.
+    // This enables vanilla RAG baseline comparison without label-based filtering.
+    //bool skip_label_filtering = 10;
 }
 
 enum ContextReductionStrategyType {
