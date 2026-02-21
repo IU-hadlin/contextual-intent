@@ -138,7 +138,7 @@ message LabelBasedContextRetrievalConfig {
 
     // When set to true, skip label filtering (Steps 1-4) and directly use all allowed turns for semantic similarity ranking.
     // This enables vanilla RAG baseline comparison without label-based filtering.
-    //bool skip_label_filtering = 10;
+    bool skip_label_filtering = 10;
 }
 
 enum ContextReductionStrategyType {

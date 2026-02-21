@@ -930,10 +930,11 @@ def _require_existing_file(value: str, field_name: str) -> Path:
     return path
 
 
-def load_label_based_config(config_path: str) -> Tuple[LabelBasedContextRetrievalConfig, Optional[Path]]:
+def load_label_based_config(config_path: str) -> Tuple[LabelBasedContextRetrievalConfig, Optional[Path], bool]:
     raw_config = load_config(config_path)
     payload = dict(raw_config)
     label_selection_output_path = payload.pop("label_selection_output_path", None)
+    skip_label_filtering = payload.pop("skip_label_filtering", False)  # Extract skip_label_filtering parameter
     config = LabelBasedContextRetrievalConfig()
     try:
         ParseDict(payload, config)
@@ -942,7 +943,7 @@ def load_label_based_config(config_path: str) -> Tuple[LabelBasedContextRetrieva
             f"Failed to parse LabelBasedContextRetrievalConfig at {config_path}: {exc}"
         ) from exc
     final_path = Path(label_selection_output_path) if label_selection_output_path else None
-    return config, final_path
+    return config, final_path, skip_label_filtering
 
 
 def load_existing_results(
@@ -1132,6 +1133,7 @@ async def process_single_question(
     embedding_kwargs: Dict[str, object],
     max_label_selected_turns: int,
     embedding_topk: int,
+    skip_label_filtering: bool = False,
 ) -> QuestionRetrievalSummary:
     """Process a single question and return its retrieval summary."""
     logger.info("Processing question %d/%d: %s", index, total_questions, question.id)
@@ -1200,301 +1202,325 @@ async def process_single_question(
         question_targets = global_targets
         question_functional_types = global_functional_types
 
-    role_filter_set: Optional[Set[str]] = None
-    if question_roles:
-        with dspy.context(lm=selection_lm):
-            role_result = role_selector(
-                question=question.content,
-                available_roles=sorted(question_roles),
-            )
-        roles_focus = normalize_list_output(role_result.roles_to_focus)
-
-        if roles_focus:
-            normalized_roles = {
-                role.lower(): role for role in question_roles
-            }
-            selected_roles = {
-                normalized_roles.get(role.lower())
-                for role in roles_focus
-                if isinstance(role, str) and role.lower() in normalized_roles
-            }
-            selected_roles.discard(None)
-            if selected_roles:
-                role_filter_set = set(selected_roles)
-                logger.info(
-                    "Role filtering enabled for %s with roles: %s",
-                    question.id,
-                    sorted(role_filter_set),
-                )
-        else:
-            logger.info("Role filtering not required for %s", question.id)
-
-    # Step 1: Label selection with LLM (parallelized)
-    (
-        selected_scopes,
-        selected_events,
-        selected_targets,
-        selected_functional_types,
-        scope_reason,
-        event_reason,
-        target_reason,
-        func_reason,
-    ) = await select_labels_with_llm(
-        question_text=question.content,
-        context_scope_candidates=question_scopes,
-        event_type_candidates=question_events,
-        target_candidates=question_targets,
-        functional_type_candidates=question_functional_types,
-        context_scope_selector=context_scope_selector,
-        event_type_selector=event_type_selector,
-        target_selector=target_selector,
-        functional_type_selector=functional_type_selector,
-        selection_lm=selection_lm,
-    )
-
-    # Step 2: Filter turns by selected labels
-    # Build a reverse mapping to identify which turns are consecutive (not leaders)
-    consecutive_turn_set: Set[str] = set()
-    for leader, consecutive_list in turn_mapping.items():
-        if allowed_turn_ids and leader not in allowed_turn_ids:
-            continue
-        for follower in consecutive_list:
-            if not allowed_turn_ids or follower in allowed_turn_ids:
-                consecutive_turn_set.add(follower)
-    
-    # Identify which turns to evaluate for label matching
-    # - Leading turns (keys in turn_mapping)
-    # - Standalone turns (not in mapping at all)
-    matched_leading_turns: Set[str] = set()
-    matched_standalone_turns: Set[str] = set()
-    
-    for turn_id, note in structured_notes.items():
-        if allowed_turn_ids and turn_id not in allowed_turn_ids:
-            continue
-        if note.get("is_blank", False):
-            continue
-
-        # Skip consecutive turns - they'll be added when their leader matches
-        if turn_id in consecutive_turn_set:
-            continue
-
-        if role_filter_set:
-            note_role = str(note.get("role", "")).strip()
-            if note_role not in role_filter_set:
-                continue
-
-        matches = False
-        
-        # Check context_scope
-        scope_raw = note.get("context_scope", "")
-        scope = (
-            scope_raw.strip()
-            if isinstance(scope_raw, str)
-            else str(scope_raw).strip() if scope_raw is not None
-            else ""
-        )
-        if scope and scope in selected_scopes:
-            matches = True
-        
-        # Check event_types
-        event_types_val = note.get("event_types")
-        if event_types_val:
-            if isinstance(event_types_val, list):
-                for et in event_types_val:
-                    if et and isinstance(et, str) and et.strip() in selected_events:
-                        matches = True
-                        break
-            elif isinstance(event_types_val, str) and event_types_val.strip() in selected_events:
-                matches = True
-        
-        # Check target
-        target_raw = note.get("target", "")
-        target = (
-            target_raw.strip()
-            if isinstance(target_raw, str)
-            else str(target_raw).strip() if target_raw is not None
-            else ""
-        )
-        if target and target in selected_targets:
-            matches = True
-
-        # Check functional type seeds
-        func_values = note.get("functional_type_seeds")
-        if func_values and selected_functional_types:
-            if isinstance(func_values, list):
-                for ft in func_values:
-                    if ft and isinstance(ft, str) and ft.strip() in selected_functional_types:
-                        matches = True
-                        break
-            elif isinstance(func_values, str) and func_values.strip() in selected_functional_types:
-                matches = True
-        
-        if matches:
-            # Check if this is a leading turn or standalone turn
-            if turn_id in turn_mapping:
-                matched_leading_turns.add(turn_id)
-            else:
-                matched_standalone_turns.add(turn_id)
-    
-    # Expand to include all consecutive turns for matched leading turns
-    candidate_turn_ids: Set[str] = set()
-    
-    # Add standalone turns (no expansion needed)
-    candidate_turn_ids.update(matched_standalone_turns)
-    
-    # Add leading turns and their consecutive turns
-    for leading_turn in matched_leading_turns:
-        if allowed_turn_ids and leading_turn not in allowed_turn_ids:
-            continue
-        candidate_turn_ids.add(leading_turn)
-        consecutive_turns = turn_mapping.get(leading_turn, [])
-        for follower in consecutive_turns:
-            if not allowed_turn_ids or follower in allowed_turn_ids:
-                candidate_turn_ids.add(follower)
-    
-    logger.info(
-        "Label filtering: %d leading + %d standalone turns matched -> %d total turns (with consecutive)",
-        len(matched_leading_turns),
-        len(matched_standalone_turns),
-        len(candidate_turn_ids),
-    )
-
-    # Step 3: Rank by representativeness
-    ranked_turns = rank_turns_by_representativeness(
-        list(candidate_turn_ids),
-        structured_notes,
-        selected_scopes,
-        selected_events,
-        selected_targets,
-        selected_functional_types,
-    )
-
-    logger.info("Ranked %d turns by label density", len(ranked_turns))
-    
-    # Check if we need fallback to semantic similarity
-    # If 0 turns selected, fall back to semantic similarity on all allowed turns
-    use_semantic_fallback = len(candidate_turn_ids) == 0
-
-    if use_semantic_fallback:
+    # Vanilla RAG shortcut: skip label filtering if configured
+    if skip_label_filtering:
         logger.info(
-            "Label selection yielded %d turns. Falling back to semantic similarity ranking on all %d allowed turns",
-            len(candidate_turn_ids),
+            "skip_label_filtering=True for %s: Bypassing Steps 1-4, directly using all %d allowed turns for semantic similarity ranking",
+            question.id,
             len(allowed_turn_ids),
         )
-        # Use all allowed turns for semantic similarity ranking (skip usefulness filtering)
         turns_for_semantic_ranking = list(allowed_turn_ids)
-        ranked_turns = []  # Will skip usefulness filtering and go straight to semantic similarity
+
+        # Set empty values for label selection results (for output compatibility)
+        selected_scopes = []
+        selected_events = []
+        selected_targets = []
+        selected_functional_types = []
+        scope_reason = "Skipped (vanilla RAG mode)"
+        event_reason = "Skipped (vanilla RAG mode)"
+        target_reason = "Skipped (vanilla RAG mode)"
+        func_reason = "Skipped (vanilla RAG mode)"
+        ranked_turns = []
+        role_filter_set = None  # No role filtering in vanilla RAG mode
     else:
-        # Step 4: LLM usefulness filtering in rank order (only if we have label-selected turns)
-        # Stop when: (1) 20 useful turns found, OR (2) checked max_checks (capped at DEFAULT_MAX_LLM_CHECKS)
-        initial_ranked_count = len(ranked_turns)
-        max_checks = min(DEFAULT_MAX_LLM_CHECKS, max(1, initial_ranked_count // 2))  # Cap at DEFAULT_MAX_LLM_CHECKS, but at least 1
+        # Original STITCH pipeline: Steps 1-4
 
-        # Fetch turn content for usefulness filtering (all ranked turns)
-        turn_content_lookup: Dict[str, str] = {}
-        if ranked_turns:
-            turns_for_payload = [turn_idx for turn_idx, _ in ranked_turns]
-            
-            # Try to get turn content from turn_content_map first (from turns.jsonl)
-            if turn_content_map:
-                for turn_idx in turns_for_payload:
-                    content = turn_content_map.get(turn_idx, "").strip()
-                    if content:
-                        turn_content_lookup[turn_idx] = content
-            
-            # Fallback to Qdrant if turn_content_map doesn't have all turns
-            missing_turns = [turn_idx for turn_idx in turns_for_payload if turn_idx not in turn_content_lookup]
-            if missing_turns and note_lookup and qdrant_client and collection_name:
-                point_ids: List[Union[str, int]] = []
-                turn_entries: Dict[str, List[TurnIndexEntry]] = {}
-                for turn_idx in missing_turns:
-                    entries = note_lookup.get(turn_idx)
-                    if entries:
-                        turn_entries[turn_idx] = entries
-                        point_ids.extend(entry.point_id for entry in entries)
-                if point_ids:
-                    payloads = await fetch_turn_payloads(
-                        qdrant_client,
-                        collection_name,
-                        list(set(point_ids)),
-                    )
-                    for turn_idx, entries in turn_entries.items():
-                        for entry in entries:
-                            payload = payloads.get(entry.point_id, {})
-                            content = str(payload.get("content", "")).strip()
-                            if content:
-                                turn_content_lookup[turn_idx] = content
-                                break
-
-        filtered_ranked_turns: List[Tuple[str, int]] = []
-        checks_performed = 0
-
-        for turn_idx, num_matches in ranked_turns:
-            # Stop if we've found enough useful turns
-            if len(filtered_ranked_turns) >= DEFAULT_MAX_USEFUL_LLM_TURNS:
-                logger.info(
-                    "Reached usefulness cap of %d accepted turns; stopping checks",
-                    DEFAULT_MAX_USEFUL_LLM_TURNS,
-                )
-                break
-            
-            # Stop if we've reached the max check limit
-            if checks_performed >= max_checks:
-                logger.info(
-                    "Reached check limit of %d (capped from DEFAULT_MAX_LLM_CHECKS of %d ranked turns); stopping checks",
-                    DEFAULT_MAX_LLM_CHECKS,
-                    initial_ranked_count,
-                )
-                break
-
-            note = structured_notes.get(turn_idx)
-            if not note:
-                continue
-
-            turn_content = build_usefulness_turn_content(
-                note,
-                turn_content=turn_content_lookup.get(turn_idx, ""),
-            )
-
+        # Role filtering (execute before label selection)
+        role_filter_set: Optional[Set[str]] = None
+        if question_roles:
             with dspy.context(lm=selection_lm):
-                usefulness_res = turn_usefulness_selector(
+                role_result = role_selector(
                     question=question.content,
-                    turn_content=turn_content,
+                    available_roles=sorted(question_roles),
                 )
-            is_useful = normalize_bool_output(getattr(usefulness_res, "is_useful", None))
-            checks_performed += 1
+            roles_focus = normalize_list_output(role_result.roles_to_focus)
 
-            logger.info(
-                "Usefulness LLM response for turn %s: is_useful=%s raw=%s (check %d/%d)",
-                turn_idx,
-                is_useful,
-                usefulness_res,
-                checks_performed,
-                max_checks,
-            )
-
-            if is_useful:
-                filtered_ranked_turns.append((turn_idx, num_matches))
+            if roles_focus:
+                normalized_roles = {
+                    role.lower(): role for role in question_roles
+                }
+                selected_roles = {
+                    normalized_roles.get(role.lower())
+                    for role in roles_focus
+                    if isinstance(role, str) and role.lower() in normalized_roles
+                }
+                selected_roles.discard(None)
+                if selected_roles:
+                    role_filter_set = set(selected_roles)
+                    logger.info(
+                        "Role filtering enabled for %s with roles: %s",
+                        question.id,
+                        sorted(role_filter_set),
+                    )
             else:
-                logger.debug("Turn %s filtered out by usefulness check", turn_idx)
+                logger.info("Role filtering not required for %s", question.id)
 
-        ranked_turns = filtered_ranked_turns
-        logger.info(
-            "Usefulness filtering kept %d/%d ranked turns",
-            len(ranked_turns),
-            initial_ranked_count,
+        # Step 1: Label selection with LLM (parallelized)
+        (
+            selected_scopes,
+            selected_events,
+            selected_targets,
+            selected_functional_types,
+            scope_reason,
+            event_reason,
+            target_reason,
+            func_reason,
+        ) = await select_labels_with_llm(
+            question_text=question.content,
+            context_scope_candidates=question_scopes,
+            event_type_candidates=question_events,
+            target_candidates=question_targets,
+            functional_type_candidates=question_functional_types,
+            context_scope_selector=context_scope_selector,
+            event_type_selector=event_type_selector,
+            target_selector=target_selector,
+            functional_type_selector=functional_type_selector,
+            selection_lm=selection_lm,
         )
-        # Use label-selected turns for semantic similarity ranking
-        # (will be ranked by semantic similarity and top 20 selected)
-        if ranked_turns:
-            turns_for_semantic_ranking = [turn_idx for turn_idx, _ in ranked_turns]
-        else:
-            # All label-selected turns were rejected; fall back to full allowed pool
+    
+        # Step 2: Filter turns by selected labels
+        # Build a reverse mapping to identify which turns are consecutive (not leaders)
+        consecutive_turn_set: Set[str] = set()
+        for leader, consecutive_list in turn_mapping.items():
+            if allowed_turn_ids and leader not in allowed_turn_ids:
+                continue
+            for follower in consecutive_list:
+                if not allowed_turn_ids or follower in allowed_turn_ids:
+                    consecutive_turn_set.add(follower)
+        
+        # Identify which turns to evaluate for label matching
+        # - Leading turns (keys in turn_mapping)
+        # - Standalone turns (not in mapping at all)
+        matched_leading_turns: Set[str] = set()
+        matched_standalone_turns: Set[str] = set()
+        
+        for turn_id, note in structured_notes.items():
+            if allowed_turn_ids and turn_id not in allowed_turn_ids:
+                continue
+            if note.get("is_blank", False):
+                continue
+    
+            # Skip consecutive turns - they'll be added when their leader matches
+            if turn_id in consecutive_turn_set:
+                continue
+    
+            if role_filter_set:
+                note_role = str(note.get("role", "")).strip()
+                if note_role not in role_filter_set:
+                    continue
+    
+            matches = False
+            
+            # Check context_scope
+            scope_raw = note.get("context_scope", "")
+            scope = (
+                scope_raw.strip()
+                if isinstance(scope_raw, str)
+                else str(scope_raw).strip() if scope_raw is not None
+                else ""
+            )
+            if scope and scope in selected_scopes:
+                matches = True
+            
+            # Check event_types
+            event_types_val = note.get("event_types")
+            if event_types_val:
+                if isinstance(event_types_val, list):
+                    for et in event_types_val:
+                        if et and isinstance(et, str) and et.strip() in selected_events:
+                            matches = True
+                            break
+                elif isinstance(event_types_val, str) and event_types_val.strip() in selected_events:
+                    matches = True
+            
+            # Check target
+            target_raw = note.get("target", "")
+            target = (
+                target_raw.strip()
+                if isinstance(target_raw, str)
+                else str(target_raw).strip() if target_raw is not None
+                else ""
+            )
+            if target and target in selected_targets:
+                matches = True
+    
+            # Check functional type seeds
+            func_values = note.get("functional_type_seeds")
+            if func_values and selected_functional_types:
+                if isinstance(func_values, list):
+                    for ft in func_values:
+                        if ft and isinstance(ft, str) and ft.strip() in selected_functional_types:
+                            matches = True
+                            break
+                elif isinstance(func_values, str) and func_values.strip() in selected_functional_types:
+                    matches = True
+            
+            if matches:
+                # Check if this is a leading turn or standalone turn
+                if turn_id in turn_mapping:
+                    matched_leading_turns.add(turn_id)
+                else:
+                    matched_standalone_turns.add(turn_id)
+        
+        # Expand to include all consecutive turns for matched leading turns
+        candidate_turn_ids: Set[str] = set()
+        
+        # Add standalone turns (no expansion needed)
+        candidate_turn_ids.update(matched_standalone_turns)
+        
+        # Add leading turns and their consecutive turns
+        for leading_turn in matched_leading_turns:
+            if allowed_turn_ids and leading_turn not in allowed_turn_ids:
+                continue
+            candidate_turn_ids.add(leading_turn)
+            consecutive_turns = turn_mapping.get(leading_turn, [])
+            for follower in consecutive_turns:
+                if not allowed_turn_ids or follower in allowed_turn_ids:
+                    candidate_turn_ids.add(follower)
+        
+        logger.info(
+            "Label filtering: %d leading + %d standalone turns matched -> %d total turns (with consecutive)",
+            len(matched_leading_turns),
+            len(matched_standalone_turns),
+            len(candidate_turn_ids),
+        )
+    
+        # Step 3: Rank by representativeness
+        ranked_turns = rank_turns_by_representativeness(
+            list(candidate_turn_ids),
+            structured_notes,
+            selected_scopes,
+            selected_events,
+            selected_targets,
+            selected_functional_types,
+        )
+    
+        logger.info("Ranked %d turns by label density", len(ranked_turns))
+        
+        # Check if we need fallback to semantic similarity
+        # If 0 turns selected, fall back to semantic similarity on all allowed turns
+        use_semantic_fallback = len(candidate_turn_ids) == 0
+    
+        if use_semantic_fallback:
             logger.info(
-                "Usefulness filtering removed all label-selected turns; falling back to semantic similarity on all %d allowed turns",
+                "Label selection yielded %d turns. Falling back to semantic similarity ranking on all %d allowed turns",
+                len(candidate_turn_ids),
                 len(allowed_turn_ids),
             )
+            # Use all allowed turns for semantic similarity ranking (skip usefulness filtering)
             turns_for_semantic_ranking = list(allowed_turn_ids)
+            ranked_turns = []  # Will skip usefulness filtering and go straight to semantic similarity
+        else:
+            # Step 4: LLM usefulness filtering in rank order (only if we have label-selected turns)
+            # Stop when: (1) 20 useful turns found, OR (2) checked max_checks (capped at DEFAULT_MAX_LLM_CHECKS)
+            initial_ranked_count = len(ranked_turns)
+            max_checks = min(DEFAULT_MAX_LLM_CHECKS, max(1, initial_ranked_count // 2))  # Cap at DEFAULT_MAX_LLM_CHECKS, but at least 1
+    
+            # Fetch turn content for usefulness filtering (all ranked turns)
+            turn_content_lookup: Dict[str, str] = {}
+            if ranked_turns:
+                turns_for_payload = [turn_idx for turn_idx, _ in ranked_turns]
+                
+                # Try to get turn content from turn_content_map first (from turns.jsonl)
+                if turn_content_map:
+                    for turn_idx in turns_for_payload:
+                        content = turn_content_map.get(turn_idx, "").strip()
+                        if content:
+                            turn_content_lookup[turn_idx] = content
+                
+                # Fallback to Qdrant if turn_content_map doesn't have all turns
+                missing_turns = [turn_idx for turn_idx in turns_for_payload if turn_idx not in turn_content_lookup]
+                if missing_turns and note_lookup and qdrant_client and collection_name:
+                    point_ids: List[Union[str, int]] = []
+                    turn_entries: Dict[str, List[TurnIndexEntry]] = {}
+                    for turn_idx in missing_turns:
+                        entries = note_lookup.get(turn_idx)
+                        if entries:
+                            turn_entries[turn_idx] = entries
+                            point_ids.extend(entry.point_id for entry in entries)
+                    if point_ids:
+                        payloads = await fetch_turn_payloads(
+                            qdrant_client,
+                            collection_name,
+                            list(set(point_ids)),
+                        )
+                        for turn_idx, entries in turn_entries.items():
+                            for entry in entries:
+                                payload = payloads.get(entry.point_id, {})
+                                content = str(payload.get("content", "")).strip()
+                                if content:
+                                    turn_content_lookup[turn_idx] = content
+                                    break
+    
+            filtered_ranked_turns: List[Tuple[str, int]] = []
+            checks_performed = 0
+    
+            for turn_idx, num_matches in ranked_turns:
+                # Stop if we've found enough useful turns
+                if len(filtered_ranked_turns) >= DEFAULT_MAX_USEFUL_LLM_TURNS:
+                    logger.info(
+                        "Reached usefulness cap of %d accepted turns; stopping checks",
+                        DEFAULT_MAX_USEFUL_LLM_TURNS,
+                    )
+                    break
+                
+                # Stop if we've reached the max check limit
+                if checks_performed >= max_checks:
+                    logger.info(
+                        "Reached check limit of %d (capped from DEFAULT_MAX_LLM_CHECKS of %d ranked turns); stopping checks",
+                        DEFAULT_MAX_LLM_CHECKS,
+                        initial_ranked_count,
+                    )
+                    break
+    
+                note = structured_notes.get(turn_idx)
+                if not note:
+                    continue
+    
+                turn_content = build_usefulness_turn_content(
+                    note,
+                    turn_content=turn_content_lookup.get(turn_idx, ""),
+                )
+    
+                with dspy.context(lm=selection_lm):
+                    usefulness_res = turn_usefulness_selector(
+                        question=question.content,
+                        turn_content=turn_content,
+                    )
+                is_useful = normalize_bool_output(getattr(usefulness_res, "is_useful", None))
+                checks_performed += 1
+    
+                logger.info(
+                    "Usefulness LLM response for turn %s: is_useful=%s raw=%s (check %d/%d)",
+                    turn_idx,
+                    is_useful,
+                    usefulness_res,
+                    checks_performed,
+                    max_checks,
+                )
+    
+                if is_useful:
+                    filtered_ranked_turns.append((turn_idx, num_matches))
+                else:
+                    logger.debug("Turn %s filtered out by usefulness check", turn_idx)
+    
+            ranked_turns = filtered_ranked_turns
+            logger.info(
+                "Usefulness filtering kept %d/%d ranked turns",
+                len(ranked_turns),
+                initial_ranked_count,
+            )
+            # Use label-selected turns for semantic similarity ranking
+            # (will be ranked by semantic similarity and top 20 selected)
+            if ranked_turns:
+                turns_for_semantic_ranking = [turn_idx for turn_idx, _ in ranked_turns]
+            else:
+                # All label-selected turns were rejected; fall back to full allowed pool
+                logger.info(
+                    "Usefulness filtering removed all label-selected turns; falling back to semantic similarity on all %d allowed turns",
+                    len(allowed_turn_ids),
+                )
+                turns_for_semantic_ranking = list(allowed_turn_ids)
 
     # Step 5: Always rank by semantic similarity and select top 20
     # Convert to turn entries for semantic similarity ranking
@@ -1722,6 +1748,7 @@ async def async_main(
     *,
     config_path: str,
     label_selection_output_path: Optional[Path] = None,
+    skip_label_filtering: bool = False,
     max_conversations: Optional[int] = None,
     max_concurrent_questions: int = 5,
     overwrite: bool = False,
@@ -1730,10 +1757,12 @@ async def async_main(
 
     logger.info("Loaded label-based retrieval config from %s", config_path)
 
-    if not config.HasField("label_selector_language_model_provider_config"):
-        raise ValueError(
-            "label_selector_language_model_provider_config must be set for label selection"
-        )
+    # Only validate label selector config if not skipping label filtering
+    if not skip_label_filtering:
+        if not config.HasField("label_selector_language_model_provider_config"):
+            raise ValueError(
+                "label_selector_language_model_provider_config must be set for label selection"
+            )
 
     if not config.HasField("query_embedding_model_provider_config"):
         raise ValueError("query_embedding_model_provider_config must be set for embeddings")
@@ -1741,13 +1770,25 @@ async def async_main(
     # Qdrant is optional - we can load turn content from turns.jsonl instead
     use_qdrant = config.HasField("qdrant_config_turn_collection")
 
-    selection_lm = init_lm(config.label_selector_language_model_provider_config)
-    context_scope_selector = dspy.Predict(ContextScopeLabelSelectionSignature)
-    event_type_selector = dspy.Predict(EventTypeLabelSelectionSignature)
-    target_selector = dspy.Predict(TargetLabelSelectionSignature)
-    functional_type_selector = dspy.Predict(FunctionalTypeSeedsLabelSelectionSignature)
-    role_selector = dspy.Predict(RoleSensitivitySignature)
-    turn_usefulness_selector = dspy.Predict(TurnUsefulnessSignature)
+    # Only initialize label selection LLM if not skipping label filtering
+    if skip_label_filtering:
+        selection_lm = None
+        context_scope_selector = None
+        event_type_selector = None
+        target_selector = None
+        functional_type_selector = None
+        role_selector = None
+        turn_usefulness_selector = None
+        logger.info("skip_label_filtering=True: Skipping label selector LLM initialization")
+    else:
+        selection_lm = init_lm(config.label_selector_language_model_provider_config)
+        context_scope_selector = dspy.Predict(ContextScopeLabelSelectionSignature)
+        event_type_selector = dspy.Predict(EventTypeLabelSelectionSignature)
+        target_selector = dspy.Predict(TargetLabelSelectionSignature)
+        functional_type_selector = dspy.Predict(FunctionalTypeSeedsLabelSelectionSignature)
+        role_selector = dspy.Predict(RoleSensitivitySignature)
+        turn_usefulness_selector = dspy.Predict(TurnUsefulnessSignature)
+
 
     structured_notes_path = _require_existing_file(
         config.structured_notes_jsonl_path,
@@ -1762,6 +1803,12 @@ async def async_main(
         "questions_jsonl_path",
     )
     output_path = Path(_require_non_empty(config.output_json_path, "output_json_path"))
+
+    # Modify output path for vanilla RAG mode
+    if skip_label_filtering:
+        original_stem = output_path.stem
+        output_path = output_path.with_stem(f"{original_stem}_vanilla_rag")
+        logger.info("skip_label_filtering=True: Output path modified to %s", output_path)
 
     # Handle overwrite flag
     if overwrite:
@@ -2051,6 +2098,7 @@ async def async_main(
                     embedding_kwargs=embedding_kwargs,
                     max_label_selected_turns=max_label_selected_turns,
                     embedding_topk=embedding_topk,
+                    skip_label_filtering=skip_label_filtering,
                 )
                 
                 # Write result incrementally to temp JSONL
@@ -2162,12 +2210,13 @@ def parse_args() -> argparse.Namespace:
 if __name__ == "__main__":
     cli_args = parse_args()
     config_path = cli_args.config
-    config, label_selection_output_path = load_label_based_config(config_path)
+    config, label_selection_output_path, skip_label_filtering = load_label_based_config(config_path)
     asyncio.run(
         async_main(
             config,
             config_path=config_path,
             label_selection_output_path=label_selection_output_path,
+            skip_label_filtering=skip_label_filtering,
             max_conversations=cli_args.max_conversations,
             max_concurrent_questions=cli_args.max_concurrent_questions,
             overwrite=cli_args.overwrite,

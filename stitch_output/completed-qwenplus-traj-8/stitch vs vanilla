@@ -1,0 +1,71 @@
+VanillaRAG验证文件命令：python -m method_stitch.run_answer_generator -c config/vanilla_rag_answer_generation_config.json; if ($?) { python -m method_stitch.run_answer_evaluator -c config/vanilla_rag_answer_evaluation_config.json }
+
+
+STITCH vs Vanilla RAG 性能对比 (traj-8 数据集, 6 个问题)
+================================================================================
+
+【STITCH】标签过滤 + 语义检索 (Steps 1-5):
+  问题数量:        6
+  Macro Precision: 0.6778
+  Macro Recall:    0.6639
+  Macro F1:        0.6435
+
+【Vanilla RAG】仅语义相似性检索 (Step 5):
+  问题数量:        6
+  Macro Precision: 0.7361
+  Macro Recall:    0.8333
+  Macro F1:        0.7401
+
+================================================================================
+性能差异 (Vanilla RAG - STITCH):
+  ΔPrecision: +0.0583 (+8.61%)
+  ΔRecall:    +0.1694 (+25.52%)
+  ΔF1:        +0.0966 (+15.01%)
+================================================================================
+
+⚠️  意外结果：Vanilla RAG 的 F1 分数高于 STITCH！
+
+可能原因分析：
+1. 数据集规模小 (traj-8 仅 62 turns)，标签过滤可能过于激进
+2. LLM 标签选择可能误过滤掉相关上下文
+3. 对于这个特定任务，语义相似性检索已足够
+4. traj-8 数据集特性可能特别适合稠密检索
+
+建议：
+- 在更大数据集 (Medium/Large) 上验证，STITCH 优势应更明显
+- 检查 STITCH 检索结果中的标签过滤是否过于严格
+- 分析具体问题的检索差异（哪些问题 Vanilla RAG 表现更好）
+
+================================================================================
+详细问题级别对比：
+================================================================================
+
+问题 1: List the evidence used by the con side to defend its own pos...
+  STITCH F1:     0.8000
+  Vanilla RAG F1: 0.8571
+  差异:          +0.0571 (胜者: Vanilla)
+
+问题 2: List the evidence used by the pro side to defend its own pos...
+  STITCH F1:     0.1538
+  Vanilla RAG F1: 1.0000
+  差异:          +0.8462 (胜者: Vanilla)
+
+问题 3: List the evidence used by the con side during the debate. Pr...
+  STITCH F1:     0.7500
+  Vanilla RAG F1: 0.7500
+  差异:          +0.0000 (胜者: 平局)
+
+问题 4: List the evidence used by the pro side during the debate. Pr...
+  STITCH F1:     0.8571
+  Vanilla RAG F1: 0.6667
+  差异:          -0.1905 (胜者: STITCH)
+
+问题 5: List the evidence used by the con side to attack the opponen...
+  STITCH F1:     0.8000
+  Vanilla RAG F1: 0.6667
+  差异:          -0.1333 (胜者: STITCH)
+
+问题 6: List the evidence used by the pro side to attack the opponen...
+  STITCH F1:     0.5000
+  Vanilla RAG F1: 0.5000
+  差异:          +0.0000 (胜者: 平局)
