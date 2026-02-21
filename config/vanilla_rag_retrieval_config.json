@@ -1,0 +1,24 @@
+{
+    "structured_notes_jsonl_path": "stitch_output/completed-qwenplus-traj-8/structured_turn_notes.jsonl",
+    "turn_mapping_json_path": "stitch_output/completed-qwenplus-traj-8/turn_mapping.json",
+    "questions_jsonl_path": "came_bench_data/decoded/traj-8/questions.jsonl",
+    "output_json_path": "stitch_output/completed-qwenplus-traj-8/label_based_retrieval.json",
+    "embedding_topk": 20,
+    "skip_label_filtering": true,
+    "query_embedding_model_provider_config": {
+        "provider": "EMBEDDING_MODEL_PROVIDER_OPENAI",
+        "model_name": "openai/text-embedding-v3",
+        "cost_per_1M_tokens": 0.01,
+        "openai_config": {
+            "api_key": "${DASHSCOPE_API_KEY}",
+            "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        }
+    },
+    "qdrant_config_turn_collection": {
+        "url": "${QDRANT_URL}",
+        "api_key": "",
+        "collection": "traj-8",
+        "vector_size": 1024,
+        "turn_encode_strategy": "TURN_ENCODE_STRATEGY_TURN_CONTENT_ONLY"
+    }
+}

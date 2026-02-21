@@ -1,0 +1,35 @@
+{
+    "answer_evaluator_config": {
+        "generated_answer_jsonl_path": "stitch_output/completed-qwenplus-traj-8/answer_generation/vanilla_rag_answer_generation.json",
+        "questions_jsonl_path": "came_bench_data/decoded/traj-8/questions.jsonl",
+        "answer_evaluation_strategy": "answer_evaluation_v1",
+        "concurrent": 8,
+        "dataset_name": "traj-8",
+        "output_dir": "stitch_output/completed-qwenplus-traj-8/answer_evaluation",
+        "adapter_language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
+            "model_name": "openai/qwen-plus",
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "top_p": 0.9,
+            "openai_config": {
+                "api_key": "${DASHSCOPE_API_KEY}",
+                "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            }
+        }
+    },
+    "answer_evaluation_strategy_type": "ANSWER_EVALUATION_STRATEGY_TYPE_answer_evaluation_v1",
+    "answer_evaluation_v1_config": {
+        "language_model_provider_config": {
+            "provider": "LANGUAGE_MODEL_PROVIDER_OPENAI",
+            "model_name": "openai/qwen-plus",
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "top_p": 0.9,
+            "openai_config": {
+                "api_key": "${DASHSCOPE_API_KEY}",
+                "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            }
+        }
+    }
+}
