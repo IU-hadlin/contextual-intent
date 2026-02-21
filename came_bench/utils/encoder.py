@@ -48,16 +48,20 @@ class Encoder:
             raise ValueError(
                 f"Expected {config_attr} in embedding_model_provider_config, but got {embedding_model_provider_config}")
 
-    def encode(self, input: list[str]) -> list[list[float]]:
+    def encode(self, input: list[str], batch_size: int = 10) -> list[list[float]]:
         # NOTE: This method is not thread-safe for total_tokens. If you need thread safety, use the async version.
-        try:
-            output = litellm.embedding(model=self.model_name, input=input, **self.kwargs)
-            # No token counting here, or add sync lock if needed
-            return [item["embedding"] for item in output.data]
-        except Exception as e:
-            print(f"Error encoding input: {e}")
-            print("input: ", input)
-            raise e
+        # Split into batches to respect API limits (e.g. DashScope max 10 per request)
+        all_embeddings = []
+        for i in range(0, len(input), batch_size):
+            batch = input[i:i + batch_size]
+            try:
+                output = litellm.embedding(model=self.model_name, input=batch, **self.kwargs)
+                all_embeddings.extend([item["embedding"] for item in output.data])
+            except Exception as e:
+                print(f"Error encoding input: {e}")
+                print("input: ", batch)
+                raise e
+        return all_embeddings
 
     async def aencode(self, input: list[str]) -> list[list[float]]:
         """

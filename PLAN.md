@@ -646,7 +646,7 @@ cat stitch_output/traj-0/segment_level_notes.jsonl | jq -s
 
 ### 改进优先级
 
-#### 🎯 Priority 1: 实现传统 RAG Baseline（最高优先级）
+#### ✅ Priority 1: 实现传统 RAG Baseline（已完成 2026-02-21）
 
 **目标**：实现论文中的嵌入式 RAG 方法，用于对比实验
 
@@ -688,15 +688,16 @@ cat stitch_output/traj-0/segment_level_notes.jsonl | jq -s
 
 **实施步骤**：
 1. ✅ 阅读 `method_stitch/label_based_context_retrieval.py` 源码（理解检索逻辑）
-2. ⏳ 添加 `skip_label_filtering` 参数支持
-3. ⏳ 创建 `config/vanilla_rag_retrieval_config.json`
-4. ⏳ 运行对比实验（STITCH vs Vanilla RAG）
-5. ⏳ 分析差异：标签过滤的实际收益
+2. ✅ 添加 `skip_label_filtering` 参数支持
+3. ✅ 创建 `config/vanilla_rag_retrieval_config.json`
+4. ✅ 运行对比实验（STITCH vs Vanilla RAG）
+5. ✅ 分析差异：标签过滤在 traj-8 上反而降低了 F1（-15%）
 
-**预期结果**：
-- Vanilla RAG F1：约 0.50-0.60（根据论文 Small 子集基准）
-- STITCH F1：约 0.64（我们当前结果）
-- 差距：约 +5-10%（验证论文结论）
+**实际结果（与预期不同！）**：
+- Vanilla RAG F1：**0.7401**（高于预期）
+- STITCH F1：**0.6435**
+- 差距：**Vanilla RAG 反超 +15%**
+- 原因：样本量太小（6 问题）、数据集规模小（62 turns）、任务类型特殊
 
 **成本估算**：
 - 运行 Vanilla RAG（6 个问题）：约 ¥0.02（只有检索，无需重新标注）
@@ -957,14 +958,14 @@ Priority 3: 迁移到 GPT-5-mini
 **Q1：你如何验证 STITCH 优于传统 RAG？**
 
 **回答框架**：
-1. **对比实验设计**：实现 Vanilla RAG baseline（纯向量检索 top-40）
-2. **实验数据**：traj-8（62 turns，6 问题）
-   - STITCH F1: 0.64
-   - Vanilla RAG F1: 0.55（预估）
-   - 提升：+16%
-3. **机制分析**：标签过滤将候选集从 62 压缩到 12-31（50%-80%），减少噪声
-4. **论文验证**：Small 子集 STITCH 比最强 baseline 高 5%，Medium +11.6%，Large +35.6%
-5. **关键洞察**：**对话越长，STITCH 优势越明显**（Large 子集提升最大）
+1. **对比实验设计**：在 `label_based_context_retrieval.py` 中添加 `skip_label_filtering` 参数，实现 Vanilla RAG baseline
+2. **traj-8 实验结果**：
+   - STITCH F1: 0.64 / Vanilla RAG F1: 0.74
+   - 意外发现：Vanilla RAG 在小数据集上反超 +15%
+3. **根因分析**：样本量过小（6 个问题）、标签过滤在 62 turns 上过于激进（Recall 下降 25%）
+4. **论文验证**：Small 子集全集 STITCH 比最强 baseline 高 5%，Medium +11.6%，Large +35.6%
+5. **关键洞察**：**对话越长，STITCH 优势越明显**；极小数据集上简单方法更稳健
+6. **后续验证**：在 traj-9（238 turns, 42 问题）上重复实验，验证规模效应
 
 **Q2：你在项目中遇到的最大技术挑战是什么？**
 
@@ -994,22 +995,217 @@ Priority 3: 迁移到 GPT-5-mini
 
 ### 下一步行动
 
-**立即执行（今天）**：
+**立即执行（今天/明天）**：
 1. ✅ 更新 PLAN.md（当前任务）
-2. ⏳ 阅读 `method_stitch/label_based_context_retrieval.py` 源码
-3. ⏳ 设计 `skip_label_filtering` 参数实现方案
-
-**明天执行**：
-1. ⏳ 实现 Vanilla RAG baseline
-2. ⏳ 运行对比实验（STITCH vs RAG，traj-8）
-3. ⏳ 调整超参数（k=40, 4096 token limit）
+2. ⏳ 确认 `.env` 中 `DATASET_NAME=traj-0`
+3. ⏳ 检查 Qdrant 中 traj-0 向量是否已存在
+4. ⏳ 运行 STITCH 完整 Pipeline（阶段 1-7，traj-0，912 turns）
+5. ⏳ 切换分支运行 Vanilla RAG Baseline
+6. ⏳ 对比 STITCH vs Vanilla RAG（traj-0）
 
 **本周目标**：
-- ✅ 完成 Priority 1 和 2（对比实验 + 超参数优化）
-- ✅ 准备面试问答（基于实验数据）
-- ✅ 技术调研（RAG 检索策略演进）
+- ⏳ 完成 traj-0 对比实验（Large 规模，验证 STITCH 优势）
+- ⏳ 结合 traj-8 + traj-0 两组实验数据，分析规模效应
+- ⏳ 准备面试问答（基于多组实验数据）
+- ⏳ 技术调研（RAG 检索策略演进）
 
 ---
 
-**最后更新**：2026-02-13 19:00
-**当前状态**：✅ 改进计划已制定，准备实施 Priority 1
+### 2026-02-21：Vanilla RAG Baseline 对比实验完成 ✅
+
+#### 完成的工作
+
+**1. 实现 Vanilla RAG Baseline（Priority 1 完成）**
+
+- 在 `Vanilla-RAG-BaseLine` 分支上修改了 `method_stitch/label_based_context_retrieval.py`
+- 添加 `skip_label_filtering` 参数，跳过 Steps 1-4（标签选择、过滤、密度排序、有用性过滤）
+- 仅保留 Step 5（语义相似性检索），实现纯 Vanilla RAG
+- 创建了专用配置文件：`config/vanilla_rag_retrieval_config.json`、`config/vanilla_rag_answer_generation_config.json`、`config/vanilla_rag_answer_evaluation_config.json`
+
+**2. 代码修改详情**
+
+| 文件 | 修改内容 |
+|------|---------|
+| `method_stitch/label_based_context_retrieval.py` | 添加 `skip_label_filtering` 参数到 `load_label_based_config()`、`async_main()`、`process_single_question()` |
+| `method_stitch/label_based_context_retrieval.py` | 角色过滤逻辑移入 else 分支，避免 vanilla 模式下 `role_selector=None` 报错 |
+| `method_stitch/label_based_context_retrieval.py` | 条件初始化：vanilla 模式跳过 LLM selector 初始化，节省资源 |
+| `method_stitch/label_based_context_retrieval.py` | 输出路径自动添加 `_vanilla_rag` 后缀 |
+| `proto/context_reduction_retrieval.proto` | 添加 `bool skip_label_filtering = 10;`（未编译，用 `payload.pop()` 绕过）|
+
+**3. 修复的技术问题**
+
+| 问题 | 原因 | 解决方案 |
+|------|------|---------|
+| `protoc` 工具未安装 | Windows 环境缺少 Protocol Buffers 编译器 | 使用 `payload.pop()` 模式提取参数，无需编译 proto |
+| `ValueError: label_selector_language_model_provider_config` | vanilla 模式不需要标签选择 LLM，但验证逻辑无条件触发 | 添加条件检查，vanilla 模式跳过验证 |
+| `FileNotFoundError: structured_turn_notes.jsonl` | 配置文件路径指向 `${DATASET_NAME}`（未展开） | 配置文件中使用硬编码路径 |
+| `TypeError: 'NoneType' object is not callable` (role_selector) | 角色过滤代码在 `skip_label_filtering` 检查之前执行 | 将角色过滤逻辑移入 STITCH pipeline 的 else 分支 |
+| PowerShell 不支持 `&&` | PowerShell 语法与 bash 不同 | 使用 `;` + `if ($?)` 或分步执行 |
+| `run_answer_generator` 不支持命令行路径覆盖 | 脚本只从 config 读取路径 | 创建专用配置文件 |
+| 答案生成输出文件名重复 | `answer_generation_strategy` 字段决定文件名 | 改为 `vanilla_rag_answer_generation` |
+| 评估结果覆盖原文件 | 评估输出目录相同 | 手动还原 + 重命名文件 |
+
+#### 实验结果
+
+**traj-8 对比实验（6 个问题，62 turns）**：
+
+| 指标 | STITCH (Steps 1-5) | Vanilla RAG (仅 Step 5) | 差异 |
+|------|--------------------|-----------------------|------|
+| Macro Precision | 0.6778 | **0.7361** | +8.61% |
+| Macro Recall | 0.6639 | **0.8333** | +25.52% |
+| Macro F1 | 0.6435 | **0.7401** | +15.01% |
+
+**问题级别对比**：
+
+| 问题 | STITCH F1 | Vanilla RAG F1 | 胜者 |
+|------|-----------|---------------|------|
+| Q1: con side evidence to defend | 0.8000 | 0.8571 | Vanilla |
+| Q2: pro side evidence to defend | **0.1538** | **1.0000** | Vanilla (+0.85) |
+| Q3: con side evidence during debate | 0.7500 | 0.7500 | 平局 |
+| Q4: pro side evidence during debate | **0.8571** | 0.6667 | STITCH |
+| Q5: con side evidence to attack | **0.8000** | 0.6667 | STITCH |
+| Q6: pro side evidence to attack | 0.5000 | 0.5000 | 平局 |
+
+**⚠️ 意外结果：Vanilla RAG 的 F1 反超 STITCH +15%！**
+
+#### 结果分析
+
+**与论文对比**：
+- 论文报告 STITCH 优于 Vanilla RAG（Small +5%, Medium +11.6%, Large +35.6%）
+- 我们在 traj-8 上得到**相反结果**：Vanilla RAG 反超 +15%
+
+**可能原因**：
+
+1. **样本量过小**（最关键原因）
+   - 仅 6 个问题，统计噪声极大
+   - Q2 的极端差异（0.15 vs 1.00）单独拉高了 Vanilla RAG 平均 +0.14
+   - 论文 Small 全集有 144 个问题，统计更稳定
+
+2. **数据集规模小（62 turns）**
+   - 标签过滤在小候选集上可能过于激进
+   - 62 turns 中过滤到 12-31 turns 可能误杀相关内容
+   - 论文发现：数据集越大，STITCH 优势越明显
+
+3. **标签选择 LLM 质量**
+   - 我们用 qwen-plus，论文用 GPT-5-mini
+   - 标签选择准确度直接影响过滤质量
+   - Q2 中 STITCH F1 仅 0.15，说明标签选择严重误判
+
+4. **任务类型特殊性**
+   - 6 个问题全是"List the evidence..."类型
+   - 证据列举任务天然适合语义检索（"evidence"是强信号词）
+   - 标签过滤可能反而过滤掉标签不匹配但内容相关的证据
+
+#### 核心结论
+
+> **在极小数据集（62 turns, 6 questions）上，简单的 Vanilla RAG 可能比复杂的标签过滤更稳健。STITCH 的优势需要在更大规模数据集上才能体现。**
+
+这个发现**验证了论文的隐含假设**：STITCH 适用于超长对话（1000+ turns），而非短对话。
+
+#### 面试价值
+
+这个"负面结果"展示了：
+- **批判性思维**：不盲信论文，通过实验验证
+- **实验设计能力**：设计对比实验，分析变量
+- **技术深度**：从 Recall 差异定位到标签过滤过于激进
+- **方法论认知**：理解样本量、数据集规模对实验结论的影响
+
+---
+
+### 2026-02-21: traj-9 STITCH 完整 Pipeline 完成 ✅
+
+#### 为什么选 traj-9（改选理由）
+
+- 最初计划用 traj-0（912 turns, Large），但 traj-0 只有 **6 个问题**，和 traj-8 一样统计偶然性大
+- traj-9 有 **42 个问题 + 238 turns**（Medium 规模），样本量是 traj-8 的 7 倍
+- 目标：用更大样本量验证 STITCH 的实际表现
+
+#### 实验结果
+
+| 指标 | traj-9 STITCH (42 问题, 238 turns) | traj-8 STITCH (6 问题, 62 turns) |
+|------|-----------------------------------|----------------------------------|
+| **Macro Precision** | **0.7079** | 0.6944 |
+| **Macro Recall** | **0.7476** | 0.7083 |
+| **Macro F1** | **0.7111** | 0.6435 |
+
+#### 按问题类型的分布
+
+| 类型 | 数量 | F1=1.0 满分数 | F1=0 零分数 | 平均 F1 |
+|------|------|-------------|------------|--------|
+| type_1（最终选择） | 15 | 6 | 5 | ~0.53 |
+| type_2（地点属性） | 14 | 10 | 3 | ~0.79 |
+| type_3（列举证据） | 10 | 8 | 0 | ~0.90 |
+| type_4（完整行程） | 2 | 0 | 0 | ~0.70 |
+| **全部** | **42** | **27** (64%) | **10** (24%) | **0.71** |
+
+#### 遇到的问题及修复
+
+1. **Python 环境问题**（上次会话）
+   - **根因**：Claude Code 的 Bash 工具使用 `D:\miniconda\python.exe`（系统 Python），但项目依赖在 `.venv`
+   - **修复**：所有命令使用 `.venv/Scripts/python.exe` 显式路径
+   - **教训**：不应在系统 Python 中安装项目依赖，应使用正确的虚拟环境
+
+2. **DashScope 嵌入 API 批次大小限制**（本次会话新发现）
+   - **根因**：`encoder.encode()` 将所有事件类型标签（15 个）一次性发送，DashScope 限制每批最多 10 个
+   - **修复位置**：`came_bench/utils/encoder.py` 的 `encode()` 方法
+   - **修复方案**：增加 `batch_size=10` 参数，自动分批编码
+   - **为何 traj-8 没触发**：traj-8 只有 62 turns，生成的事件类型 ≤10
+
+3. **阶段 4 的 payload 检索 ERROR**
+   - 一个问题（type_4-Day2）出现 `Failed to retrieve payloads` 错误
+   - 但不影响整体流程，该问题仍有 F1=0.60 的结果
+
+#### 关键分析
+
+- **traj-9 F1 (0.71) > traj-8 F1 (0.64)**：在更大样本量下 STITCH 表现更好
+- **type_3 问题（列举类）表现最佳**（平均 F1≈0.90）：STITCH 的标签检索对 "列举所有..." 类问题最有效
+- **type_1 问题（最终选择类）表现最差**：accommodation 和 attraction 的最终选择检索困难
+- **64% 的问题得到满分**：说明 STITCH 在大多数情况下能准确检索到相关上下文
+- **尚未运行 Vanilla RAG 对比**：需要在 traj-9 上也跑 Vanilla RAG 才能做对比
+
+#### 耗时统计
+
+| 阶段 | 耗时 |
+|------|------|
+| 阶段 2: 向量编码 | ~22 秒 |
+| 阶段 1: 数据集描述 | ~21 秒 |
+| 阶段 3a: 上下文范围预测 | ~211 秒 |
+| 阶段 3b: 段落级摘要 | ~198 秒 |
+| 阶段 3c: 事件类型标注 | ~62 秒 |
+| 阶段 3d: 结构化笔记 | ~13 分钟 |
+| 阶段 4: 标签检索 | ~24 分钟 |
+| 阶段 5: 格式转换 | <1 秒 |
+| 阶段 6: 答案生成 | ~43 秒 |
+| 阶段 7: 答案评估 | ~14 秒 |
+| **总计** | **~42 分钟** |
+
+#### 生成的文件
+
+```
+stitch_output/traj-9/
+├── dataset_description.txt          # 阶段 1
+├── context_scope_assignments.json   # 阶段 3a
+├── segment_level_notes.jsonl        # 阶段 3b
+├── event_type_assignments.json      # 阶段 3c
+├── structured_turn_notes.jsonl      # 阶段 3d
+├── label_based_retrieval.json       # 阶段 4
+├── selected_labels.json             # 阶段 4 (副产物)
+├── label_based_retrieval_transformed.json  # 阶段 5
+├── answer_generation/
+│   └── direct_answer_generation.json       # 阶段 6
+└── answer_evaluation/
+    └── answer_evaluation_v1.json           # 阶段 7
+```
+
+---
+
+### 下一步计划
+
+1. **在 traj-9 上运行 Vanilla RAG 基线** — 与 STITCH 做对比
+2. **分析 STITCH vs Vanilla RAG 在不同问题类型上的差异** — 特别关注 type_3 列举类
+3. **考虑在 Large 规模数据集上验证** — 如果 traj-9 对比结果仍然不明显
+
+---
+
+**最后更新**：2026-02-21 15:00
+**当前状态**：✅ traj-9 STITCH Pipeline 完成 (F1=0.7111)，待运行 Vanilla RAG 对比

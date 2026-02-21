@@ -1,0 +1,1081 @@
+[
+  {
+    "question_id": "type_1-ACC-Day2",
+    "question": "What is the final hotel chosen for Day 2? Provide the hotel's name.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final hotel chosen for Day 2. The context scope \"day_2_itinerary_planning\" is directly relevant because it would contain planning details for Day 2, including accommodation decisions. \"accommodation_search\" is less specific\u2014it could refer to general hotel searches not tied to Day 2. \"day_1_itinerary_planning\" is irrelevant as it pertains to Day 1. So only \"day_2_itinerary_planning\" is selected.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks for the final hotel chosen for Day 2, specifically its name. To identify this, we need events that involve selecting or specifying accommodations (e.g., \"Accommodation Recommendation\"), descriptive or confirmatory details about hotels (e.g., \"Hotel Atmosphere Description\" \u2014 which may include naming the hotel in context), and structured planning that assigns lodging to specific days (e.g., \"Itinerary Planning\", which often includes day-by-day accommodation assignments). Other event types like \"Restaurant Recommendation\" or \"Culinary Theme Exploration\" are unrelated to hotel selection; \"Trip Day Transition\" is too generic and doesn\u2019t inherently convey hotel assignment; \"Venue Detail Inquiry\" is user-initiated questioning, not a statement of selection. Thus, the three selected types are most likely to contain or imply the named hotel for Day 2.",
+    "selected_targets": [
+      "Charis Grace Hotel",
+      "Daphne Laurel Hotel",
+      "Penelope Loom House",
+      "morning light room at Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for the *final hotel chosen for Day 2*, specifically requesting the hotel's name. Therefore, only target candidates that denote actual hotel accommodations (not meals, activities, venues for food, itinerary summaries, or abstract criteria) are relevant. Among the candidates:\n- \"Charis Grace Hotel\" and \"Daphne Laurel Hotel\" are clearly named hotels.\n- \"Penelope Loom House\" is a hotel (and appears in multiple variants \u2014 e.g., with room specification).\n- \"\\\"morning light room\\\" at Penelope Loom House\" and \"morning light room at Penelope Loom House\" refer to a specific room *within* a hotel \u2014 still identifies the hotel (Penelope Loom House) and is plausibly the final chosen accommodation (as room-level specificity may indicate selection). These are retained because they directly name the hotel + qualifying detail, and the question only requires the hotel\u2019s name \u2014 extracting \"Penelope Loom House\" from them is straightforward.\nAll other candidates refer to restaurants (e.g., Andromeda Star Feast, Themis Justice Banquet), activity venues (e.g., Hermes Skyway Adventure Park), meal concepts, rating thresholds, or non-hotel itinerary elements \u2014 none are hotels and thus excluded.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the *final hotel chosen for Day 2*, specifically its name. To identify a concrete, selected hotel, we need information about decision criteria that directly influence hotel selection \u2014 especially those tied to concrete logistical or preference-based factors.  \n- \"Practical Constraint Specification\" is relevant because constraints like location, budget, availability, or date-specific requirements (e.g., \u201cmust be available on Day 2\u201d) are critical in narrowing down and finalizing a hotel choice.  \n- \"Personal Preference Alignment\" is also relevant, as stated preferences (e.g., \u201clikes boutique hotels\u201d, \u201cprefers waterfront views\u201d) often drive the final selection among viable options.  \nThe other candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", and \"Sensory-Ambiance Descriptor\" \u2014 are either too abstract, evaluative/comparative (not decisive), or stylistic/figurative; they do not reliably indicate a *final, concrete hotel name* and are unlikely to tag turns where the hotel is explicitly named or confirmed."
+  },
+  {
+    "question_id": "type_1-DIN-DINNER-Day2",
+    "question": "What is the final restaurant chosen for Day 2 as dinner? Provide the restaurant's name.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final restaurant chosen for Day 2 dinner, which is directly related to planning activities for Day 2. The context scope \"day_2_itinerary_planning\" is most likely to contain discussions about selecting dinner venues for that day. The other candidates \u2014 \"accommodation_search\" and \"day_1_itinerary_planning\" \u2014 are irrelevant to Day 2 dinner selection.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Itinerary Planning",
+      "Trip Day Transition"
+    ],
+    "event_type_reasoning": "\"Restaurant Recommendation\" is directly relevant because the question asks for the final restaurant chosen \u2014 this event type captures instances where restaurants are suggested or selected. \"Itinerary Planning\" is relevant because it likely includes decisions about meals per day, including dinner on Day 2. \"Trip Day Transition\" helps identify shifts between days (e.g., from Day 1 to Day 2), which is necessary to scope the answer to *Day 2* specifically. Other types like \"Menu or Dish Description\" or \"Restaurant Atmosphere Description\" may mention restaurants but don\u2019t indicate selection or timing; \"Culinary Theme Exploration\" or \"Accommodation Recommendation\" are off-topic.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Poseidon Seafood Tavern and Themis Justice Banquet",
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)",
+      "Andromeda Star Feast",
+      "Chiron Sage Table"
+    ],
+    "target_reasoning": "The question asks for the *final restaurant chosen for Day 2 as dinner*. So we need labels that represent *dinner venues* (or plausible dinner candidates) *specifically for Day 2*. Among the candidates:\n- \"Poseidon Seafood Tavern\" is a named restaurant, plausibly a dinner venue; appears in combinations tied to Day 2 (e.g., lunch \u2014 but still a strong candidate for dinner too, especially since no explicit \u201cdinner\u201d label exists).\n- \"Themis Justice Banquet\" sounds like a formal dining venue \u2014 \u201cBanquet\u201d strongly implies dinner; also appears in Day 2 context (\"Poseidon Seafood Tavern and Themis Justice Banquet\").\n- \"Poseidon Seafood Tavern and Themis Justice Banquet\" explicitly pairs two dinner-plausible venues, likely relevant to Day 2 meal planning.\n- \"Andromeda Star Feast\" \u2014 \u201cFeast\u201d strongly suggests dinner; appears standalone and in Day 2 meal-related combos (e.g., with Chiron Sage Table or Themis Justice Banquet).\n- \"Chiron Sage Table\" \u2014 \u201cTable\u201d suggests dining; appears in Day 2 meal pairings (e.g., with Poseidon Seafood Tavern as lunch, but could also be dinner).\n- \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" is included cautiously: although labeled \u201clunch\u201d, it confirms these are *Day 2 restaurant candidates*, and the final choice may differ from the initial lunch assignment \u2014 so they remain relevant contenders for dinner selection.\n\nWe exclude accommodations (e.g., Penelope Loom House, Charis Grace Hotel), non-restaurant experiences (e.g., Epimetheus Memory Grove, Heracles Strength Arena), itinerary-level abstractions (e.g., \"day 2 itinerary\", \"day_2_itinerary_planning\"), and irrelevant combos (e.g., breakfast-only or unnamed/implausible options). We also omit overly generic or non-restaurant labels (e.g., \"accommodation rating threshold\", \"bronze bell dessert ritual\").\n\nThus, the six most directly relevant restaurant-name-bearing candidates tied to Day 2 are selected.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the *final restaurant chosen for Day 2 as dinner*, i.e., a concrete, outcome-oriented piece of information. To identify the final choice, we need to filter turns where constraints (e.g., \u201cmust be open on Day 2\u201d, \u201cdinner slot only\u201d, \u201cwithin budget\u201d, \u201cavailable reservation\u201d) or preference-based decisions (\u201cwe agreed on X because it matched everyone\u2019s taste\u201d) are explicitly stated\u2014these are captured by \"Practical Constraint Specification\" and \"Personal Preference Alignment\". The other labels are too abstract or irrelevant: \"Comparative Value Indicator\" relates to relative evaluation but not final selection; \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", and \"Sensory-Ambiance Descriptor\" are stylistic or descriptive, not decision-determining; and none directly encode temporal (Day 2) or meal-type (dinner) resolution. So only those two functional types plausibly contain evidence leading to the final restaurant name."
+  },
+  {
+    "question_id": "type_1-ALL-BREAKFAST-Day1",
+    "question": "List all restaurant(s) that were decided or chosen at any point for Day 1\u2019s breakfast, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s breakfast, which directly relates to planning activities for Day 1. The context scope \"day_1_itinerary_planning\" is the only candidate that logically contains discussions about meal decisions (including breakfast) for Day 1. \"accommodation_search\" is irrelevant (pertains to lodging), and \"day_2_itinerary_planning\" is about Day 2, not Day 1.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s breakfast \u2014 including intermediate and final decisions. \u201cRestaurant Recommendation\u201d is directly relevant, as it signals explicit suggestions or selections of restaurants. \u201cCulinary Theme Exploration\u201d may involve discussing breakfast-appropriate cuisines or concepts (e.g., \u201chealthy breakfast spots\u201d, \u201clocal morning fare\u201d), which could lead to or contextualize restaurant choices. \u201cMenu or Dish Description\u201d is relevant because describing breakfast menus (e.g., \u201cthey serve avocado toast and fresh juices\u201d) often accompanies or confirms a restaurant choice \u2014 especially if the menu is tied to a specific venue. \u201cRestaurant Atmosphere Description\u201d may support selection rationale (e.g., \u201ca cozy caf\u00e9 perfect for morning meetings\u201d) and often co-occurs with decision-making turns; while not definitive alone, it frequently appears alongside or just before a decision, making it useful for identifying candidate restaurants under discussion. Other candidates \u2014 like \u201cAccommodation Recommendation\u201d or \u201cNatural Environment Description\u201d \u2014 are unrelated to breakfast restaurant selection.",
+    "selected_targets": [
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Chiron Sage Table",
+      "Andromeda Star Feast",
+      "Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for restaurants *decided or chosen at any point for Day 1\u2019s breakfast*, including intermediate and final decisions. So we need target candidates that:\n- Are explicitly restaurant/food-service venues (not accommodations, activities, or abstract concepts),\n- Are plausibly breakfast-appropriate (i.e., caf\u00e9s, grills, taverns, banquets \u2014 not adventure parks or arenas),\n- Are associated with Day 1 (directly stated or contextually implied), and\n- Are *named entities* (not vague descriptions like \u201cday 1 itinerary\u201d or \u201caccommodation rating threshold\u201d).\n\nFrom the list:\n- \"Lantern Lane Caf\u00e9\" \u2192 caf\u00e9 \u2192 classic breakfast venue; no day qualifier but generic enough and plausible for Day 1.\n- \"Menelaus Spartan Grill\" \u2192 grill \u2192 food service; \u201cSpartan Feast Platter\u201d is mentioned separately but the venue itself is relevant.\n- \"Poseidon Seafood Tavern\" \u2192 tavern \u2192 could serve breakfast; appears in combos, but the venue itself is a candidate.\n- \"Themis Justice Banquet\" \u2192 banquet \u2192 formal meal setting; fits \u201cbreakfast\u201d contextually (e.g., banquet-style breakfast).\n- \"Chiron Sage Table\" \u2192 \u201cTable\u201d implies dining; appears in combos like \u201cChiron Sage Table and Andromeda Star Feast\u201d; likely a restaurant.\n- \"Andromeda Star Feast\" \u2192 \u201cFeast\u201d strongly signals food/dining; appears standalone and in combos; plausible for breakfast.\n- \"Penelope Loom House\" \u2192 accommodation, *but* the variant \"\\\"morning light room\\\" at Penelope Loom House\" is explicitly a named breakfast-related space (morning + room \u2192 suggests breakfast setting); also, standalone \"Penelope Loom House\" may host breakfast, but only the explicitly morning-branded variant is confidently breakfast-relevant \u2014 however, since the full string \"\\\"morning light room\\\" at Penelope Loom House\" is a distinct candidate and matches *exactly* (quoted, descriptive, morning-themed), it's included. The unqualified \"Penelope Loom House\" is ambiguous (it\u2019s primarily accommodation), so it\u2019s *not* selected \u2014 wait, correction: looking again, the candidate is literally `\"\\\"morning light room\\\" at Penelope Loom House\"` \u2014 that *is* selected (already in list). But `\"Penelope Loom House\"` *by itself* is *not* breakfast-specific, so it should **not** be selected. Let's correct: earlier list mistakenly included `\"Penelope Loom House\"` \u2014 remove it.\n\nRe-evaluating:  \n\u2705 `\"\\\"morning light room\\\" at Penelope Loom House\"` \u2014 explicit \u201cmorning light\u201d + \u201croom\u201d, strongly evokes breakfast venue (e.g., a breakfast nook or dedicated morning dining space).  \n\u274c `\"Penelope Loom House\"` alone \u2014 accommodation; no breakfast signal.  \n\u274c `\"Charis Grace Hotel\"`, `\"Daphne Laurel Hotel\"` \u2014 hotels, not restaurants.  \n\u274c `\"Epimetheus Memory Grove\"`, `\"Hermes Skyway Adventure Park\"` etc. \u2014 activities/experiences.  \n\u274c `\"day 1 itinerary experience as a whole\"` \u2014 too abstract.  \n\u274c `\"Spartan Feast Platter at Menelaus Spartan Grill\"` \u2014 this is a *dish*, not a restaurant; the question asks for *restaurants*, not menu items. So exclude dish-specific targets. Similarly, `\"bronze bell dessert ritual...\"` are rituals/desserts \u2014 exclude.  \n\u2705 `\"Andromeda Star Feast\"` \u2014 venue name with \u201cFeast\u201d; appears standalone \u2192 keep.  \n\u2705 `\"Chiron Sage Table\"` \u2014 \u201cTable\u201d implies dining venue; appears in combos as equal partner \u2192 keep.  \n\u2705 `\"Themis Justice Banquet\"` \u2014 \u201cBanquet\u201d \u2192 meal venue \u2192 keep.  \n\u2705 `\"Lantern Lane Caf\u00e9\"` \u2014 unambiguous caf\u00e9 \u2192 keep.  \n\u2705 `\"Menelaus Spartan Grill\"` \u2014 \u201cGrill\u201d \u2192 food venue \u2192 keep.  \n\u2705 `\"Poseidon Seafood Tavern\"` \u2014 \u201cTavern\u201d \u2192 food/drink venue \u2192 keep.  \n\nAlso consider `\"Andromeda Star Feast and Chiron Sage Table\"` \u2014 this is a *combo*, not a single restaurant; the question asks to *list restaurants*, not combinations. So only atomic venue names qualify. Same for all \u201cand\u201d-joined candidates \u2014 exclude them.\n\nThus final selected targets are atomic, breakfast-plausible, named food/dining venues:  \n- `\"Lantern Lane Caf\u00e9\"`  \n- `\"Menelaus Spartan Grill\"`  \n- `\"Poseidon Seafood Tavern\"`  \n- `\"Themis Justice Banquet\"`  \n- `\"Chiron Sage Table\"`  \n- `\"Andromeda Star Feast\"`  \n- `\"\\\"morning light room\\\" at Penelope Loom House\"`  \n\nThat\u2019s 7 items \u2014 all directly indicative of breakfast-capable dining locations, with no overgeneralization or inclusion of non-venues.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s breakfast \u2014 i.e., concrete, decision-relevant turns involving selection or agreement on a restaurant. \"Practical Constraint Specification\" is relevant because constraints (e.g., \u201copen by 8am\u201d, \u201cwithin walking distance\u201d, \u201cserves breakfast\u201d) often directly inform or justify restaurant choices, especially for a scheduled meal like Day 1 breakfast. \"Personal Preference Alignment\" is relevant because expressions of preference (e.g., \u201cI really like that caf\u00e9\u201d, \u201clet\u2019s go where Sarah had breakfast before\u201d) frequently drive or reflect intermediate/final decisions. The other labels \u2014 Comparative Value Indicator, Cultural Ritual Reference, Mythological Narrative Anchor, and Sensory-Ambiance Descriptor \u2014 are abstract, metaphorical, or aesthetic in nature and unlikely to directly indicate or support a concrete restaurant selection for a specific meal time; they do not reliably signal decision points or candidate restaurants."
+  },
+  {
+    "question_id": "type_1-DIN-LUNCH-Day1",
+    "question": "What is the final restaurant chosen for Day 1 as lunch? Provide the restaurant's name.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final restaurant chosen for Day 1 lunch, which is directly related to planning activities for Day 1. The context scope \"day_1_itinerary_planning\" is most likely to contain discussions about selecting lunch venues for that day. The other candidates \u2014 \"accommodation_search\" and \"day_2_itinerary_planning\" \u2014 are unrelated to Day 1 lunch decisions.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "\"Restaurant Recommendation\" is directly relevant because the question asks for the final restaurant chosen \u2014 this event type captures turns where restaurants are suggested or selected. \"Itinerary Planning\" is also relevant because it likely includes discussions about scheduling meals by day (e.g., \u201cfor Day 1 lunch\u201d), making it a key context for identifying which restaurant was finalized for that specific time slot. Other types like \"Menu or Dish Description\" or \"Restaurant Atmosphere Description\" may mention restaurants but do not necessarily indicate selection or scheduling; \"Trip Day Transition\" refers to moving between days, not assigning meals to days. So only these two labels are reliably useful.",
+    "selected_targets": [
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Chiron Sage Table",
+      "Andromeda Star Feast"
+    ],
+    "target_reasoning": "The question asks for the *final restaurant chosen for Day 1 as lunch*. So we need labels that represent *restaurants* (not hotels, parks, rituals, or abstract concepts like \u201citinerary experience\u201d) and are *plausibly lunch venues*, especially for *Day 1*. Among the candidates:\n\n- \"Lantern Lane Caf\u00e9\" \u2014 caf\u00e9-style venue, typical for lunch; no day restriction noted \u2192 relevant.\n- \"Menelaus Spartan Grill\" \u2014 named as a restaurant; \u201cSpartan Feast Platter\u201d is explicitly tied to it, suggesting meal service \u2192 relevant.\n- \"Poseidon Seafood Tavern\" \u2014 restaurant name; also appears in lunch-related contexts (e.g., \u201cboth proposed as lunch venues for day 2\u201d), implying it\u2019s a lunch-capable venue; no indication it\u2019s excluded from Day 1 \u2192 relevant.\n- \"Themis Justice Banquet\" \u2014 \u201cBanquet\u201d suggests a formal dining venue; appears in combinations like \u201cAndromeda Star Feast and Themis Justice Banquet\u201d, and one variant specifies \u201cboth proposed as breakfast venues for Day 2\u201d \u2014 but since this is *not* marked as Day 2-only for lunch, and \u201cBanquet\u201d fits lunch, it remains plausible \u2192 include.\n- \"Chiron Sage Table\" \u2014 \u201cTable\u201d implies dining; appears paired with lunch venues (e.g., \u201cPoseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\u201d) \u2192 consistent with lunch function \u2192 relevant.\n- \"Andromeda Star Feast\" \u2014 \u201cFeast\u201d strongly implies dining; appears alone and in combos, never restricted to breakfast-only; top candidate for Day 1 lunch \u2192 relevant.\n\nExcluded:  \n- Hotels (e.g., Penelope Loom House, Charis Grace Hotel), parks (Hermes Skyway Adventure Park), rituals (bronze bell dessert), abstract items (\u201cday 1 itinerary\u201d, \u201caccommodation rating threshold\u201d), and multi-venue combos that don\u2019t isolate a single restaurant (e.g., \u201cAndromeda Star Feast and Chiron Sage Table\u201d) \u2014 because the question asks for *the final restaurant*, i.e., a singular, concrete establishment. We select only atomic restaurant names, not composites or non-restaurant entities.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the final restaurant chosen for Day 1 lunch \u2014 a concrete, decision-based outcome. To identify that, we need clues about factors that directly influence restaurant selection in context:  \n- \"Practical Constraint Specification\" is relevant because constraints (e.g., location, time, dietary restrictions, budget) commonly determine or narrow down lunch options.  \n- \"Personal Preference Alignment\" is relevant because stated preferences (e.g., \u201cI love Italian\u201d, \u201cno seafood\u201d) often drive the final choice.  \nThe other candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", and \"Sensory-Ambiance Descriptor\" \u2014 are abstract, metaphorical, or stylistic labels with no clear, direct link to selecting a specific restaurant for a scheduled meal. They\u2019re unlikely to contain the factual or decision-signaling content needed."
+  },
+  {
+    "question_id": "type_1-ALL-ATTRACTION-Day2",
+    "question": "List all attraction(s) that were decided or chosen at any point for Day 2\u2019s attraction, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks specifically about attractions decided or chosen for Day 2\u2019s attraction, including intermediate and final decisions. The context scope \"day_2_itinerary_planning\" directly pertains to planning and decision-making for Day 2, making it highly relevant. \"accommodation_search\" and \"day_1_itinerary_planning\" are unrelated to Day 2 attractions.",
+    "selected_event_types": [
+      "Itinerary Planning",
+      "Activity Recommendation"
+    ],
+    "event_type_reasoning": "The question asks for attractions decided or chosen for Day 2 \u2014 specifically, intermediate and final decisions about what to do on that day. \"Itinerary Planning\" directly involves selecting, discussing, or confirming activities per day (including Day 2), making it highly relevant. \"Activity Recommendation\" is also relevant because recommendations often lead to decisions about which attractions to visit; even intermediate suggestions for Day 2 would fall under this type. Other candidates like \"Accommodation Recommendation\", \"Restaurant Recommendation\", or \"Culinary Theme Exploration\" pertain to food or lodging, not attractions. \"Trip Day Transition\" refers to moving between days but doesn\u2019t imply decision-making about attractions. None of the other labels explicitly or implicitly involve selecting attractions for a specific day.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Hyperion Sunspire",
+      "Heracles Strength Arena",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "morning light room at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for *attractions* decided or chosen for *Day 2\u2019s attraction*, including intermediate and final decisions. So we need labels that denote actual named attractions (venues, experiences, or specific rooms/activities framed as destinations), not abstract concepts (e.g., \u201caccommodation rating threshold\u201d), meal types (\u201cSpartan Feast Platter\u201d), rituals (\u201cbronze bell dessert ritual\u201d), broad itinerary categories (\u201cday 2 itinerary\u201d, \u201cday_2_itinerary_planning\u201d), or accommodations *unless explicitly framed as an attraction experience* \u2014 but note: \u201cmorning light room at Penelope Loom House\u201d is included because it's a specific experiential space (a themed room) referenced as an attraction-like destination, unlike generic hotels like \u201cCharis Grace Hotel\u201d or \u201cDaphne Laurel Hotel\u201d which are purely lodging. Similarly, compound labels like \u201cAndromeda Star Feast and Chiron Sage Table\u201d refer to combinations of attractions but the individual components are the actual attractions \u2014 so only the atomic attraction names are selected (e.g., \u201cAndromeda Star Feast\u201d, not the conjunction). Labels mentioning meals *at* venues (e.g., \u201cPoseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\u201d) still point to the venues themselves as Day 2 attraction candidates \u2014 thus \u201cPoseidon Seafood Tavern\u201d and \u201cChiron Sage Table\u201d qualify. \u201cEpimetheus Memory Grove\u201d, \u201cHermes Skyway Adventure Park\u201d, \u201cHyperion Sunspire\u201d, \u201cHeracles Strength Arena\u201d, \u201cThemis Justice Banquet\u201d are all proper-named, standalone attractions. \u201cAndromeda Star Feast\u201d appears repeatedly as a core Day 2 candidate. Excluded are: accommodation-only entries without experiential framing (e.g., \u201cCharis Grace Hotel\u201d), vague or non-attraction labels (\u201cday 1 itinerary\u201d, \u201caccommodation rating threshold\u201d), food items/rituals, and overly generic or malformed entries (e.g., unnamed candidates, implausible rate comparisons).",
+    "selected_functional_type_seeds": [
+      "Personal Preference Alignment",
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for attractions *decided or chosen* for Day 2 \u2014 i.e., it seeks information about decision-making processes, preferences, and constraints that directly influenced the selection (including intermediate and final decisions).  \n- \"Personal Preference Alignment\" is relevant because attraction choices often reflect user or group preferences (e.g., \u201cWe chose X because Sarah loves history\u201d).  \n- \"Practical Constraint Specification\" is relevant because real-world decisions (e.g., \u201cWe picked Y because it\u2019s open on Day 2 and within walking distance\u201d) involve scheduling, availability, logistics \u2014 all of which could drive or limit attraction choices.  \nThe other candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", and \"Sensory-Ambiance Descriptor\" \u2014 are more thematic, interpretive, or stylistic; they do not directly signal *decision events*, *choices*, or *selection rationale* tied to Day 2\u2019s attraction planning. So they are excluded."
+  },
+  {
+    "question_id": "type_2-P-Menelaus Spartan Grill",
+    "question": "What is the price of Menelaus Spartan Grill as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 are directly related to restaurant pricing information. Menelaus Spartan Grill is a restaurant, and its price would more likely appear in contexts like \"restaurant_search\", \"dining_recommendations\", or \"food_budgeting\". Since none of the provided candidates imply discussion of restaurant prices or menus, no context scope is relevant.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of \"Menelaus Spartan Grill\" as mentioned in the conversation. The event type \"Price Disclosure\" directly corresponds to instances where prices are explicitly stated or revealed, making it the most relevant and sufficient label. No other event types (e.g., \"Restaurant Recommendation\", \"Menu or Dish Description\") inherently guarantee price information \u2014 only \"Price Disclosure\" reliably signals that a numeric price value is present.",
+    "selected_targets": [
+      "Menelaus Spartan Grill",
+      "Spartan Feast Platter at Menelaus Spartan Grill",
+      "bronze bell dessert ritual at Menelaus Spartan Grill"
+    ],
+    "target_reasoning": "The question asks for the *price* of \"Menelaus Spartan Grill\" as mentioned in the conversation. To answer this, we need turns where Menelaus Spartan Grill is discussed in a context that includes pricing \u2014 e.g., menu items (like \"Spartan Feast Platter\") or rituals (\"bronze bell dessert ritual\") that likely have associated costs. These labels explicitly reference Menelaus Spartan Grill and are plausible carriers of price information (e.g., a platter or dessert ritual would have a numeric price). Other candidates either refer to different venues, accommodations, or abstract concepts (e.g., \"day_2_itinerary_planning\", \"accommodation rating threshold\") with no direct link to pricing at Menelaus Spartan Grill. So only the three labels directly tied to Menelaus Spartan Grill and concrete offerings are relevant.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric price value of a restaurant (\"Menelaus Spartan Grill\") as mentioned in the conversation. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to concrete, quantifiable real-world information such as cost, budget, or price \u2014 functional types that constrain or specify practical parameters of a decision or description. The other labels refer to abstract or figurative constructs (e.g., mythological, cultural, sensory, comparative, or preference-based) and are unlikely to encode direct numeric price information."
+  },
+  {
+    "question_id": "type_2-R-Epimetheus Memory Grove",
+    "question": "What is the rating of Epimetheus Memory Grove as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context_scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 are relevant to retrieving a numeric rating for \"Epimetheus Memory Grove\". These scopes pertain to accommodation or daily itinerary planning, not venue ratings or reviews. There is no indication that any of these scopes would contain rating information.",
+    "selected_event_types": [
+      "Natural Environment Description"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Epimetheus Memory Grove\", which is likely a natural or scenic location (given the name \"Memory Grove\" and common usage of such names for parks, memorials, or natural sites). Among the event type candidates, \"Natural Environment Description\" is the only one that plausibly includes descriptive or evaluative information (e.g., ratings, impressions, or qualitative assessments) about such a location. Other types like \"Accommodation Recommendation\" or \"Restaurant Recommendation\" are unrelated to a grove. While \"Price Disclosure\" or \"Venue Detail Inquiry\" might occasionally contain ratings, they are not semantically aligned with evaluating a natural site \u2014 whereas \"Natural Environment Description\" most directly signals content where a user or agent might state or imply a rating (e.g., \u201cIt\u2019s a 4.5-star spot\u201d, \u201chighly rated grove\u201d, etc.). No other candidate clearly supports extracting a numeric rating for this kind of location.",
+    "selected_targets": [
+      "Epimetheus Memory Grove"
+    ],
+    "target_reasoning": "The question specifically asks for the numeric rating of \"Epimetheus Memory Grove\". Among the target candidates, only \"Epimetheus Memory Grove\" directly matches the entity in question. While \"Epimetheus Memory Grove and Hermes Skyway Adventure Park\" is a compound candidate, it introduces an irrelevant second venue and does not isolate the rating for Epimetheus Memory Grove alone. Therefore, only the standalone label \"Epimetheus Memory Grove\" is appropriate to filter turns discussing its rating.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Epimetheus Memory Grove\". A \"Comparative Value Indicator\" is the most likely functional type seed to encode or reference a numeric rating (e.g., scores, stars, rankings), as such indicators are commonly used to express evaluative judgments in comparative or quantitative terms. None of the other candidates \u2014 e.g., \"Mythological Narrative Anchor\" (likely about mythic allusion), \"Cultural Ritual Reference\", \"Sensory-Ambiance Descriptor\", etc. \u2014 inherently convey numeric evaluation. So only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_3-Day1-accommodation",
+    "question": "Which hotels were discussed for Day 1's accommodation? List all names.",
+    "selected_context_scopes": [
+      "accommodation_search",
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "\"accommodation_search\" is directly relevant because it involves searching for or discussing hotels. \"day_1_itinerary_planning\" is also relevant since Day 1's accommodation would logically be part of planning that day\u2019s itinerary. \"day_2_itinerary_planning\" is not relevant as it pertains to a different day.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks specifically about hotels discussed for Day 1's accommodation. \"Accommodation Recommendation\" directly pertains to suggesting or naming hotels, making it highly relevant. \"Hotel Atmosphere Description\" may include hotel names when describing them, especially in context of Day 1 planning. \"Itinerary Planning\" is relevant because it often includes assigning accommodations to specific days (e.g., \u201cDay 1: stay at Hotel X\u201d), and thus may explicitly mention hotels allocated to Day 1. Other event types (e.g., \"Restaurant Recommendation\", \"Culinary Theme Exploration\") are unrelated to accommodation. \"Venue Detail Inquiry\" is too generic and not hotel- or day-specific; \"Trip Day Transition\" signals movement between days but doesn\u2019t inherently involve listing hotels. So only the three selected types are likely to contain hotel names tied to Day 1.",
+    "selected_targets": [
+      "Charis Grace Hotel",
+      "Daphne Laurel Hotel",
+      "Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House",
+      "morning light room at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks specifically for hotels discussed for Day 1's accommodation. Among the candidates, only those explicitly naming hotels (not restaurants, venues, or itinerary components) and associated with Day 1 are relevant. \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", and \"Penelope Loom House\" are clearly named hotels. The variants \"\\\"morning light room\\\" at Penelope Loom House\" and \"morning light room at Penelope Loom House\" refer to a specific room/accommodation option *within* Penelope Loom House \u2014 still a Day 1 accommodation mention \u2014 so they\u2019re included as distinct but relevant labels. Other candidates refer to Day 2 accommodations, meals, experiences, or non-accommodation venues (e.g., Andromeda Star Feast, Chiron Sage Table, Hermes Skyway Adventure Park), and thus are excluded.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for the names of hotels discussed for Day 1's accommodation \u2014 a concrete, logistical detail about lodging. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to real-world operational or planning information (e.g., location, availability, budget, date-specific requirements like \"Day 1\"), which would naturally accompany hotel discussions in an itinerary or accommodation planning context. The other labels \u2014 Comparative Value Indicator, Cultural Ritual Reference, Mythological Narrative Anchor, Personal Preference Alignment, and Sensory-Ambiance Descriptor \u2014 are abstract, subjective, or thematic, and do not directly signal factual hotel name mentions or accommodation logistics."
+  },
+  {
+    "question_id": "type_3-Day1-lunch",
+    "question": "Which restaurants were discussed for Day 1's lunch? List all names.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 1's lunch, which directly relates to planning activities for Day 1. The label \"day_1_itinerary_planning\" is most likely to contain discussions about meals (including lunch) on Day 1. The other labels \u2014 \"accommodation_search\" and \"day_2_itinerary_planning\" \u2014 are irrelevant to Day 1 lunch restaurants.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 1's lunch. \"Restaurant Recommendation\" is directly relevant, as it likely includes naming and suggesting restaurants. \"Menu or Dish Description\" may mention restaurants contextually (e.g., \u201cwe ordered at [Restaurant X]\u201d), especially if tied to lunch on Day 1. \"Restaurant Atmosphere Description\" often presupposes a named restaurant being discussed and could help identify which restaurants were referenced. Other candidates like \"Accommodation Recommendation\" or \"Cultural Experience Discussion\" are unrelated to restaurants or lunch; \"Itinerary Planning\" is too generic and not focused on restaurant naming; \"Trip Day Transition\" signals temporal shifts but doesn\u2019t inherently name restaurants. Thus, the three selected types are most likely to contain explicit or implicit restaurant names tied to Day 1\u2019s lunch.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Menelaus Spartan Grill",
+      "Lantern Lane Caf\u00e9"
+    ],
+    "target_reasoning": "The question asks specifically for restaurants discussed for *Day 1's lunch*. We must select only target candidates that (a) are restaurant names (not hotels, attractions, rituals, or abstract concepts), and (b) are plausibly associated with Day 1 lunch \u2014 i.e., not explicitly labeled as \u201cDay 2\u201d, \u201cbreakfast\u201d, or \u201caccommodation\u201d.  \n\n- \"Andromeda Star Feast\": standalone restaurant name, no Day 2 or breakfast qualifier \u2192 plausible for Day 1 lunch.  \n- \"Chiron Sage Table\": same \u2014 standalone, no day/meal restriction in name.  \n- \"Poseidon Seafood Tavern\": same \u2014 valid restaurant; note that variants like \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" are excluded because they\u2019re explicitly Day 2, but the base name without qualifiers is neutral and potentially relevant.  \n- \"Themis Justice Banquet\": sounds like a restaurant/venue (banquet implies dining); no explicit day/meal restriction \u2192 included.  \n- \"Menelaus Spartan Grill\": explicitly named in \"Spartan Feast Platter at Menelaus Spartan Grill\" and \"bronze bell dessert ritual at Menelaus Spartan Grill\" \u2014 clearly a restaurant; no day restriction in the base name \u2192 included.  \n- \"Lantern Lane Caf\u00e9\": standalone caf\u00e9/restaurant name, neutral on day/meal \u2192 reasonable candidate for Day 1 lunch.  \n\nExcluded:  \n- Anything with \u201cDay 2\u201d, \u201cbreakfast\u201d, \u201caccommodation\u201d, \u201citinerary experience as a whole\u201d, \u201critual\u201d, \u201crating threshold\u201d, or compound entries that tie venues to Day 2 or other meals (e.g., \u201c...both proposed as lunch venues for day 2\u201d \u2192 too specific and misaligned).  \n- \u201cPenelope Loom House\u201d, \u201cCharis Grace Hotel\u201d, etc. \u2192 accommodations, not restaurants.  \n- \u201cEpimetheus Memory Grove\u201d, \u201cHermes Skyway Adventure Park\u201d, etc. \u2192 attractions/experiences, not eateries.  \n- \u201cmorning light room at Penelope Loom House\u201d \u2192 room, not restaurant.  \n\nWe selected 6 clear, unqualified restaurant names \u2014 a reasonable number given the question asks to \u201clist all names\u201d and these are the only unambiguous restaurant entities without contradictory temporal or functional constraints.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly related to identifying restaurant names or lunch discussions for Day 1. These labels describe abstract rhetorical or functional roles, not concrete entities like restaurants or temporal meal contexts. Therefore, no functional type seed is relevant for filtering turns that mention specific restaurant names for Day 1's lunch."
+  },
+  {
+    "question_id": "type_3-Day2-dinner",
+    "question": "Which restaurants were discussed for Day 2's dinner? List all names.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 2's dinner, which directly relates to planning for Day 2\u2019s activities \u2014 specifically meals. \"day_2_itinerary_planning\" is the only candidate that logically encompasses discussion of dinner venues for Day 2. \"accommodation_search\" and \"day_1_itinerary_planning\" are irrelevant to Day 2 dinner.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description",
+      "Culinary Theme Exploration"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 2's dinner. Labels directly related to restaurants \u2014 such as \"Restaurant Recommendation\" (most likely to contain named restaurants), \"Restaurant Atmosphere Description\" (often references specific venues), and \"Menu or Dish Description\" (frequently tied to a particular restaurant, especially in context of dinner planning) \u2014 are highly relevant. \"Culinary Theme Exploration\" is also included because it may involve naming or contrasting restaurants aligned with a theme (e.g., \u201cauthentic Italian spots for Day 2 dinner\u201d), especially when embedded in itinerary planning context. Other labels like \"Accommodation Recommendation\" or \"Natural Environment Description\" are unrelated. \"Trip Day Transition\" is too generic and doesn\u2019t inherently involve restaurant names. \"Itinerary Planning\" could be relevant in principle, but it\u2019s overly broad and not event-type-specific to restaurants; the more precise restaurant-related labels are preferred.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Menelaus Spartan Grill"
+    ],
+    "target_reasoning": "The question asks for restaurants discussed for Day 2's dinner. We need to select only target candidates that are restaurant names (not accommodations, activities, rituals, or itinerary categories) and are plausibly relevant to dinner on Day 2.  \n- \"Andromeda Star Feast\": A named restaurant; appears in multiple Day 2\u2013related combinations (e.g., with Chiron Sage Table, Themis Justice Banquet), suggesting it\u2019s a dining venue under discussion.  \n- \"Chiron Sage Table\": A named restaurant; explicitly paired with Poseidon Seafood Tavern as *lunch venues for Day 2*, but also appears standalone and in dinner-relevant combos (e.g., \"Andromeda Star Feast and Chiron Sage Table\") \u2014 plausible for dinner too, and no indication it\u2019s lunch-exclusive only.  \n- \"Poseidon Seafood Tavern\": A named restaurant; appears in combinations labeled as lunch venues for Day 2, but also in \u201cPoseidon Seafood Tavern and Themis Justice Banquet\u201d, and is clearly a dining establishment \u2014 reasonable to include as a candidate discussed for Day 2 meals including dinner.  \n- \"Themis Justice Banquet\": Sounds like a formal dining venue (\u2018Banquet\u2019 strongly implies meal service); appears in combos with Andromeda Star Feast and Poseidon Seafood Tavern, and one variant explicitly notes \u201cboth proposed as breakfast venues for Day 2\u201d, but that doesn\u2019t preclude dinner discussion \u2014 more importantly, the base name is restaurant-like and appears in Day 2 context.  \n- \"Menelaus Spartan Grill\": A named restaurant; associated with \u201cSpartan Feast Platter\u201d and \u201cbronze bell dessert ritual\u201d, both food-related; no time-of-day restriction stated \u2014 fully plausible for Day 2 dinner.  \n\nExcluded: Accommodations (e.g., Penelope Loom House, Charis Grace Hotel), activity venues (e.g., Hermes Skyway Adventure Park, Heracles Strength Arena), itinerary-level labels (e.g., \u201cday_2_itinerary_planning\u201d, \u201cday 2 itinerary\u201d), rituals, rating thresholds, or ambiguous/unnamed entries. Also excluded combinations that are overly specific or meta (e.g., \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues\u2026)\u201d) \u2014 we want base restaurant names, not parenthetical qualifiers.  \n\nThus, the five standalone or core restaurant names most directly relevant to Day 2 dinner discussion are selected.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to identifying restaurant names discussed for Day 2's dinner. The question is factual and entity-focused (restaurant names, specific day/time), while all candidate labels describe abstract rhetorical or conceptual roles, not concrete semantic categories like \"Restaurant Mention\", \"Meal Planning\", \"Day-Specific Agenda\", or \"Named Entity \u2014 Food Service\". Therefore, no seed is relevant for filtering conversation turns that contain restaurant names for Day 2's dinner."
+  },
+  {
+    "question_id": "type_1-ALL-ACCOMMODATION-Day1",
+    "question": "List all hotel(s) that were decided or chosen at any point for Day 1\u2019s accommodation, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "accommodation_search",
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for hotels decided or chosen for Day 1\u2019s accommodation, including intermediate and final decisions. \"accommodation_search\" is directly relevant as it covers the process of searching and selecting hotels. \"day_1_itinerary_planning\" is also relevant because Day 1\u2019s accommodation decisions would naturally be part of planning that day\u2019s itinerary. \"day_2_itinerary_planning\" is not relevant since the question is specifically about Day 1.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Itinerary Planning",
+      "Hotel Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for hotels decided or chosen for Day 1\u2019s accommodation, including intermediate and final decisions. \u201cAccommodation Recommendation\u201d directly relates to suggesting or selecting hotels. \u201cItinerary Planning\u201d is relevant because it often involves specifying accommodations per day (including Day 1), and may capture both tentative and final decisions. \u201cHotel Atmosphere Description\u201d may accompany or follow a decision\u2014sometimes describing a hotel *after* it has been chosen, serving as confirmatory or contextual evidence of selection. Other event types (e.g., \u201cRestaurant Recommendation\u201d, \u201cCulinary Theme Exploration\u201d) are unrelated to accommodation. \u201cTrip Day Transition\u201d refers to moving between days but doesn\u2019t inherently involve hotel selection. \u201cVenue Detail Inquiry\u201d is about asking for details, not deciding. So only the three selected types plausibly contain or imply hotel decisions for Day 1.",
+    "selected_targets": [
+      "Charis Grace Hotel",
+      "Daphne Laurel Hotel",
+      "Daphne Laurel Hotel and Penelope Loom House",
+      "Penelope Loom House",
+      "morning light room at Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for *all hotel(s) decided or chosen at any point for Day 1\u2019s accommodation*, including intermediate and final decisions. So we must select only target candidates that:\n- Are explicitly named hotels (or hotel-room combinations), and  \n- Are plausibly associated with Day 1 accommodation (not Day 2, meals, experiences, or unrelated concepts).\n\nFrom the list:\n- \"Charis Grace Hotel\" \u2014 a named hotel; no day qualifier, but not tagged as Day 2-only \u2192 plausible Day 1 candidate.\n- \"Daphne Laurel Hotel\" \u2014 same reasoning.\n- \"Daphne Laurel Hotel and Penelope Loom House\" \u2014 a conjunction of two hotels; relevant if either was considered for Day 1.\n- \"Penelope Loom House\" \u2014 clearly a hotel; appears in multiple Day 1\u2013relevant contexts (e.g., \u201cmorning light room\u201d).\n- \"morning light room at Penelope Loom House\" and \"\\\"morning light room\\\" at Penelope Loom House\" \u2014 both refer to a specific room/accommodation option at Penelope Loom House; the quotes differ only stylistically \u2014 both are valid Day 1 accommodation decisions.\n\nExcluded:\n- All entries referencing Day 2 (e.g., \u201cDay 2 accommodation candidate\u201d, \u201cbreakfast venues for Day 2\u201d, \u201cday_2_itinerary_planning\u201d) \u2192 irrelevant.\n- Meal venues (Andromeda Star Feast, Chiron Sage Table, Poseidon Seafood Tavern, etc.), experiences (Hermes Skyway Adventure Park, Heracles Strength Arena), or rituals (bronze bell dessert) \u2192 not accommodations.\n- Abstract or meta labels like \u201caccommodation rating threshold\u201d, \u201cday 1 itinerary experience as a whole\u201d, \u201cday 1 itinerary\u201d \u2192 too vague or non-hotel.\n- \u201cFifth and sixth Day 2 accommodation candidates\u201d \u2192 explicitly Day 2 and unnamed \u2192 excluded.\n\nNote: Although \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\u201d is verbose, it's still about Day 2 breakfast \u2014 not accommodation \u2014 so excluded.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for hotels decided or chosen for Day 1\u2019s accommodation \u2014 i.e., concrete, decision-relevant information about lodging selection. \u201cPractical Constraint Specification\u201d is relevant because constraints (e.g., location, budget, availability, proximity to Day 1 activities) directly influence which hotels are considered or selected. \u201cPersonal Preference Alignment\u201d is also relevant because explicit preferences (e.g., \u201cneeds quiet room\u201d, \u201cprefers historic hotels\u201d) often drive intermediate or final hotel choices. The other candidates \u2014 \u201cComparative Value Indicator\u201d, \u201cCultural Ritual Reference\u201d, \u201cMythological Narrative Anchor\u201d, and \u201cSensory-Ambiance Descriptor\u201d \u2014 are abstract, metaphorical, or stylistic labels with no clear or direct connection to factual hotel selection decisions for Day 1 accommodation."
+  },
+  {
+    "question_id": "type_1-ATT-Day2",
+    "question": "Which attraction(s) did the user finally decide on for Day 2? List all attraction names.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks specifically about the user's final decision for Day 2 attractions. The context scope \"day_2_itinerary_planning\" is directly relevant because it would contain discussion, deliberation, and finalization of Day 2 activities. \"accommodation_search\" and \"day_1_itinerary_planning\" are unrelated to Day 2 attractions.",
+    "selected_event_types": [
+      "Itinerary Planning",
+      "Activity Recommendation"
+    ],
+    "event_type_reasoning": "The question asks which attraction(s) the user finally decided on for Day 2 \u2014 this is a concrete outcome of planning and decision-making about activities scheduled for a specific day. \"Itinerary Planning\" directly relates to organizing and finalizing day-specific plans, including attractions. \"Activity Recommendation\" is also relevant because it involves suggesting or selecting attractions (as activities), and final decisions often emerge from such recommendation exchanges. Other event types \u2014 like Accommodation Recommendation, Culinary Theme Exploration, or Restaurant Recommendation \u2014 pertain to lodging or food, not attractions. \"Trip Day Transition\" signals movement between days but doesn\u2019t inherently contain attraction decisions. Thus, only \"Itinerary Planning\" and \"Activity Recommendation\" are likely to contain the needed information.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Heracles Strength Arena",
+      "Hyperion Sunspire",
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Penelope Loom House",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks: \u201cWhich attraction(s) did the user finally decide on for Day 2? List all attraction names.\u201d So we need to select target candidates that are *attraction names* (i.e., places or experiences the user could visit \u2014 not accommodations *per se*, unless they\u2019re explicitly experiential venues, and not meta-descriptions like \u201cday 2 itinerary\u201d or rating thresholds). \n\nWe exclude:\n- Accommodations unless they have clear experiential/attraction-like naming (e.g., \u201cPenelope Loom House\u201d is ambiguous, but \u201cmorning light room at Penelope Loom House\u201d is accommodation-focused; however, \u201cPenelope Loom House\u201d alone appears as a standalone candidate and may host attractions \u2014 but more critically, several entries like \u201cCharis Grace Hotel\u201d, \u201cDaphne Laurel Hotel\u201d are clearly lodging, so we omit those unless they double as attractions. \u201cPenelope Loom House\u201d is retained because it appears both in accommodation and experience contexts (e.g., \u201cmorning light room\u201d variant), and it's listed separately as a clean candidate \u2014 plausible as an attraction venue.\n- Compound entries with \u201cand\u201d, \u201c(both proposed\u2026)\u201d, \u201cfifth and sixth\u2026\u201d, etc.: these reflect proposals, comparisons, or bundles\u2014not final decided singular attractions. We want *names of attractions*, not conjunctions or explanations.\n- Meta or process labels like \u201cday_2_itinerary_planning\u201d, \u201caccommodation rating threshold\u201d, \u201cday 1 itinerary\u201d, etc.: irrelevant to listing *attraction names*.\n- Food items (\u201cSpartan Feast Platter\u201d, \u201cbronze bell dessert ritual\u201d) \u2014 these are menu items, not attractions.\n- Vague or non-specific labels like \u201cDay 1 itinerary experience as a whole\u201d.\n\nRetained candidates are unambiguous, standalone attraction/venue names appearing in the list:  \n- \u201cAndromeda Star Feast\u201d (a named venue, likely dining/entertainment attraction)  \n- \u201cChiron Sage Table\u201d  \n- \u201cEpimetheus Memory Grove\u201d  \n- \u201cHermes Skyway Adventure Park\u201d  \n- \u201cHeracles Strength Arena\u201d  \n- \u201cHyperion Sunspire\u201d  \n- \u201cLantern Lane Caf\u00e9\u201d  \n- \u201cMenelaus Spartan Grill\u201d  \n- \u201cPenelope Loom House\u201d (as a venue, not just a room)  \n- \u201cPoseidon Seafood Tavern\u201d  \n- \u201cThemis Justice Banquet\u201d  \n\nAll are proper nouns, venue-style names, and plausibly selected attractions for Day 2.",
+    "selected_functional_type_seeds": [
+      "Personal Preference Alignment",
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks which attraction(s) the user finally decided on for Day 2 \u2014 i.e., it seeks the *outcome* of a decision-making process. To identify that, we need functional type seeds that reflect signals of user choice or commitment:  \n- \"Personal Preference Alignment\" is relevant because final decisions are often grounded in expressed preferences (e.g., \u201cI\u2019d love to visit the museum\u201d \u2192 indicates alignment and likely selection).  \n- \"Practical Constraint Specification\" is relevant because constraints (e.g., \u201cWe need something open on Tuesday\u201d, \u201cMust be within walking distance\u201d) often directly narrow or finalize options \u2014 turns containing such specs frequently precede or accompany the final decision.  \nThe other candidates \u2014 Comparative Value Indicator, Cultural Ritual Reference, Mythological Narrative Anchor, Sensory-Ambiance Descriptor \u2014 relate to evaluation framing, storytelling, or atmospheric description, but not reliably to the *final decision point*. They may support reasoning but don\u2019t typically mark the selection itself."
+  },
+  {
+    "question_id": "type_2-P-Erato Lyric House",
+    "question": "What is the price of Erato Lyric House as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [
+      "accommodation_search"
+    ],
+    "context_scope_reasoning": "The question asks for the price of \"Erato Lyric House\", which is an accommodation. The context scope \"accommodation_search\" is directly relevant because it likely contains information about accommodations, including names and prices. The itinerary planning scopes (\"day_1_itinerary_planning\", \"day_2_itinerary_planning\") are unlikely to contain pricing details for accommodations.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of \"Erato Lyric House\", which is a specific accommodation. The event type \"Price Disclosure\" directly indicates that pricing information is being shared or stated in the conversation, making it the most relevant and precise label for retrieving the required numeric value. No other event types (e.g., \"Accommodation Recommendation\", \"Hotel Atmosphere Description\") inherently imply disclosure of a price.",
+    "selected_targets": [
+      "Erato Lyric House"
+    ],
+    "target_reasoning": "The question explicitly asks for the price of \"Erato Lyric House\" as mentioned in the conversation. Among the target candidates, only \"Erato Lyric House\" directly matches the named entity in the question. No other candidate refers to Erato Lyric House or contains pricing information about it \u2014 the rest are unrelated venues, combinations, rituals, or abstract criteria. Therefore, selecting just \"Erato Lyric House\" is sufficient and precise; it's the only label that could anchor conversation turns discussing its price.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly related to expressing or referencing a numeric price. The question asks for a specific numeric price value (e.g., \"$120\", \"120\"), which would typically fall under categories like \"Price Mention\", \"Numeric Quantification\", or \"Monetary Value Specification\". Since none of the provided candidates denote price, monetary value, or numeric quantification, no label is relevant."
+  },
+  {
+    "question_id": "type_1-DIN-BREAKFAST-Day2",
+    "question": "What is the final restaurant chosen for Day 2 as breakfast? Provide the restaurant's name.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final restaurant chosen for breakfast on Day 2. This information would most likely be discussed and decided during \"day_2_itinerary_planning\", as it directly relates to planning activities and meals for that day. Neither \"accommodation_search\" nor \"day_1_itinerary_planning\" is relevant to breakfast on Day 2.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Culinary Theme Exploration"
+    ],
+    "event_type_reasoning": "The question asks for the *final restaurant chosen for Day 2 as breakfast*, i.e., a specific restaurant name. \"Restaurant Recommendation\" is directly relevant because it involves suggesting or selecting restaurants \u2014 likely including final selections. \"Menu or Dish Description\" may contain contextual clues about breakfast offerings at a restaurant, helping to confirm or infer the chosen venue (e.g., \u201cthey served breakfast at Le Jardin\u201d). \"Culinary Theme Exploration\" could indicate discussion around breakfast cuisine or regional breakfast styles, possibly tied to a specific recommended restaurant on Day 2. Other labels like \"Accommodation Recommendation\", \"Activity Recommendation\", or \"Natural Environment Description\" are unrelated to restaurant selection for breakfast. \"Trip Day Transition\" and \"Itinerary Planning\" might mention Day 2 but don\u2019t inherently convey restaurant names; without explicit indication they contain *the final restaurant choice*, they\u2019re less reliably useful than the top three. So we select these three most semantically aligned event types.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Andromeda Star Feast and Chiron Sage Table",
+      "Andromeda Star Feast and Themis Justice Banquet",
+      "Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)",
+      "Poseidon Seafood Tavern and Chiron Sage Table",
+      "Poseidon Seafood Tavern and Chiron Table (both proposed as lunch venues for day 2)",
+      "Poseidon Seafood Tavern and Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks for the *final restaurant chosen for Day 2 as breakfast*. So we need labels that explicitly or plausibly refer to restaurants *proposed or selected for breakfast on Day 2*. Among the candidates:\n- \u201cAndromeda Star Feast\u201d, \u201cChiron Sage Table\u201d, \u201cPoseidon Seafood Tavern\u201d, and \u201cThemis Justice Banquet\u201d are standalone restaurant names \u2014 all could be breakfast venues; no disqualifying info in their names.\n- Combinations like \u201cAndromeda Star Feast and Chiron Sage Table\u201d, \u201cAndromeda Star Feast and Themis Justice Banquet\u201d, and especially \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\u201d directly mention *breakfast on Day 2*, making them highly relevant.\n- \u201cPoseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\u201d is *not* relevant for breakfast, so it should be excluded \u2014 correction: this one specifies *lunch*, so it\u2019s irrelevant. Let\u2019s revise.\n\nWait \u2014 rechecking: the candidate says: `\"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\"` \u2192 explicitly lunch \u2192 exclude.  \nSimilarly, `\"Poseidon Seafood Tavern and Chiron Sage Table\"` (without time qualifier) is ambiguous but *could* include breakfast options \u2014 however, without explicit breakfast context, it's weaker. But the question asks for the *final restaurant chosen*, so strongest signals are those explicitly tied to *Day 2 breakfast*.\n\nSo only labels that either:\n- Are restaurant names *and* appear in a Day 2 breakfast context (e.g., explicitly labeled as breakfast venue(s) for Day 2), or  \n- Are unqualified restaurant names that are *not ruled out* and appear alongside breakfast-specific variants (i.e., plausible candidates).\n\nFrom the list:\n\u2705 `\"Andromeda Star Feast\"` \u2014 appears in multiple breakfast-related combos; standalone, plausible.  \n\u2705 `\"Chiron Sage Table\"` \u2014 same \u2014 appears in breakfast combos.  \n\u2705 `\"Themis Justice Banquet\"` \u2014 appears in \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\u201d.  \n\u2705 `\"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\"` \u2014 direct match.  \n\u274c `\"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\"` \u2014 lunch \u2192 exclude.  \n\u274c `\"Poseidon Seafood Tavern and Chiron Sage Table\"` \u2014 no time context, but also appears *only* in lunch context elsewhere \u2014 lower confidence; better omitted unless strongly supported. Same for `\"Poseidon Seafood Tavern\"` alone \u2014 it appears in lunch- and dinner-adjacent contexts (e.g., with Chiron Sage Table *as lunch*, and with Themis *without time spec*), but *no explicit breakfast link*. So to avoid noise, exclude Poseidon unless explicitly breakfast-linked \u2014 and it isn\u2019t.\n\nAlso: `\"Lantern Lane Caf\u00e9\"` \u2014 not in candidates? Wait \u2014 it *is* in the list: `\"Lantern Lane Caf\u00e9\"` is present, and caf\u00e9 strongly implies breakfast suitability. Include.  \n`\"Menelaus Spartan Grill\"` \u2014 has \u201cSpartan Feast Platter\u201d and \u201cbronze bell dessert ritual\u201d, suggesting meal service; \u201cGrill\u201d less breakfast-typical, but not ruled out. However, no Day 2 breakfast mention \u2192 lower priority. Omit unless clear signal.\n\n`\"morning light room at Penelope Loom House\"` \u2014 this is an *accommodation room*, not a restaurant \u2192 exclude.  \n`\"Charis Grace Hotel\"`, `\"Daphne Laurel Hotel\"`, etc. \u2014 accommodations \u2192 exclude.\n\nSo final selected targets should be:\n- Standalone restaurants plausibly used for Day 2 breakfast and appearing in breakfast-linked composites: `\"Andromeda Star Feast\"`, `\"Chiron Sage Table\"`, `\"Themis Justice Banquet\"`, `\"Lantern Lane Caf\u00e9\"`  \n- Composite explicitly stating Day 2 breakfast: `\"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\"`  \n- Also `\"Andromeda Star Feast and Chiron Sage Table\"` \u2014 though no explicit \u201cbreakfast\u201d label, it's paired identically to the Themis variant which *does* have the label \u2014 reasonable to include as a candidate pair.  \n- `\"Chiron Sage Table and Andromeda Star Feast\"` \u2014 same as above, just order swapped \u2192 include.\n\nBut note: `\"Andromeda Star Feast and Chiron Sage Table\"` appears *without* time qualifier \u2014 however, given symmetry with the explicitly labeled Themis variant, and absence of contradictory info, it's a reasonable candidate.\n\nAlso: `\"morning light room at Penelope Loom House\"` \u2014 name includes \u201cmorning\u201d, but it\u2019s a *room*, not a restaurant \u2192 exclude.\n\nSo final list:\n- `\"Andromeda Star Feast\"`  \n- `\"Chiron Sage Table\"`  \n- `\"Themis Justice Banquet\"`  \n- `\"Lantern Lane Caf\u00e9\"`  \n- `\"Andromeda Star Feast and Chiron Sage Table\"`  \n- `\"Andromeda Star Feast and Themis Justice Banquet\"`  \n- `\"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\"`  \n\nThat\u2019s 7 labels. All directly or strongly associated with Day 2 breakfast.\n\nDouble-check `\"Lantern Lane Caf\u00e9\"` \u2014 yes, it's in `target_candidates`, and \u201cCaf\u00e9\u201d is a classic breakfast venue; no disqualifying context \u2014 include.\n\nNo other caf\u00e9 or breakfast-implicative names (e.g., no \u201cSunrise Diner\u201d, \u201cDawn Bistro\u201d) \u2014 so these 7 are appropriate.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the final restaurant chosen for Day 2 breakfast \u2014 a concrete, decision-based outcome. To identify the chosen restaurant, we need information about constraints that shaped the choice (e.g., \u201cmust be open by 7am\u201d, \u201cwithin walking distance\u201d, \u201cvegetarian-friendly\u201d) \u2014 captured by \"Practical Constraint Specification\". We also likely need signals of preference-driven selection (e.g., \u201cI love their avocado toast\u201d, \u201cwe always go there for breakfast\u201d) \u2014 covered by \"Personal Preference Alignment\". The other candidates \u2014 Comparative Value Indicator (e.g., \u201cbetter than X\u201d), Cultural Ritual Reference (e.g., \u201ctraditional Sunday brunch\u201d), Mythological Narrative Anchor (irrelevant here), and Sensory-Ambiance Descriptor (e.g., \u201ccozy lighting\u201d, \u201crustic vibe\u201d) \u2014 are less directly tied to *identifying the final chosen restaurant name*, especially for a functional, time- and meal-specific decision like Day 2 breakfast. So only two labels are meaningfully relevant."
+  },
+  {
+    "question_id": "type_2-R-Andromeda Star Feast",
+    "question": "What is the rating of Andromeda Star Feast as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 relate to restaurant ratings or mentions of a venue named \"Andromeda Star Feast\". The question asks for a numeric rating of a restaurant, which would more likely appear in a context scope like \"restaurant_review\", \"dining_recommendation\", or \"food_experience\", none of which are present in the candidate list. Therefore, no context_scope is relevant.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Andromeda Star Feast\", which is a restaurant (inferred from the name and context). Ratings are most likely mentioned in event types directly related to restaurants: \"Restaurant Recommendation\" often includes ratings or evaluative language; \"Menu or Dish Description\" may include reviews or ratings tied to specific offerings; and \"Restaurant Atmosphere Description\" can sometimes accompany evaluative comments including ratings. Other event types like \"Accommodation Recommendation\" or \"Cultural Experience Discussion\" are unrelated to restaurant ratings. \"Price Disclosure\" or \"Itinerary Planning\" are unlikely to contain numeric ratings for a restaurant unless explicitly tied \u2014 but no such cue exists here. So the three restaurant-centric event types are the most plausible sources.",
+    "selected_targets": [
+      "Andromeda Star Feast"
+    ],
+    "target_reasoning": "The question asks specifically for the numeric rating of \"Andromeda Star Feast\". Among the target candidates, only the exact string \"Andromeda Star Feast\" directly matches the entity in question. Other candidates like \"Andromeda Star Feast and Chiron Sage Table\" or \"Andromeda Star Feast and Themis Justice Banquet\" are compound labels that include additional venues and do not isolate the rating for Andromeda Star Feast alone. Selecting only the standalone \"Andromeda Star Feast\" ensures we retrieve conversation turns focused solely on that venue \u2014 which is most likely to contain its specific numeric rating.",
+    "selected_functional_type_seeds": [
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Andromeda Star Feast\", which reflects a subjective evaluation or judgment\u2014i.e., how much someone likes or values it. \"Personal Preference Alignment\" is the only candidate that directly relates to expressing or implying a rating (e.g., phrases like \u201cI loved it\u201d, \u201cit\u2019s my favorite\u201d, \u201c5 stars\u201d, etc.). The other candidates refer to comparative analysis, cultural context, mythological framing, practical limitations, or sensory descriptions\u2014none of which inherently convey a numeric rating. Thus, only \"Personal Preference Alignment\" is relevant."
+  },
+  {
+    "question_id": "type_2-R-Chiron Sage Table",
+    "question": "What is the rating of Chiron Sage Table as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context_scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 relate to restaurant or venue ratings. The question asks for a numeric rating of \"Chiron Sage Table\", which is a dining establishment, but none of the provided scopes pertain to restaurant reviews, food, or ratings. Therefore, no context_scope is relevant.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Chiron Sage Table\", a restaurant. Ratings are most likely mentioned in contexts where a restaurant is being recommended (which often includes pros/cons or ratings), described in terms of atmosphere (where satisfaction or quality may be implicitly or explicitly rated), or discussed via its menu/dishes (where specific dishes or overall experience may be rated). Other event types like \"Accommodation Recommendation\" or \"Itinerary Planning\" are unrelated to restaurant ratings. \"Price Disclosure\" could occasionally include value-based judgments, but it's less directly associated with numeric ratings than the three selected types.",
+    "selected_targets": [
+      "Chiron Sage Table"
+    ],
+    "target_reasoning": "The question asks for the numeric rating of \"Chiron Sage Table\" as mentioned in the conversation. Among the target candidates, only the exact string \"Chiron Sage Table\" directly matches the entity whose rating is being queried. Other entries that include \"Chiron Sage Table\" (e.g., \"Andromeda Star Feast and Chiron Sage Table\", \"Poseidon Seafood Tavern and Chiron Sage Table\") are compound or contextual references \u2014 they do not isolate the venue itself and may dilute or conflate ratings. To precisely retrieve *its* rating, we need turns specifically about \"Chiron Sage Table\" as a standalone entity. Hence, only \"Chiron Sage Table\" is selected.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Chiron Sage Table\", which implies a quantitative evaluation or score. Among the candidates, \"Comparative Value Indicator\" is the only label that plausibly relates to a numeric rating \u2014 such indicators often involve scores, rankings, or comparative assessments (e.g., \u201c4.5/5\u201d, \u201cbetter than X\u201d, \u201ctop-rated\u201d). The other labels refer to cultural, mythological, subjective preference, practical constraints, or sensory descriptions \u2014 none of which inherently convey a numeric rating. Thus, only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_2-P-Hermes Skyway Adventure Park",
+    "question": "What is the price of Hermes Skyway Adventure Park as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning",
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the price of \"Hermes Skyway Adventure Park\", which is an attraction likely included in a daily itinerary. Neither \"accommodation_search\" nor any other context scope implies discussion of attraction pricing; however, itinerary planning contexts (day_1 and day_2) are most likely to contain details about visited attractions\u2014including their names and possibly prices. Since the park name suggests it's an activity/attraction, it would plausibly appear in either day\u2019s itinerary planning discussion.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of \"Hermes Skyway Adventure Park\" as mentioned in the conversation. The event type \"Price Disclosure\" directly corresponds to instances where prices of venues or activities are explicitly stated, making it the only relevant candidate. None of the other event types (e.g., \"Activity Recommendation\", \"Itinerary Planning\") inherently involve stating a specific price value.",
+    "selected_targets": [
+      "Hermes Skyway Adventure Park",
+      "Epimetheus Memory Grove and Hermes Skyway Adventure Park",
+      "Hermes Skyway Adventure Park and Hyperion Sunspire",
+      "Hyperion Sunspire and Hermes Skyway Adventure Park"
+    ],
+    "target_reasoning": "The question asks for the *price of Hermes Skyway Adventure Park* as mentioned in the conversation. To answer this, we need turns where Hermes Skyway Adventure Park is discussed \u2014 especially those that may include pricing information. Therefore, any target candidate that explicitly includes \"Hermes Skyway Adventure Park\" is potentially relevant, because such turns are more likely to contain details (e.g., cost, comparison, or description) about it. Candidates like \"Epimetheus Memory Grove and Hermes Skyway Adventure Park\" or compound ones with Hermes Skyway Adventure Park may contain joint discussion where pricing of one (or both) is mentioned. We exclude candidates that don\u2019t mention Hermes Skyway Adventure Park at all, even if they\u2019re related venues (e.g., Heracles Strength Arena), since the question is specifically about Hermes Skyway Adventure Park\u2019s price. Also, generic or unrelated labels (e.g., \u201cday 2 itinerary\u201d, \u201caccommodation rating threshold\u201d) are excluded \u2014 they lack direct lexical or contextual link to pricing of this specific park.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric price value \u2014 a concrete, factual, practical detail. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to quantifiable, real-world constraints like cost, time, capacity, or pricing. None of the other labels \u2014 such as Comparative Value Indicator (which might involve relative comparisons, not absolute price), Cultural Ritual Reference, Mythological Narrative Anchor, Personal Preference Alignment, or Sensory-Ambiance Descriptor \u2014 are meaningfully tied to stating a specific numeric price. Thus, only \"Practical Constraint Specification\" is relevant."
+  },
+  {
+    "question_id": "type_3-Day1-attraction",
+    "question": "Which attractions were discussed for Day 1's attraction? List all names.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks specifically about attractions discussed for Day 1's itinerary, so the context scope \"day_1_itinerary_planning\" is directly relevant. \"day_2_itinerary_planning\" pertains to a different day and is irrelevant. \"accommodation_search\" is unrelated to attractions or day-specific itinerary planning.",
+    "selected_event_types": [
+      "Itinerary Planning",
+      "Activity Recommendation",
+      "Cultural Experience Discussion",
+      "Natural Environment Description"
+    ],
+    "event_type_reasoning": "The question asks for attractions discussed specifically for Day 1's attraction. To identify attraction names, we need event types that involve planning or recommending activities/destinations (e.g., \u201cItinerary Planning\u201d \u2014 likely includes listing or assigning attractions to specific days; \u201cActivity Recommendation\u201d \u2014 often names specific attractions like museums, parks, or landmarks). \u201cCultural Experience Discussion\u201d and \u201cNatural Environment Description\u201d are also relevant because many attractions are cultural sites (e.g., temples, historic districts) or natural sites (e.g., mountains, lakes, gardens), and discussions about them often name the actual attraction. Other types like \u201cAccommodation Recommendation\u201d, \u201cRestaurant Recommendation\u201d, or \u201cPrice Disclosure\u201d are unrelated to attraction names. \u201cTrip Day Transition\u201d signals a shift between days but doesn\u2019t inherently discuss attraction names, so it\u2019s excluded. \u201cVenue Detail Inquiry\u201d is too generic and agent-focused (inquiry rather than discussion/naming), so not reliably useful.",
+    "selected_targets": [
+      "\"morning light room\" at Penelope Loom House",
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Heracles Strength Arena",
+      "Hyperion Sunspire",
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Penelope Loom House",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "day 1 itinerary",
+      "morning light room at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks specifically for attractions discussed for *Day 1's attraction*, i.e., named venues or experiences intended for Day 1. We must select target candidates that either (a) explicitly reference Day 1, (b) are standalone attraction names (not tied exclusively to Day 2), or (c) are plausible Day 1 attractions based on context (e.g., \u201cday 1 itinerary\u201d, \u201cEpimetheus Memory Grove\u201d, \u201cHermes Skyway Adventure Park\u201d \u2014 all generic attraction names without Day-2-only qualifiers). Candidates mentioning \u201cDay 2\u201d explicitly (e.g., \u201cboth proposed as breakfast venues for Day 2\u201d, \u201cDay 2 accommodation\u201d, \u201cunnamed Day 2 candidates\u201d) are excluded. Also excluded are meta-labels like \u201caccommodation rating threshold\u201d, \u201cday_2_itinerary_planning\u201d, or compound labels where one component is Day-2-only and the pairing doesn\u2019t clearly indicate Day 1 relevance. The phrase \u201cday 1 itinerary\u201d is included because it directly scopes the set of Day 1 attractions. Similarly, both variants of \u201cmorning light room\u201d (quoted and unquoted) refer to the same Day 1-specific experience at Penelope Loom House and are retained. Attraction names like \u201cMenelaus Spartan Grill\u201d, \u201cPoseidon Seafood Tavern\u201d, \u201cThemis Justice Banquet\u201d, \u201cHyperion Sunspire\u201d, etc., appear without Day-2 restriction and are plausibly Day 1 venues; they are kept. \u201cDaphne Laurel Hotel\u201d, \u201cCharis Grace Hotel\u201d, etc., are accommodations \u2014 not *attractions* \u2014 so they\u2019re excluded per the question\u2019s focus on *attractions*. \u201cSpartan Feast Platter\u201d and \u201cbronze bell dessert ritual\u201d are menu items/rituals, not attractions, so excluded.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to naming or identifying specific attractions for Day 1. The question asks for concrete attraction names discussed for Day 1, which is a factual, entity-based retrieval task. These functional type seeds describe abstract rhetorical, contextual, or evaluative roles (e.g., indicating preference, constraints, or ambiance), not the actual identification or labeling of attractions. Therefore, none are relevant for filtering turns that contain attraction names for Day 1."
+  },
+  {
+    "question_id": "type_1-DIN-LUNCH-Day2",
+    "question": "What is the final restaurant chosen for Day 2 as lunch? Provide the restaurant's name.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final restaurant chosen for Day 2 lunch, which is directly related to planning activities for Day 2. The context scope \"day_2_itinerary_planning\" is most likely to contain information about meal selections (including lunch) for that day. \"accommodation_search\" and \"day_1_itinerary_planning\" are irrelevant to Day 2 lunch.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks for the final restaurant chosen for Day 2 lunch, i.e., a specific restaurant name tied to a particular day in the itinerary. \"Restaurant Recommendation\" is directly relevant because such events likely include naming or selecting restaurants. \"Itinerary Planning\" is also relevant because it involves scheduling activities\u2014including meals\u2014by day, and may specify which restaurant is assigned to Day 2 lunch. Other types (e.g., \"Menu or Dish Description\", \"Restaurant Atmosphere Description\") describe aspects of a restaurant but do not necessarily indicate selection or assignment to a specific day. \"Trip Day Transition\" refers to moving between days but doesn\u2019t inherently contain restaurant names or selections. Thus, only \"Restaurant Recommendation\" and \"Itinerary Planning\" are likely to contain the needed information.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)"
+    ],
+    "target_reasoning": "The question asks for the *final restaurant chosen for Day 2 as lunch*, specifically requesting the restaurant's name. Among the target candidates, only one explicitly references *lunch venues for Day 2*: \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\". This label directly signals relevance \u2014 it identifies two candidate restaurants for Day 2 lunch, making it the only candidate that both (a) pertains to Day 2, (b) concerns lunch, and (c) names actual restaurants. While the phrasing says \u201cproposed\u201d, not \u201cfinal\u201d, it is the *only* candidate tied to Day 2 lunch; all others refer to accommodations, breakfast, Day 1, attractions, rituals, or unspecified/irrelevant combinations. No other candidate mentions lunch, Day 2, or restaurant names in that context. So this is the sole useful label for filtering turns that may contain the final selection.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the final restaurant chosen for Day 2 lunch \u2014 a concrete, decision-outcome fact. To identify this, we need functional type seeds that relate to how restaurants are selected or narrowed down in context: \u201cPractical Constraint Specification\u201d may encode constraints like time, location, or dietary restrictions that influence the final choice; \u201cPersonal Preference Alignment\u201d may reflect expressed likes/dislikes or prioritized criteria (e.g., \u201cwe want Italian\u201d) that directly drive selection. The other candidates \u2014 \u201cComparative Value Indicator\u201d, \u201cCultural Ritual Reference\u201d, \u201cMythological Narrative Anchor\u201d, and \u201cSensory-Ambiance Descriptor\u201d \u2014 are either too abstract, tangential, or descriptive rather than decision-relevant, and unlikely to reliably signal the *chosen* restaurant name. Thus, only two labels are meaningfully relevant."
+  },
+  {
+    "question_id": "type_3-Day2-accommodation",
+    "question": "Which hotels were discussed for Day 2's accommodation? List all names.",
+    "selected_context_scopes": [
+      "accommodation_search",
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks specifically about hotels discussed for Day 2's accommodation. \"accommodation_search\" is directly relevant because it pertains to hotel discussions. \"day_2_itinerary_planning\" is also relevant since Day 2\u2019s accommodation would logically be part of planning that day\u2019s itinerary. \"day_1_itinerary_planning\" is not relevant, as it concerns Day 1 only.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks specifically about hotels discussed for Day 2's accommodation. \"Accommodation Recommendation\" directly involves suggesting or naming hotels, making it highly relevant. \"Hotel Atmosphere Description\" may include hotel names while describing ambiance, and could help identify which hotels were discussed. \"Itinerary Planning\" is relevant because planning for Day 2\u2019s accommodation would likely involve naming or selecting hotels as part of the schedule. Other event types (e.g., \"Activity Recommendation\", \"Restaurant Recommendation\") are unrelated to accommodation; \"Trip Day Transition\" refers to moving between days but doesn\u2019t inherently involve naming hotels; \"Venue Detail Inquiry\" is too generic and not necessarily hotel-specific.",
+    "selected_targets": [
+      "Charis Grace Hotel",
+      "Daphne Laurel Hotel",
+      "Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House",
+      "morning light room at Penelope Loom House",
+      "Charis Grace Hotel and unnamed second Day 2 accommodation candidate",
+      "Daphne Laurel Hotel and Penelope Loom House",
+      "Fifth and sixth Day 2 accommodation candidates (unnamed, $77.13/night with 2.7 rating vs. implied $65.78/night with 3.2 rating)",
+      "Fifth and sixth Day 2 accommodation candidates (unnamed, unlocated, with implausibly low nightly rates of $65.78 and $38.45)"
+    ],
+    "target_reasoning": "The question asks specifically for hotels discussed as accommodations for Day 2. We must select only target candidates that refer to lodging options (hotels or named rooms within hotels) explicitly tied to Day 2 accommodation planning. Candidates like \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", and \"Penelope Loom House\" are clear hotel names. The variants including quoted or unquoted versions of \"morning light room at Penelope Loom House\" refer to a specific room in a hotel \u2014 still a valid Day 2 accommodation candidate. Phrases like \"Charis Grace Hotel and unnamed second Day 2 accommodation candidate\" and \"Daphne Laurel Hotel and Penelope Loom House\" involve at least one named hotel and are explicitly framed as Day 2 accommodation considerations. The two \"Fifth and sixth Day 2 accommodation candidates...\" entries \u2014 though unnamed \u2014 are explicitly labeled as Day 2 accommodation candidates and thus relevant to the scope of \u201chotels discussed for Day 2\u2019s accommodation\u201d, even if incomplete. All other candidates refer to restaurants, venues, meals, rituals, itinerary segments, or non-accommodation experiences (e.g., \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Hermes Skyway Adventure Park\", \"day_2_itinerary_planning\") and are excluded because they are not hotels or lodging options.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks specifically about hotels discussed for Day 2's accommodation \u2014 a concrete, logistical detail concerning lodging arrangements. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to real-world, functional constraints like location, date (Day 2), budget, availability, or accommodation requirements \u2014 all of which commonly underpin hotel selection discussions. The other labels \u2014 e.g., \"Mythological Narrative Anchor\", \"Cultural Ritual Reference\", \"Sensory-Ambiance Descriptor\" \u2014 are abstract, figurative, or experiential and unlikely to pertain to factual hotel naming. \"Personal Preference Alignment\" could be tangentially relevant but is too vague and subjective; the question seeks objective names, not preferences. Thus, only \"Practical Constraint Specification\" is directly aligned with grounding the answer in actionable, time- and task-bound logistical information."
+  },
+  {
+    "question_id": "type_2-P-Heracles Strength Arena",
+    "question": "What is the price of Heracles Strength Arena as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context_scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 relate to pricing information for \"Heracles Strength Arena\". These scopes pertain to travel planning (accommodations and daily itineraries), not product or venue pricing. Therefore, no context scope is relevant.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of \"Heracles Strength Arena\" as mentioned in the conversation. The event type \"Price Disclosure\" directly indicates that pricing information is being shared, making it the most relevant and likely source of the requested numeric value. None of the other event types (e.g., \"Venue Detail Inquiry\", \"Activity Recommendation\") inherently imply disclosure of a specific price \u2014 they may precede or contextualize it, but only \"Price Disclosure\" reliably signals that the price itself is stated.",
+    "selected_targets": [
+      "Heracles Strength Arena"
+    ],
+    "target_reasoning": "The question asks specifically for the price of \"Heracles Strength Arena\" as mentioned in the conversation. Among the target candidates, only \"Heracles Strength Arena\" (and combinations including it, e.g., \"Heracles Strength Arena and Hyperion Sunspire\") directly reference this venue. However, the question seeks *the price of Heracles Strength Arena* \u2014 not a combined or comparative item. Including compound labels like \"Heracles Strength Arena and Hyperion Sunspire\" introduces ambiguity: the price may refer to one, both, or a bundle \u2014 and the question explicitly asks for the numeric value of *Heracles Strength Arena alone*. Therefore, only the standalone label \"Heracles Strength Arena\" is unambiguously relevant and sufficient to filter turns discussing its price.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to expressing or referencing a numeric price. The question asks for a specific numeric price value (\"Heracles Strength Arena\"), which would typically be associated with labels like \"Price Mention\", \"Numeric Quantity\", \"Monetary Value\", or \"Product Cost\", none of which appear in the candidate list. Therefore, no candidate seed is relevant."
+  },
+  {
+    "question_id": "type_1-ALL-LUNCH-Day1",
+    "question": "List all restaurant(s) that were decided or chosen at any point for Day 1\u2019s lunch, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s lunch, which directly relates to planning activities for Day 1. The context scope \"day_1_itinerary_planning\" is explicitly relevant because it would include discussions about meals (e.g., lunch) scheduled or selected for that day. \"accommodation_search\" and \"day_2_itinerary_planning\" are unrelated \u2014 the former concerns lodging, and the latter concerns Day 2, not Day 1.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurants *decided or chosen* for Day 1\u2019s lunch \u2014 i.e., any turn where a restaurant was explicitly recommended, selected, discussed in terms of cuisine/theme (which may imply selection context), described in menu/dish detail (often tied to choosing a restaurant), or characterized by atmosphere (a common factor in selection decisions). \u201cRestaurant Recommendation\u201d is directly relevant. \u201cCulinary Theme Exploration\u201d may indicate narrowing down options by cuisine, supporting decision-making. \u201cMenu or Dish Description\u201d and \u201cRestaurant Atmosphere Description\u201d often occur in the context of evaluating or justifying a choice \u2014 especially during intermediate or final decisions \u2014 so they\u2019re likely to co-occur with restaurant selection for lunch. Other candidates like \u201cItinerary Planning\u201d or \u201cTrip Day Transition\u201d are too generic and don\u2019t inherently signal restaurant selection; \u201cAccommodation Recommendation\u201d, \u201cActivity Recommendation\u201d, etc., are off-topic. So we select these four most semantically proximal labels.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s lunch \u2014 including intermediate and final decisions. We must select only target candidates that are *restaurants* (not accommodations, activities, rituals, abstract concepts, or Day 2 items) and plausibly relevant to Day 1 lunch.  \n- \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Lantern Lane Caf\u00e9\", \"Menelaus Spartan Grill\", \"Poseidon Seafood Tavern\", and \"Themis Justice Banquet\" are all named restaurant/venue entities with food-service connotations (e.g., \u201cFeast\u201d, \u201cCaf\u00e9\u201d, \u201cGrill\u201d, \u201cTavern\u201d, \u201cBanquet\u201d).  \n- Candidates mentioning Day 2 explicitly (e.g., \u201cboth proposed as lunch venues for day 2\u201d, \u201cDay 2 accommodation candidates\u201d) are excluded \u2014 the question is strictly about Day 1.  \n- Phrases like \u201cand [X]\u201d or parenthetical Day 2 qualifiers (e.g., \u201cAndromeda Star Feast and Chiron Sage Table\u201d, \u201cPoseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\u201d) are compound or contextually scoped to Day 2, so we exclude them \u2014 only standalone, unqualified restaurant names are retained to avoid ambiguity and ensure relevance to Day 1.  \n- \u201cSpartan Feast Platter at Menelaus Spartan Grill\u201d and \u201cbronze bell dessert ritual\u2026\u201d are menu items/rituals, not venues \u2014 excluded.  \n- \u201cDay 1 itinerary experience as a whole\u201d, \u201cday 1 itinerary\u201d, etc. are too generic \u2014 not specific restaurants.  \n- Accommodations (e.g., \u201cPenelope Loom House\u201d, \u201cCharis Grace Hotel\u201d) and attractions (e.g., \u201cHermes Skyway Adventure Park\u201d) are irrelevant.  \nThus, the six standalone restaurant names above are the clearest, unambiguous candidates likely to appear as lunch venue decisions for Day 1.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for restaurants decided or chosen for Day 1\u2019s lunch \u2014 i.e., concrete, decision-relevant information about selection processes. \u201cPractical Constraint Specification\u201d is relevant because constraints (e.g., time, location, dietary restrictions, budget) often directly influence or justify restaurant choices and may appear in intermediate/final decisions. \u201cPersonal Preference Alignment\u201d is also relevant because explicit expressions of preference (e.g., \u201cI prefer Italian\u201d, \u201cLet\u2019s pick the one with outdoor seating\u201d) frequently drive or reflect restaurant selections. The other candidates \u2014 \u201cComparative Value Indicator\u201d, \u201cCultural Ritual Reference\u201d, \u201cMythological Narrative Anchor\u201d, and \u201cSensory-Ambiance Descriptor\u201d \u2014 are abstract, stylistic, or thematic labels that do not directly signal restaurant naming or decision-making events; they\u2019re unlikely to reliably co-occur with actual restaurant choices for Day 1 lunch."
+  },
+  {
+    "question_id": "type_3-Day2-lunch",
+    "question": "Which restaurants were discussed for Day 2's lunch? List all names.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 2's lunch, which directly relates to planning for Day 2. The candidate \"day_2_itinerary_planning\" is explicitly relevant because it would contain discussions about meals (including lunch) scheduled for Day 2. The other candidates \u2014 \"accommodation_search\" and \"day_1_itinerary_planning\" \u2014 are unrelated to Day 2 lunch restaurants.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 2's lunch. \"Restaurant Recommendation\" is directly relevant as it likely includes naming and suggesting restaurants. \"Menu or Dish Description\" may implicitly identify restaurants (e.g., by describing a dish served at a named restaurant on Day 2), especially if tied to lunch context. \"Restaurant Atmosphere Description\" often accompanies references to specific restaurants and may help confirm or disambiguate which restaurants were discussed. Other event types\u2014like \"Accommodation Recommendation\", \"Cultural Experience Discussion\", or \"Trip Day Transition\"\u2014do not inherently involve naming restaurants and are therefore less likely to yield restaurant names for Day 2 lunch.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)"
+    ],
+    "target_reasoning": "The question asks specifically for restaurants discussed for Day 2's lunch. Among the target candidates, only \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" explicitly states that both venues were proposed *as lunch venues for Day 2*. Other candidates refer to breakfast, accommodations, attractions, rituals, or generic itinerary planning \u2014 none of which directly identify lunch venues for Day 2. While \"Poseidon Seafood Tavern and Chiron Sage Table\" (without the parenthetical) is present, it lacks the critical contextual qualifier about lunch on Day 2; only the version with \"(both proposed as lunch venues for day 2)\" unambiguously satisfies the question\u2019s requirement. Thus, only that one candidate is selected.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly related to identifying restaurant names discussed for Day 2's lunch. These labels describe abstract rhetorical or contextual functions, not factual, entity-based, or temporal information (e.g., \u201cRestaurant Name\u201d, \u201cDay-Specific Meal\u201d, \u201cNamed Entity Mention\u201d). Since the question asks for concrete restaurant names tied to a specific time (\u201cDay 2's lunch\u201d), and no candidate label signals such concrete, referential, or enumerative content, none are relevant."
+  },
+  {
+    "question_id": "type_2-R-Hermes Skyway Adventure Park",
+    "question": "What is the rating of Hermes Skyway Adventure Park as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context_scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 are directly relevant to retrieving a numeric rating for \"Hermes Skyway Adventure Park\". Ratings for attractions are typically discussed in contexts like \"attraction_review\", \"activity_feedback\", or \"park_rating\", none of which appear in the candidate list. Therefore, no context_scope is useful for answering the question.",
+    "selected_event_types": [
+      "Activity Recommendation"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Hermes Skyway Adventure Park\", which is an activity/attraction. Among the candidates, \"Activity Recommendation\" is the only label that would plausibly involve mentioning a rating (e.g., recommending an activity often includes or implies a rating or evaluation). None of the other labels\u2014such as accommodation, culinary, hotel atmosphere, or restaurant-related ones\u2014are relevant to an adventure park. \"Venue Detail Inquiry\" might seem plausible, but it refers to user-initiated inquiries about venue details, not statements containing ratings; the question seeks a rating *mentioned in the conversation*, and ratings are most likely embedded in recommendation contexts.",
+    "selected_targets": [
+      "Hermes Skyway Adventure Park"
+    ],
+    "target_reasoning": "The question asks for the numeric rating of \"Hermes Skyway Adventure Park\" as mentioned in the conversation. Among the target candidates, only \"Hermes Skyway Adventure Park\" directly matches the entity whose rating is being queried. While compound labels like \"Epimetheus Memory Grove and Hermes Skyway Adventure Park\" or \"Hermes Skyway Adventure Park and Hyperion Sunspire\" include it, they are composite and may conflate ratings or contexts \u2014 the cleanest, most precise match is the standalone label \"Hermes Skyway Adventure Park\", which isolates the relevant venue without ambiguity.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly related to expressing or encoding a numeric rating (e.g., a star rating or score) for a place like Hermes Skyway Adventure Park. Numeric ratings typically fall under categories like \"Rating\", \"Numerical Evaluation\", \"Star Rating\", or \"Quantitative Assessment\", none of which appear in the candidate list. Therefore, no candidate is relevant."
+  },
+  {
+    "question_id": "type_2-P-Hyperion Sunspire",
+    "question": "What is the price of Hyperion Sunspire as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [
+      "accommodation_search"
+    ],
+    "context_scope_reasoning": "The question asks for the price of \"Hyperion Sunspire\", which is an accommodation (hotel/resort name). The context scope \"accommodation_search\" is directly relevant because pricing information for accommodations would most likely appear in that scope. The itinerary planning scopes (\"day_1_itinerary_planning\", \"day_2_itinerary_planning\") are unrelated to pricing of accommodations.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of \"Hyperion Sunspire\", which is a specific accommodation. The event type \"Price Disclosure\" directly pertains to instances where prices are explicitly stated or revealed in the conversation. Other event types like \"Accommodation Recommendation\" or \"Hotel Atmosphere Description\" may mention the property but are unlikely to contain numeric price information unless accompanied by price disclosure. Thus, only \"Price Disclosure\" is reliably relevant.",
+    "selected_targets": [
+      "Hyperion Sunspire",
+      "Heracles Strength Arena and Hyperion Sunspire",
+      "Hermes Skyway Adventure Park and Hyperion Sunspire",
+      "Hyperion Sunspire and Heracles Strength Arena",
+      "Hyperion Sunspire and Hermes Skyway Adventure Park"
+    ],
+    "target_reasoning": "The question asks for the *price of Hyperion Sunspire* as mentioned in the conversation. Therefore, only target candidates that explicitly include \"Hyperion Sunspire\" are potentially relevant \u2014 because only those turns are likely to contain information (e.g., pricing, description, comparison) about Hyperion Sunspire. Candidates without \"Hyperion Sunspire\" in their name (e.g., \"Andromeda Star Feast\", \"Penelope Loom House\") are irrelevant. Among the candidates containing \"Hyperion Sunspire\", we include all combinations where it appears \u2014 since any such turn could mention its price (e.g., in a comparison, bundle, or standalone reference). We exclude overly generic or unrelated labels (e.g., \"day 2 itinerary\", \"accommodation rating threshold\") even if contextually adjacent \u2014 they don\u2019t inherently signal Hyperion Sunspire-specific pricing info. The five selected targets all contain \"Hyperion Sunspire\" verbatim and are thus the minimal set with direct lexical relevance.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to expressing or referencing a price (a numeric monetary value). The question asks specifically for the price of \"Hyperion Sunspire\", which would most likely be captured under a functional type like \"Price Mention\", \"Monetary Value Specification\", or \"Quantitative Attribute\", none of which appear in the given candidate list. Therefore, no candidate label is relevant."
+  },
+  {
+    "question_id": "type_2-P-Charis Grace Hotel",
+    "question": "What is the price of Charis Grace Hotel as mentioned in the conversation? Provide the numeric value.",
+    "selected_context_scopes": [
+      "accommodation_search"
+    ],
+    "context_scope_reasoning": "The question asks for the price of \"Charis Grace Hotel\", which is directly related to accommodation information. The context scope \"accommodation_search\" is the only candidate that logically contains details about hotel names, prices, and booking-related data. The itinerary planning scopes (\"day_1_itinerary_planning\", \"day_2_itinerary_planning\") are unlikely to include hotel pricing information.",
+    "selected_event_types": [
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric price of Charis Grace Hotel as mentioned in the conversation. The event type \"Price Disclosure\" directly pertains to instances where prices are explicitly stated, making it the most relevant and sufficient label to filter turns containing such information. No other event types (e.g., \"Accommodation Recommendation\", \"Hotel Atmosphere Description\") inherently involve disclosing numeric pricing, so they are not reliably useful for extracting the required value.",
+    "selected_targets": [
+      "Charis Grace Hotel",
+      "Charis Grace Hotel and unnamed second Day 2 accommodation candidate"
+    ],
+    "target_reasoning": "The question asks for the price of \"Charis Grace Hotel\" as mentioned in the conversation. Therefore, only target candidates that explicitly name \"Charis Grace Hotel\" are relevant. Among the candidates, \"Charis Grace Hotel\" is the direct match, and \"Charis Grace Hotel and unnamed second Day 2 accommodation candidate\" also includes it \u2014 potentially containing pricing information (e.g., comparative or bundled pricing). All other candidates refer to different venues, meals, experiences, or abstract criteria and do not pertain to Charis Grace Hotel\u2019s price. So only these two are appropriate.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for the numeric price of a hotel, which is a concrete, factual, and quantifiable piece of practical information. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to objective, real-world constraints like cost, budget, availability, or pricing \u2014 all of which are pragmatic and measurable. None of the other labels \u2014 such as Comparative Value Indicator (implies relative valuation, not absolute price), Cultural Ritual Reference, Mythological Narrative Anchor, Personal Preference Alignment, or Sensory-Ambiance Descriptor \u2014 are likely to contain or imply a numeric price. Thus, only \"Practical Constraint Specification\" is relevant."
+  },
+  {
+    "question_id": "type_1-ALL-BREAKFAST-Day2",
+    "question": "List all restaurant(s) that were decided or chosen at any point for Day 2\u2019s breakfast, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for restaurants decided or chosen for Day 2\u2019s breakfast. This directly relates to planning activities for Day 2, so \"day_2_itinerary_planning\" is the only relevant context scope. \"accommodation_search\" and \"day_1_itinerary_planning\" are unrelated to Day 2 breakfast decisions.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "\"Restaurant Recommendation\" is directly relevant because it involves suggesting or selecting restaurants, which may include decisions for Day 2\u2019s breakfast. \"Itinerary Planning\" is also highly relevant, as it encompasses the process of deciding activities and meals per day\u2014including intermediate and final decisions about breakfast on Day 2. Other event types (e.g., \"Menu or Dish Description\", \"Restaurant Atmosphere Description\") describe attributes of restaurants or food but do not inherently indicate a decision or selection was made. \"Culinary Theme Exploration\" or \"Accommodation Recommendation\" are off-topic. Thus, only these two labels are likely to contain explicit or implicit information about restaurant choices for Day 2\u2019s breakfast.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Andromeda Star Feast and Chiron Sage Table",
+      "Andromeda Star Feast and Themis Justice Banquet",
+      "Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)",
+      "Chiron Sage Table",
+      "Chiron Sage Table and Andromeda Star Feast",
+      "Lantern Lane Caf\u00e9",
+      "Poseidon Seafood Tavern",
+      "Poseidon Seafood Tavern and Chiron Sage Table",
+      "Poseidon Seafood Tavern and Chiron Table (both proposed as lunch venues for day 2)",
+      "Poseidon Seafood Tavern and Themis Justice Banquet",
+      "Themis Justice Banquet",
+      "morning light room\" at Penelope Loom House",
+      "morning light room at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for *all restaurants decided or chosen at any point for Day 2\u2019s breakfast*, including intermediate and final decisions. So we must select only target candidates that:\n- Are restaurant names (or combinations of restaurants),\n- Are explicitly or plausibly associated with *breakfast* (not lunch, dinner, accommodation, or activities),\n- Are tied to *Day 2*,\n- And are not purely non-restaurant entities (e.g., accommodations like \"Penelope Loom House\" alone, or abstract concepts like \"accommodation rating threshold\").\n\nFrom the list:\n- \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Themis Justice Banquet\", \"Lantern Lane Caf\u00e9\", \"Poseidon Seafood Tavern\" \u2014 all are named restaurants; several appear in combinations explicitly flagged for Day 2 breakfast (e.g., \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\").\n- \"morning light room\\\" at Penelope Loom House\" and \"morning light room at Penelope Loom House\" \u2014 although tied to an accommodation, the phrase \u201cmorning light room\u201d evokes breakfast context, and it's a named venue variant \u2014 plausible as a breakfast location (e.g., a breakfast nook or caf\u00e9-style space within the hotel); included conservatively due to explicit \u201cmorning\u201d and inclusion in candidate list with quotation variants.\n- Excluded: \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", \"Penelope Loom House\" (alone), \"Epimetheus Memory Grove\", etc. \u2014 these are accommodations or experiences, not restaurants.\n- Excluded: \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" \u2014 explicitly lunch, so irrelevant.\n- Note: One candidate is mis-typed in the list as \"Poseidon Seafood Tavern and Chiron Table (both proposed as lunch venues for day 2)\" \u2014 likely a typo for \"Chiron Sage Table\", but since it specifies *lunch*, it's excluded. However, the correctly labeled \"Poseidon Seafood Tavern and Chiron Sage Table\" (without lunch annotation) is retained as potentially ambiguous/intermediate \u2014 and appears elsewhere in combos tied to breakfast.\n\nAlso excluded: \"Spartan Feast Platter at Menelaus Spartan Grill\", \"bronze bell dessert ritual...\" \u2014 these are menu items/rituals, not *restaurants*; the question asks for *restaurants*, not dishes or events.\n\nFinal list includes only restaurant names (standalone or in combos) that are either explicitly tagged for Day 2 breakfast or plausibly serve as breakfast venues (e.g., caf\u00e9s, banquets, feasts), with attention to phrasing like \u201cmorning light room\u201d implying morning use.",
+    "selected_functional_type_seeds": [
+      "Personal Preference Alignment",
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for restaurants decided or chosen for Day 2\u2019s breakfast \u2014 i.e., it seeks information about *decision-making* related to restaurant selection. \u201cPersonal Preference Alignment\u201d is relevant because it reflects subjective choices (e.g., \u201cI prefer cafes with outdoor seating\u201d) that directly inform which restaurant(s) were selected. \u201cPractical Constraint Specification\u201d is also relevant because constraints like \u201cmust be open by 7am\u201d, \u201cwithin walking distance\u201d, or \u201cserves breakfast on weekends\u201d often drive or narrow down restaurant choices \u2014 especially for a scheduled meal like Day 2\u2019s breakfast. The other candidates \u2014 Comparative Value Indicator, Cultural Ritual Reference, Mythological Narrative Anchor, and Sensory-Ambiance Descriptor \u2014 are abstract or stylistic labels unlikely to encode concrete restaurant selection decisions or factual commitments for a specific meal; they do not implicitly or explicitly signal restaurant names, selections, or decision points."
+  },
+  {
+    "question_id": "type_3-Day1-breakfast",
+    "question": "Which restaurants were discussed for Day 1's breakfast? List all names.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 1's breakfast, which directly relates to planning activities for Day 1. The context scope \"day_1_itinerary_planning\" is explicitly relevant because breakfast venues would be part of that day\u2019s itinerary planning. The other candidates \u2014 \"accommodation_search\" and \"day_2_itinerary_planning\" \u2014 are unrelated to Day 1 breakfast restaurants.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 1's breakfast. \"Restaurant Recommendation\" is directly relevant as it likely includes naming restaurants. \"Menu or Dish Description\" may implicitly indicate breakfast context (e.g., mentioning breakfast items) and often accompanies discussion of specific restaurants, helping to confirm relevance to Day 1 breakfast. \"Restaurant Atmosphere Description\" often co-occurs with mentions of specific restaurants and may help disambiguate or identify which restaurants were discussed \u2014 especially if tied to Day 1 planning or breakfast setting. Other labels like \"Itinerary Planning\" or \"Trip Day Transition\" could be tangentially related but do not inherently involve naming restaurants; they lack the explicit or implicit restaurant-naming signal required. Thus, only the three selected labels reliably support extracting restaurant names for Day 1 breakfast.",
+    "selected_targets": [
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Chiron Sage Table",
+      "Andromeda Star Feast",
+      "Penelope Loom House",
+      "\"morning light room\" at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks specifically for restaurants discussed for Day 1's breakfast. We need to select target candidates that (a) are restaurant names or food-service venues, and (b) are plausibly associated with breakfast \u2014 either explicitly (e.g., \u201cmorning light room\u201d evokes morning/early meal), or implicitly via context (e.g., caf\u00e9s, grills, taverns, banquets commonly serving breakfast; \u201cSpartan Feast Platter\u201d and \u201cbronze bell dessert ritual\u201d are too specific to meals/desserts and not clearly breakfast-oriented, so excluded). Candidates like \u201cAndromeda Star Feast\u201d, \u201cChiron Sage Table\u201d, \u201cThemis Justice Banquet\u201d, \u201cPoseidon Seafood Tavern\u201d, \u201cMenelaus Spartan Grill\u201d, and \u201cLantern Lane Caf\u00e9\u201d are all named dining venues \u2014 plausible for breakfast. \u201cPenelope Loom House\u201d is an accommodation, but its \u201cmorning light room\u201d variant is explicitly time- and ambiance-coded for morning, and appears as a distinct candidate \u2014 so it's included. Excluded: itinerary-level abstractions (\u201cday 1 itinerary experience as a whole\u201d), non-restaurant accommodations without breakfast association (e.g., \u201cCharis Grace Hotel\u201d alone), lunch- or day-2-specific mentions, dessert rituals, rating thresholds, adventure parks, arenas \u2014 none refer to breakfast restaurants on Day 1.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly relevant to identifying restaurant names discussed for Day 1's breakfast. The question is factual and entity-focused (restaurant names, specific meal, specific day), while all candidate labels describe abstract rhetorical or functional roles in language, not concrete domain categories like \"Restaurant Mention\", \"Meal Planning\", or \"Day-Specific Agenda\". Therefore, no functional type seed from the given list is useful for filtering turns that answer this question."
+  },
+  {
+    "question_id": "type_3-Day2-attraction",
+    "question": "Which attractions were discussed for Day 2's attraction? List all names.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks specifically about attractions discussed for Day 2's itinerary, so the context scope \"day_2_itinerary_planning\" is directly relevant. \"accommodation_search\" and \"day_1_itinerary_planning\" are unrelated to Day 2 attractions.",
+    "selected_event_types": [
+      "Itinerary Planning",
+      "Activity Recommendation",
+      "Cultural Experience Discussion",
+      "Natural Environment Description"
+    ],
+    "event_type_reasoning": "The question asks for attractions discussed specifically for Day 2's attraction. \"Itinerary Planning\" is directly relevant because it involves structuring activities by day, including specifying which attractions are scheduled for Day 2. \"Activity Recommendation\" is relevant as attractions are a core type of activity and may be recommended with day-specific context. \"Cultural Experience Discussion\" and \"Natural Environment Description\" are plausible event types that could refer to specific attractions (e.g., museums, historic sites, national parks) \u2014 especially if those attractions are tied to cultural or natural themes and were discussed in the context of Day 2. Other candidates like \"Accommodation Recommendation\", \"Restaurant Recommendation\", or \"Menu or Dish Description\" pertain to lodging or food, not attractions. \"Trip Day Transition\" signals movement between days but doesn\u2019t inherently discuss attraction names. So only the four selected types plausibly contain attraction names tied to Day 2.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Heracles Strength Arena",
+      "Hyperion Sunspire",
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Penelope Loom House",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks specifically for attractions discussed for Day 2\u2019s attraction (i.e., places to visit or experience\u2014not accommodations *per se*, and not meals *as such*, unless the venue itself is an attraction). We exclude:\n- Accommodation-focused labels (e.g., \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", \"accommodation rating threshold\") \u2014 these are lodging, not attractions.\n- Meal/food-specific descriptors that don\u2019t name a distinct attraction venue (e.g., \"Spartan Feast Platter\", \"bronze bell dessert ritual\") \u2014 these are menu items or rituals, not venues.\n- Overly meta or process-oriented labels (e.g., \"day_2_itinerary_planning\", \"day 1 itinerary experience as a whole\", \"day 1 itinerary\") \u2014 not attractions.\n- Redundant or composite labels that bundle multiple venues *without introducing new names* (e.g., \"Andromeda Star Feast and Chiron Sage Table\") \u2014 we prefer atomic, named attractions already in the list.\n- Labels with excessive qualifiers like \"(both proposed as breakfast venues for Day 2)\" \u2014 the venue name itself (\"Andromeda Star Feast\") is sufficient and already included.\n\nThe selected targets are all standalone, named physical venues or experiences plausibly functioning as Day 2 attractions: Andromeda Star Feast, Chiron Sage Table, Epimetheus Memory Grove, Hermes Skyway Adventure Park, Heracles Strength Arena, Hyperion Sunspire, Lantern Lane Caf\u00e9, Menelaus Spartan Grill, Penelope Loom House, Poseidon Seafood Tavern, and Themis Justice Banquet. These appear unambiguously as location-based attractions (restaurants, parks, arenas, hotels used as experiential venues, etc.) and are referenced individually across the candidate set \u2014 making them directly relevant to listing \u201cattractions discussed for Day 2\u201d.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to naming or identifying specific attractions for Day 2. These labels describe abstract functional roles or rhetorical/semantic categories, not concrete entities like attraction names. Since the question asks explicitly for *attraction names* discussed for Day 2, and none of the candidates serve as identifiers or containers for such named entities (e.g., no candidate like \"Attraction Name Mention\" or \"Itinerary Item\"), no seed is relevant for filtering turns that contain attraction names."
+  },
+  {
+    "question_id": "type_1-DIN-DINNER-Day1",
+    "question": "What is the final restaurant chosen for Day 1 as dinner? Provide the restaurant's name.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for the final restaurant chosen for Day 1 dinner, which is directly related to planning activities for Day 1. The context scope \"day_1_itinerary_planning\" is most likely to contain discussions about selecting restaurants for Day 1 meals, including dinner. The other candidates \u2014 \"accommodation_search\" and \"day_2_itinerary_planning\" \u2014 are unrelated to Day 1 dinner restaurant selection.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for the final restaurant chosen for Day 1 dinner, specifically its name. To identify that, we need turns where a restaurant is explicitly recommended (\"Restaurant Recommendation\"), as that is the most direct indicator of selection. \"Culinary Theme Exploration\" may involve narrowing down restaurant options by cuisine or theme, potentially leading to the final choice. \"Menu or Dish Description\" and \"Restaurant Atmosphere Description\" often accompany or follow a recommendation and can serve as confirming context\u2014especially if they refer to a specific restaurant being settled upon for dinner. Other event types like \"Accommodation Recommendation\", \"Activity Recommendation\", or \"Hotel Atmosphere Description\" are irrelevant to identifying a dinner restaurant. \"Trip Day Transition\" or \"Itinerary Planning\" could be tangentially relevant but lack specificity about restaurant naming; without explicit linkage to Day 1 dinner selection, they\u2019re less reliable than the four selected.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern",
+      "Menelaus Spartan Grill",
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Themis Justice Banquet",
+      "Lantern Lane Caf\u00e9"
+    ],
+    "target_reasoning": "The question asks for the *final restaurant chosen for Day 1 as dinner*. So we need candidates that are *restaurants* (not hotels, parks, rituals, or abstract concepts like \u201citinerary\u201d or \u201crating threshold\u201d) and plausibly serve dinner. From the list:\n- \"Poseidon Seafood Tavern\", \"Menelaus Spartan Grill\", \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Themis Justice Banquet\", and \"Lantern Lane Caf\u00e9\" are all named dining venues \u2014 they have \u201cTavern\u201d, \u201cGrill\u201d, \u201cFeast\u201d, \u201cTable\u201d, \u201cBanquet\u201d, or \u201cCaf\u00e9\u201d in their names, indicating food service.\n- Others like \"Penelope Loom House\", \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", \"Epimetheus Memory Grove\", etc., are accommodations or attractions \u2014 not restaurants.\n- Phrases like \u201cand \u2026\u201d, \u201c(both proposed as lunch venues\u2026)\u201d, or \u201cbronze bell dessert ritual\u201d are modifiers or events, not standalone restaurant names \u2014 so we exclude composites and descriptions.\n- \u201cDay 1 itinerary experience as a whole\u201d, \u201cday_2_itinerary_planning\u201d, etc., are too generic or off-topic.\n- We include only clean, atomic restaurant names likely to appear as final dinner selections \u2014 six are unambiguously restaurant entities.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for the final restaurant chosen for Day 1 dinner \u2014 a concrete, decision-based outcome. To identify that, we need labels tied to factors that directly influence restaurant selection decisions in planning contexts. \"Practical Constraint Specification\" is relevant because constraints (e.g., location, time, dietary restrictions, budget) often determine or narrow down viable dinner options. \"Personal Preference Alignment\" is also relevant because final choices\u2014especially for meals\u2014are frequently grounded in stated preferences (e.g., \u201cI want Italian\u201d, \u201cno seafood\u201d, \u201cprefer cozy places\u201d). The other candidates \u2014 Comparative Value Indicator, Cultural Ritual Reference, Mythological Narrative Anchor, Sensory-Ambiance Descriptor \u2014 are either too abstract, tangential, or stylistic/interpretive rather than decision-driving in a pragmatic restaurant selection context. So only two labels are meaningfully useful."
+  },
+  {
+    "question_id": "type_1-ALL-ATTRACTION-Day1",
+    "question": "List all attraction(s) that were decided or chosen at any point for Day 1\u2019s attraction, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question explicitly asks for attractions decided or chosen for Day 1\u2019s attraction, including intermediate and final decisions. The context scope \"day_1_itinerary_planning\" directly pertains to planning activities and decisions for Day 1, making it highly relevant. \"accommodation_search\" and \"day_2_itinerary_planning\" are unrelated to Day 1 attractions.",
+    "selected_event_types": [
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks for attractions decided or chosen for Day 1\u2019s attraction \u2014 including intermediate and final decisions. This directly relates to planning and refining the day-by-day schedule of activities, which is captured by the event type \"Itinerary Planning\". Other event types (e.g., \"Accommodation Recommendation\", \"Restaurant Recommendation\", \"Cultural Experience Discussion\") may involve attractions indirectly, but they focus on specific domains (lodging, dining, cultural context) rather than the explicit act of selecting/deciding attractions for a particular day. Only \"Itinerary Planning\" systematically encompasses decisions about what attractions to visit \u2014 especially on Day 1 \u2014 and includes iterative (intermediate and final) choices.",
+    "selected_targets": [
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Heracles Strength Arena",
+      "Hyperion Sunspire",
+      "Poseidon Seafood Tavern",
+      "Chiron Sage Table",
+      "Themis Justice Banquet",
+      "Andromeda Star Feast",
+      "Penelope Loom House",
+      "Daphne Laurel Hotel",
+      "Charis Grace Hotel",
+      "morning light room at Penelope Loom House",
+      "Spartan Feast Platter at Menelaus Spartan Grill",
+      "bronze bell dessert ritual at Menelaus Spartan Grill",
+      "bronze bell dessert ritual at Poseidon Seafood Tavern",
+      "Lantern Lane Caf\u00e9",
+      "Menelaus Spartan Grill",
+      "Erato Lyric House",
+      "day 1 itinerary",
+      "Day 1 itinerary experience as a whole"
+    ],
+    "target_reasoning": "The question asks for *all attractions decided or chosen at any point for Day 1\u2019s attraction*, including intermediate and final decisions. So we must select target candidates that:\n- Are explicitly named attractions, venues, experiences, or locations (not meta-concepts like \u201caccommodation rating threshold\u201d or \u201cday_2_itinerary_planning\u201d),\n- Are plausibly part of Day 1 (i.e., not exclusively scoped to Day 2 \u2014 e.g., discard targets that say \u201c(both proposed as breakfast venues for Day 2)\u201d or \u201cDay 2 accommodation candidates\u201d),\n- Include concrete experiential offerings (e.g., \u201cSpartan Feast Platter\u201d, \u201cbronze bell dessert ritual\u201d, \u201cmorning light room\u201d) \u2014 these are specific attractions/experiences tied to venues, and could be part of Day 1\u2019s planned activities,\n- Include broader itinerary-level labels like \u201cday 1 itinerary\u201d and \u201cDay 1 itinerary experience as a whole\u201d, which directly reference Day 1 and may contain decision traces.\n\nWe exclude:\n- Any candidate explicitly\u9650\u5b9a to Day 2 (e.g., \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\u201d, \u201cFifth and sixth Day 2 accommodation candidates\u201d, etc.),\n- Vague or non-attraction concepts like \u201caccommodation rating threshold\u201d, \u201cday_2_itinerary_planning\u201d,\n- Redundant composites where both components are Day 2\u2013only or lack Day 1 grounding \u2014 unless at least one component is plausible for Day 1 *and* the compound was considered (but most composites here are Day 2\u2013scoped or ungrounded; so we prefer atomic attractions).\n\nAtomic attractions like \u201cEpimetheus Memory Grove\u201d, \u201cHermes Skyway Adventure Park\u201d, etc., are standalone venues/experiences \u2014 typical of tourist itineraries \u2014 and have no Day 2 qualifier, so they\u2019re retained. \u201cPenelope Loom House\u201d, \u201cDaphne Laurel Hotel\u201d, \u201cCharis Grace Hotel\u201d are accommodations \u2014 potentially relevant if used on Day 1 (no contrary info), and \u201cmorning light room at Penelope Loom House\u201d is a specific Day 1\u2013plausible experience. Food/dining venues (\u201cPoseidon Seafood Tavern\u201d, \u201cChiron Sage Table\u201d, \u201cThemis Justice Banquet\u201d, \u201cAndromeda Star Feast\u201d, \u201cLantern Lane Caf\u00e9\u201d, \u201cMenelaus Spartan Grill\u201d) are included because meals can be attraction-like experiences and are not explicitly restricted to Day 2. \u201cErato Lyric House\u201d fits as a cultural venue. \u201cday 1 itinerary\u201d and \u201cDay 1 itinerary experience as a whole\u201d are direct conceptual anchors for aggregated decisions.\n\nTotal selected: 20 labels \u2014 all individually plausible as Day 1\u2013relevant attractions or decision containers.",
+    "selected_functional_type_seeds": [
+      "Personal Preference Alignment",
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for attractions decided or chosen for Day 1 \u2014 i.e., selections made by the user or planner, likely based on preferences (e.g., \u201cI love museums\u201d) or constraints (e.g., \u201cmust be open on Monday\u201d, \u201cwithin walking distance\u201d). \u201cPersonal Preference Alignment\u201d directly relates to choices driven by user likes/dislikes, and \u201cPractical Constraint Specification\u201d relates to real-world filters that narrow down or finalize attraction options (e.g., hours, location, accessibility). The other candidates \u2014 \u201cComparative Value Indicator\u201d, \u201cCultural Ritual Reference\u201d, \u201cMythological Narrative Anchor\u201d, and \u201cSensory-Ambiance Descriptor\u201d \u2014 are more interpretive, stylistic, or thematic descriptors unlikely to signal *decision points* or *selection events* for Day 1 attractions. They don\u2019t encode choice logic or selection evidence; thus they\u2019re not relevant for retrieving *decided/intermediately-chosen attractions*."
+  },
+  {
+    "question_id": "type_1-ACC-Day1",
+    "question": "What is the final hotel chosen for Day 1? Provide the hotel's name.",
+    "selected_context_scopes": [
+      "accommodation_search",
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "\"accommodation_search\" is directly relevant because it involves searching for and selecting hotels, which would include the final hotel chosen. \"day_1_itinerary_planning\" is also relevant because Day 1\u2019s itinerary would likely include or reference the hotel booked for that day. \"day_2_itinerary_planning\" is not relevant since the question is specifically about Day 1.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks for the *final hotel chosen for Day 1*, specifically its name. To answer this, we need turns where a hotel is recommended (especially with finalization cues), where hotel details (including name) are described (e.g., \u201cThe Grand Plaza Hotel has a modern lobby\u2026\u201d), or where itinerary planning explicitly assigns a hotel to Day 1 (e.g., \u201cFor Day 1, we\u2019ll stay at The Seaview Inn\u201d). \u201cAccommodation Recommendation\u201d directly involves proposing hotels; \u201cHotel Atmosphere Description\u201d often includes the hotel\u2019s name as context for description; and \u201cItinerary Planning\u201d commonly assigns concrete accommodations to specific days. Other event types like \u201cRestaurant Recommendation\u201d or \u201cCulinary Theme Exploration\u201d are irrelevant. \u201cTrip Day Transition\u201d may mention days but rarely assigns hotels; \u201cVenue Detail Inquiry\u201d is user-initiated questioning, not assertion of the final choice \u2014 so less likely to contain the answer unless paired with resolution, but not reliably. Thus, the three selected types are most likely to contain the required factual answer.",
+    "selected_targets": [
+      "\"morning light room\" at Penelope Loom House",
+      "Penelope Loom House",
+      "morning light room at Penelope Loom House"
+    ],
+    "target_reasoning": "The question asks for the *final hotel chosen for Day 1*, specifically requesting the hotel's name. Among the candidates, only entries explicitly naming *Penelope Loom House* \u2014 with or without room descriptors \u2014 refer to a hotel accommodation for Day 1. The phrases \"\\\"morning light room\\\" at Penelope Loom House\", \"Penelope Loom House\", and \"morning light room at Penelope Loom House\" all denote the same hotel (with varying quoting/formatting), and are the only candidates that unambiguously represent a Day 1 hotel choice. Other candidates refer to restaurants, venues for Day 2, itinerary-level abstractions, rating thresholds, rituals, or unnamed/ambiguous accommodations \u2014 none of which satisfy the request for *the final hotel chosen for Day 1*. Thus, these three are selected \u2014 they are semantically equivalent and collectively cover likely surface forms used in the data.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for the final hotel chosen for Day 1 \u2014 a concrete, factual detail about a booking or itinerary decision. Among the candidates, only \"Practical Constraint Specification\" plausibly relates to criteria that directly influence hotel selection (e.g., location, budget, availability, check-in time, proximity to event \u2014 all practical constraints that narrow down or determine the final choice). The other labels are abstract or thematic (\"Mythological Narrative Anchor\", \"Cultural Ritual Reference\", etc.) and unlikely to encode or indicate a specific hotel name. \"Personal Preference Alignment\" could be tangentially relevant but is too vague and subjective to reliably yield a definitive hotel name; whereas practical constraints often co-occur with explicit decisions like \u201cbooked Hotel X because it was the only one available near the conference venue\u201d. Thus, only \"Practical Constraint Specification\" is selected."
+  },
+  {
+    "question_id": "type_2-R-Heracles Strength Arena",
+    "question": "What is the rating of Heracles Strength Arena as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context_scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 are relevant to retrieving a numeric rating for \"Heracles Strength Arena\". These scopes pertain to accommodation or daily itinerary planning, not venue ratings or reviews. There is no indication that any of these contexts would contain rating information about an arena.",
+    "selected_event_types": [
+      "Venue Detail Inquiry"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Heracles Strength Arena\", which is a venue. The event type \"Venue Detail Inquiry\" is the most relevant because it implies a conversation turn where specific details (such as ratings, features, or attributes) about a venue are discussed or disclosed. None of the other event types\u2014such as Accommodation Recommendation, Culinary Theme Exploration, or Itinerary Planning\u2014logically pertain to obtaining a numeric rating for a venue like an arena. Therefore, only \"Venue Detail Inquiry\" is appropriate.",
+    "selected_targets": [
+      "Heracles Strength Arena"
+    ],
+    "target_reasoning": "The question asks specifically for the numeric rating of \"Heracles Strength Arena\". Among the target candidates, only \"Heracles Strength Arena\" directly matches the named venue in the question. Other entries either refer to different venues, combinations involving Heracles Strength Arena (e.g., \"Heracles Strength Arena and Hyperion Sunspire\"), or unrelated entities (e.g., accommodations, meals, rituals). Since the question seeks *the rating of Heracles Strength Arena*, the most precise and relevant label is the standalone \"Heracles Strength Arena\". No other candidate provides clearer or more direct relevance.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Heracles Strength Arena\", which implies a quantitative evaluation or score. Among the candidates, \"Comparative Value Indicator\" is the only label that plausibly relates to numeric ratings or evaluative scores (e.g., comparisons like \"better than X\", \"rated 4/5\", etc.). The other labels refer to cultural, mythological, personal, practical, or sensory aspects \u2014 none of which inherently convey numeric ratings. So only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_2-R-Hyperion Sunspire",
+    "question": "What is the rating of Hyperion Sunspire as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [
+      "accommodation_search"
+    ],
+    "context_scope_reasoning": "The question asks for the numeric rating of \"Hyperion Sunspire\", which is an accommodation. The context scope \"accommodation_search\" is directly relevant because it pertains to information about accommodations, including their ratings. The itinerary planning scopes (\"day_1_itinerary_planning\", \"day_2_itinerary_planning\") are unlikely to contain accommodation ratings, as they focus on daily activity planning rather than lodging details.",
+    "selected_event_types": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Hyperion Sunspire\", a hotel. Event types that involve describing or recommending accommodations are most likely to contain explicit or implicit rating information \u2014 e.g., a recommendation may state \u201chighly rated\u201d or give a star count; an atmosphere description might include phrases like \u201c4.5-star ambiance\u201d or reference guest ratings. \"Hotel Atmosphere Description\" and \"Accommodation Recommendation\" are the only candidates directly tied to hotels/accommodations and thus most likely to contain or imply a numeric rating. Other types (e.g., restaurant- or activity-related) are irrelevant here.",
+    "selected_targets": [
+      "Hyperion Sunspire",
+      "Heracles Strength Arena and Hyperion Sunspire",
+      "Hermes Skyway Adventure Park and Hyperion Sunspire",
+      "Hyperion Sunspire and Heracles Strength Arena",
+      "Hyperion Sunspire and Hermes Skyway Adventure Park"
+    ],
+    "target_reasoning": "The question asks for the numeric rating of \"Hyperion Sunspire\". Therefore, only target candidates that explicitly include \"Hyperion Sunspire\" are potentially relevant \u2014 because only those turns are likely to contain information (e.g., ratings, reviews, comparisons) about Hyperion Sunspire itself. Candidates that mention Hyperion Sunspire in combination with other venues (e.g., \"Heracles Strength Arena and Hyperion Sunspire\") are included, as such joint mentions may still contain descriptive or evaluative content about Hyperion Sunspire \u2014 including its rating. Candidates without \"Hyperion Sunspire\" in their name are excluded, even if related to ratings (e.g., \"accommodation rating threshold (4.0+)\" or unnamed candidates), because they do not refer to Hyperion Sunspire and thus cannot directly provide *its* rating.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Hyperion Sunspire\". A \"Comparative Value Indicator\" is the only candidate label that plausibly corresponds to a quantifiable, evaluative metric (e.g., a rating on a scale). The other labels \u2014 such as \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", etc. \u2014 refer to qualitative, contextual, or symbolic roles and are unlikely to encode a numeric rating. Thus, only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_2-R-Poseidon Seafood Tavern",
+    "question": "What is the rating of Poseidon Seafood Tavern as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 relate to restaurant ratings or Poseidon Seafood Tavern. They pertain to lodging and daily itinerary planning, not dining reviews or numeric ratings. Therefore, no context_scope is relevant.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Poseidon Seafood Tavern\". Ratings are most likely mentioned in contexts where a restaurant is being recommended (as recommendations often include or imply evaluations), described in terms of atmosphere (where patrons may comment on quality/experience, possibly including ratings), or discussed via its menu/dishes (where satisfaction/rating might be inferred or stated). While \"Price Disclosure\" or \"Culinary Theme Exploration\" could tangentially relate, they are less directly associated with numeric ratings. \"Restaurant Recommendation\" is the strongest candidate, as explicit ratings frequently accompany recommendations; \"Restaurant Atmosphere Description\" and \"Menu or Dish Description\" are secondary candidates because detailed subjective descriptions in those contexts sometimes include or presuppose a rating (e.g., \u201c5-star ambiance\u201d or \u201cthe best dish I\u2019ve had \u2014 worth every point\u201d). No other event types clearly signal inclusion of numeric ratings for this specific restaurant.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern",
+      "Poseidon Seafood Tavern and Chiron Sage Table",
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)",
+      "Poseidon Seafood Tavern and Themis Justice Banquet",
+      "bronze bell dessert ritual at Poseidon Seafood Tavern"
+    ],
+    "target_reasoning": "The question asks for the numeric rating of \"Poseidon Seafood Tavern\". Therefore, any target candidate that explicitly includes \"Poseidon Seafood Tavern\" is potentially relevant, as it may be associated with rating information in the conversation. The standalone mention \"Poseidon Seafood Tavern\" is most directly relevant. Compound labels that include it (e.g., paired with other venues or contextual qualifiers like \"proposed as lunch venues for day 2\") are also plausible carriers of rating data, especially if ratings were discussed in comparative or contextual planning. Additionally, \"bronze bell dessert ritual at Poseidon Seafood Tavern\" is included because venue-specific rituals may be tied to reviews or ratings (e.g., a highly rated ritual implying a highly rated venue), and it explicitly anchors content to the venue. Labels unrelated to Poseidon Seafood Tavern (e.g., hotels, other restaurants without it, abstract concepts like \"accommodation rating threshold\") are excluded.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Poseidon Seafood Tavern\". A \"Comparative Value Indicator\" is the most likely functional type seed to encode or reference a numeric rating (e.g., \"4.5 stars\", \"better than X\", \"top-rated\"), as such indicators often involve quantified or comparative assessments of quality or value. None of the other candidates \u2014 e.g., \"Mythological Narrative Anchor\" (likely referencing Poseidon thematically but not ratings), \"Cultural Ritual Reference\", \"Sensory-Ambiance Descriptor\", etc. \u2014 inherently convey numeric evaluation. So only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_1-ALL-LUNCH-Day2",
+    "question": "List all restaurant(s) that were decided or chosen at any point for Day 2\u2019s lunch, including intermediate and final decisions.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks for restaurants decided or chosen for Day 2\u2019s lunch, which directly relates to planning activities for Day 2. The context scope \"day_2_itinerary_planning\" is explicitly relevant because it would include discussions, proposals, and decisions about meals (including lunch) on Day 2. \"day_1_itinerary_planning\" is not relevant as it concerns Day 1. \"accommodation_search\" is unrelated to restaurant selection or lunch planning.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description"
+    ],
+    "event_type_reasoning": "The question asks for restaurants decided or chosen for Day 2\u2019s lunch, including intermediate and final decisions. \"Restaurant Recommendation\" is directly relevant\u2014it captures explicit suggestions or selections of restaurants. \"Culinary Theme Exploration\" may indicate discussions that lead to restaurant choices (e.g., \u201cWe want Thai food for lunch\u201d, narrowing down options). \"Menu or Dish Description\" can imply a restaurant has been selected or strongly considered (e.g., describing dishes from a specific restaurant\u2019s lunch menu). \"Restaurant Atmosphere Description\" often accompanies selection or evaluation of a venue and may signal it's under active consideration or already chosen. Other candidates like \"Accommodation Recommendation\" or \"Natural Environment Description\" are unrelated to restaurant decisions for lunch. \"Itinerary Planning\" could be tangentially relevant, but it\u2019s too broad and doesn\u2019t specifically denote restaurant selection\u2014whereas the four selected labels more concretely reflect restaurant-related decision-making or evaluation.",
+    "selected_targets": [
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)",
+      "Poseidon Seafood Tavern",
+      "Chiron Sage Table",
+      "Andromeda Star Feast",
+      "Themis Justice Banquet",
+      "Poseidon Seafood Tavern and Themis Justice Banquet",
+      "Poseidon Seafood Tavern and Chiron Sage Table"
+    ],
+    "target_reasoning": "The question asks for all restaurants *decided or chosen at any point for Day 2\u2019s lunch*, including intermediate and final decisions. So we need labels that explicitly refer to lunch venues for Day 2 \u2014 especially those marked as \u201cproposed as lunch venues for day 2\u201d, or individual restaurants plausibly serving lunch (e.g., named restaurants with \u201cTavern\u201d, \u201cGrill\u201d, \u201cFeast\u201d, \u201cBanquet\u201d, \u201cCaf\u00e9\u201d, \u201cTable\u201d in name, and no conflicting context indicating they\u2019re only for breakfast/accommodation/other meals). \n\n- \u201cPoseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\u201d is directly relevant \u2014 explicit mention of lunch + Day 2.\n- Individual components \u201cPoseidon Seafood Tavern\u201d and \u201cChiron Sage Table\u201d are also relevant, as they appear together *as lunch venues*, and are standalone restaurant names likely considered individually too.\n- \u201cAndromeda Star Feast\u201d \u2014 \u201cFeast\u201d strongly implies a meal venue; appears in multiple Day 2\u2013related combos (e.g., with Chiron Sage Table, Themis Justice Banquet), and no indication it\u2019s excluded from lunch consideration.\n- \u201cThemis Justice Banquet\u201d \u2014 \u201cBanquet\u201d is meal-related; appears in lunch-contextualized combos (e.g., with Poseidon Seafood Tavern), and is plausible for lunch.\n- \u201cPoseidon Seafood Tavern and Themis Justice Banquet\u201d \u2014 though not explicitly labeled as lunch, it\u2019s a pairing of two lunch-plausible venues and appears in Day 2 planning context; included conservatively as an intermediate decision.\n- \u201cPoseidon Seafood Tavern and Chiron Sage Table\u201d (without the parenthetical) \u2014 same pair, just without explicit \u201clunch\u201d annotation, but still highly likely to reflect the same lunch discussion; included for completeness of intermediate proposals.\n\nExcluded:  \n- Accommodations (e.g., Penelope Loom House, Charis Grace Hotel), itinerary items (e.g., \u201cDay 1 itinerary experience\u201d), non-restaurant experiences (e.g., \u201cEpimetheus Memory Grove\u201d, \u201cHeracles Strength Arena\u201d), and labels specifying *breakfast* or *accommodation* \u2014 these are irrelevant to Day 2 lunch.  \n- \u201cLantern Lane Caf\u00e9\u201d \u2014 caf\u00e9 could be lunch-relevant, but no Day 2 or lunch context is attached to it in the label, so insufficient evidence.  \n- \u201cMenelaus Spartan Grill\u201d \u2014 appears only in \u201cSpartan Feast Platter at Menelaus Spartan Grill\u201d and \u201cbronze bell dessert ritual\u2026\u201d \u2014 no explicit Day 2 lunch link, so excluded due to lack of contextual anchoring.  \n- \u201cDaphne Laurel Hotel\u201d, \u201cHyperion Sunspire\u201d, etc. \u2014 clearly accommodations or attractions.\n\nThus, the selected targets are those unambiguously tied to Day 2 lunch (explicitly or by strong, consistent contextual implication).",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification",
+      "Personal Preference Alignment"
+    ],
+    "functional_type_reasoning": "The question asks for restaurants decided or chosen for Day 2\u2019s lunch \u2014 i.e., concrete, decision-relevant information about restaurant selection. Among the candidates:\n- \"Practical Constraint Specification\" is relevant because constraints (e.g., location, time, dietary restrictions, budget) often directly influence or justify restaurant choices, especially in planning contexts like scheduling lunches across days.\n- \"Personal Preference Alignment\" is relevant because explicit statements of preference (e.g., \u201cI prefer Thai\u201d, \u201clet\u2019s pick the one with outdoor seating\u201d) frequently drive intermediate or final restaurant decisions.\nThe other labels \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", and \"Sensory-Ambiance Descriptor\" \u2014 are abstract, metaphorical, or stylistic; they do not reliably signal concrete restaurant selection behavior or factual decisions for Day 2 lunch. Thus, only the two most pragmatically decision-linked labels are selected."
+  },
+  {
+    "question_id": "type_4-Day1",
+    "question": "What is the final travel plan for Day 1? Answer in the following format: Stay at [accommodation to be filled]; Breakfast at [breakfast to be filled]; Lunch at [lunch to be filled]; Dinner at [dinner to be filled]; Visit [attraction(s) to be filled]s",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question explicitly asks for the \"final travel plan for Day 1\", which directly matches the semantic scope of \"day_1_itinerary_planning\". \"accommodation_search\" is too narrow and process-oriented (searching, not final stay), and \"day_2_itinerary_planning\" is irrelevant to Day 1. So only \"day_1_itinerary_planning\" is useful.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Restaurant Recommendation",
+      "Activity Recommendation",
+      "Itinerary Planning"
+    ],
+    "event_type_reasoning": "The question asks for the final travel plan for Day 1, specifying accommodation, breakfast, lunch, dinner, and attractions \u2014 i.e., a consolidated daily itinerary. \"Accommodation Recommendation\" directly informs the \"Stay at\" part; \"Restaurant Recommendation\" covers breakfast/lunch/dinner venues (especially since culinary recommendations are often restaurant-based, and \"Culinary Theme Exploration\" or \"Menu or Dish Description\" are too granular or thematic rather than location-specific); \"Activity Recommendation\" maps to visiting attractions; and \"Itinerary Planning\" is explicitly about structuring the day\u2019s sequence and logistics. Other candidates like \"Hotel Atmosphere Description\" or \"Restaurant Atmosphere Description\" describe qualities but not concrete plans; \"Trip Day Transition\" refers to moving between days, not planning Day 1; \"Venue Detail Inquiry\" is user-initiated questioning, not plan provision. So these four labels best capture the required functional categories for assembling the Day 1 plan.",
+    "selected_targets": [
+      "\"morning light room\" at Penelope Loom House",
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Epimetheus Memory Grove",
+      "Hermes Skyway Adventure Park",
+      "Hyperion Sunspire",
+      "Heracles Strength Arena",
+      "day 1 itinerary"
+    ],
+    "target_reasoning": "The question asks for the *final travel plan for Day 1*, formatted with specific categories: accommodation, breakfast, lunch, dinner, and visited attraction(s). So we need labels that directly correspond to Day 1 options in those categories.  \n- Accommodation: \"\\\"morning light room\\\" at Penelope Loom House\" and \"Penelope Loom House\" are both Day 1\u2013relevant (the former is a specific room; the latter appears in candidate pairs but standalone \"Penelope Loom House\" isn\u2019t listed \u2014 only the quoted version is; so we include the quoted one as it\u2019s explicit and Day 1\u2013associated). \"Charis Grace Hotel\", \"Daphne Laurel Hotel\", \"Erato Lyric House\" are candidates but lack Day 1 attribution \u2014 excluded due to ambiguity.  \n- Breakfast: \"Andromeda Star Feast\" is a clear venue name and appears standalone (not qualified as Day 2), unlike variants explicitly tagged \u201c(both proposed as breakfast venues for Day 2)\u201d. So it's plausible for Day 1.  \n- Lunch/Dinner: \"Chiron Sage Table\", \"Poseidon Seafood Tavern\", and \"Themis Justice Banquet\" all appear without Day 2 qualifiers in their base forms \u2014 making them viable for Day 1 meals. In contrast, versions with \u201c(both proposed as lunch venues for day 2)\u201d or \u201cDay 2\u201d modifiers are excluded.  \n- Attractions: \"Epimetheus Memory Grove\", \"Hermes Skyway Adventure Park\", \"Hyperion Sunspire\", and \"Heracles Strength Arena\" are all standalone attraction names with no Day 2 qualifier \u2014 suitable for Day 1 visits. Paired versions (e.g., \u201cand \u2026\u201d) are omitted unless the pair is inherently Day 1\u2013specific, but none are; so only unqualified singles are selected.  \n- Also critical: \"day 1 itinerary\" is directly relevant \u2014 it\u2019s a meta-label likely containing the synthesized plan. \"Day 1 itinerary experience as a whole\" sounds holistic but is vague and phrased abstractly \u2014 less actionable than \"day 1 itinerary\", so excluded.  \nWe exclude all Day 2\u2013explicit, unnamed, rated/threshold-based, ritual-based, or comparative/qualitative labels (e.g., rating thresholds, bronze bell rituals, unnamed candidates), as they don\u2019t denote concrete Day 1 plan elements.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for a concrete, structured travel plan for Day 1 \u2014 specifically accommodation, meals, and attractions. This requires factual, logistical, time-bound, or location-bound information (e.g., \u201cStay at Hotel X\u201d, \u201cDinner at Restaurant Y\u201d, \u201cVisit Museum Z\u201d). Among the candidates, only \"Practical Constraint Specification\" relates to real-world operational details such as timing, location, availability, booking status, or scheduling \u2014 all of which are essential to constructing a final travel plan. The other labels \u2014 e.g., \"Mythological Narrative Anchor\" or \"Cultural Ritual Reference\" \u2014 are thematic or interpretive and not directly tied to itinerary logistics."
+  },
+  {
+    "question_id": "type_2-R-Themis Justice Banquet",
+    "question": "What is the rating of Themis Justice Banquet as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [],
+    "context_scope_reasoning": "None of the context scope candidates \u2014 \"accommodation_search\", \"day_1_itinerary_planning\", \"day_2_itinerary_planning\" \u2014 relate to restaurant ratings or mention of \"Themis Justice Banquet\". The question is about a numeric rating for a specific banquet/restaurant, which falls outside the scope of accommodation or daily itinerary planning. Therefore, no context_scope label is relevant.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description",
+      "Culinary Theme Exploration"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Themis Justice Banquet\", a restaurant. To obtain a numeric rating, the conversation would most likely contain a recommendation (which often includes ratings or evaluative language), atmosphere description (sometimes accompanied by qualitative/quantitative judgments), menu or dish description (may include reviewer sentiment or star ratings), or culinary theme exploration (could involve critical assessment tied to rating). Other event types like \"Accommodation Recommendation\", \"Itinerary Planning\", or \"Natural Environment Description\" are unrelated to restaurant ratings. \"Price Disclosure\" and \"Venue Detail Inquiry\" are less likely to directly convey a numeric rating unless explicitly paired with evaluation \u2014 but they are not as strongly associated as the four selected. Hence, the four selected types are the most probable carriers of rating information.",
+    "selected_targets": [
+      "Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks specifically for the numeric rating of \"Themis Justice Banquet\". Among the target candidates, only the exact string \"Themis Justice Banquet\" directly names the venue in question. While other candidates include it as part of a conjunction (e.g., \"Andromeda Star Feast and Themis Justice Banquet\"), those compound labels refer to multiple entities and are less likely to contain a standalone rating for *only* Themis Justice Banquet. The clean, atomic label \"Themis Justice Banquet\" is the most precise match for filtering conversation turns that discuss its rating.",
+    "selected_functional_type_seeds": [
+      "Comparative Value Indicator"
+    ],
+    "functional_type_reasoning": "The question asks for a numeric rating of \"Themis Justice Banquet\", i.e., a quantitative evaluation or score. Among the candidates, only \"Comparative Value Indicator\" plausibly relates to ratings\u2014such indicators often involve comparative or evaluative judgments that can be expressed numerically (e.g., \u201cbetter than X\u201d, \u201c4/5\u201d, \u201chigh-value offering\u201d). The other labels refer to cultural, mythological, subjective preference, logistical, or sensory qualities\u2014not numeric ratings. So only \"Comparative Value Indicator\" is relevant."
+  },
+  {
+    "question_id": "type_3-Day1-dinner",
+    "question": "Which restaurants were discussed for Day 1's dinner? List all names.",
+    "selected_context_scopes": [
+      "day_1_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 1's dinner, which directly relates to planning activities for Day 1. The label \"day_1_itinerary_planning\" is most likely to contain information about meals (including dinner) scheduled on Day 1. The other labels \u2014 \"accommodation_search\" and \"day_2_itinerary_planning\" \u2014 are irrelevant to Day 1 dinner restaurants.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Restaurant Atmosphere Description",
+      "Culinary Theme Exploration"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 1's dinner. Labels directly related to restaurants \u2014 such as \"Restaurant Recommendation\" (most likely to contain named restaurants), \"Restaurant Atmosphere Description\" (often mentions specific venues), and \"Menu or Dish Description\" (frequently tied to a particular restaurant, especially in dinner context) \u2014 are highly relevant. \"Culinary Theme Exploration\" is also plausible, as it may involve naming restaurants aligned with a theme (e.g., \u201cauthentic Italian places for Day 1 dinner\u201d). Other labels like \"Accommodation Recommendation\" or \"Natural Environment Description\" are unrelated to restaurant identification. \"Itinerary Planning\" could be tangentially relevant but is too generic and doesn\u2019t inherently involve naming restaurants; thus, it\u2019s excluded in favor of more precise, restaurant-centric labels.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Menelaus Spartan Grill"
+    ],
+    "target_reasoning": "The question asks for restaurants discussed for *Day 1's dinner*. We need to select target candidates that are explicitly restaurant names (not accommodations, activities, rituals, or itinerary-level abstractions) and are plausible dinner venues. Candidates like \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Poseidon Seafood Tavern\", \"Themis Justice Banquet\", and \"Menelaus Spartan Grill\" are all named dining establishments \u2014 they appear as standalone venues or in combinations implying meal service (e.g., \u201cSpartan Feast Platter at Menelaus Spartan Grill\u201d confirms it\u2019s a restaurant). Others are ruled out: accommodations (e.g., \"Penelope Loom House\", \"Charis Grace Hotel\"), activity venues (e.g., \"Hermes Skyway Adventure Park\"), abstract concepts (\"day 1 itinerary\", \"accommodation rating threshold\"), or combinations specifying *other meals/days* (e.g., \u201cboth proposed as lunch venues for day 2\u201d or \u201cbreakfast venues for Day 2\u201d). Also excluded are overly generic or non-restaurant labels like \u201cDay 1 itinerary experience as a whole\u201d. The five selected are unambiguous, restaurant-specific, and not constrained to other days or meals in their base form.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly related to identifying restaurant names discussed for Day 1's dinner. These labels describe abstract rhetorical or contextual functions, not factual, entity-based information like restaurant names or temporal references (e.g., \u201cDay 1 dinner\u201d). Therefore, no functional type seed is relevant for filtering turns that contain restaurant names for that specific meal."
+  },
+  {
+    "question_id": "type_3-Day2-breakfast",
+    "question": "Which restaurants were discussed for Day 2's breakfast? List all names.",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question asks about restaurants discussed for Day 2's breakfast, which directly relates to planning for Day 2. The label \"day_2_itinerary_planning\" is most likely to contain discussions about meals (including breakfast) and associated venues (e.g., restaurants) for that day. \"accommodation_search\" and \"day_1_itinerary_planning\" are irrelevant \u2014 the former concerns lodging, and the latter concerns Day 1, not Day 2.",
+    "selected_event_types": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description",
+      "Culinary Theme Exploration"
+    ],
+    "event_type_reasoning": "The question asks for restaurant names discussed specifically for Day 2's breakfast. \"Restaurant Recommendation\" is directly relevant as it indicates suggestions or mentions of restaurants. \"Menu or Dish Description\" may include references to breakfast items and the venues serving them, often naming the restaurant implicitly or explicitly (e.g., \u201cthe croissants at Le Petit Matin\u201d). \"Culinary Theme Exploration\" can involve discussions about breakfast culture or specific breakfast-focused eateries, potentially naming restaurants in that context. Other labels like \"Itinerary Planning\" or \"Trip Day Transition\" may mention days but rarely name restaurants; \"Restaurant Atmosphere Description\" or \"Hotel Atmosphere Description\" describe qualities rather than identity; and labels like \"Price Disclosure\" or \"Natural Environment Description\" are irrelevant. So, these three are the most likely to contain restaurant names tied to Day 2 breakfast.",
+    "selected_targets": [
+      "Andromeda Star Feast",
+      "Chiron Sage Table",
+      "Poseidon Seafood Tavern",
+      "Themis Justice Banquet",
+      "Andromeda Star Feast and Chiron Sage Table",
+      "Andromeda Star Feast and Themis Justice Banquet",
+      "Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)",
+      "Poseidon Seafood Tavern and Chiron Sage Table",
+      "Poseidon Seafood Tavern and Chiron Table (both proposed as lunch venues for day 2)",
+      "Poseidon Seafood Tavern and Themis Justice Banquet"
+    ],
+    "target_reasoning": "The question asks specifically for restaurants discussed *for Day 2's breakfast*. So we need to select target candidates that: (1) name actual restaurants (not hotels, activities, or abstract concepts), and (2) are explicitly or plausibly linked to *Day 2 breakfast*. Candidates like \"Andromeda Star Feast\", \"Chiron Sage Table\", \"Poseidon Seafood Tavern\", and \"Themis Justice Banquet\" are standalone restaurant names and appear in combinations explicitly tied to Day 2 breakfast (e.g., \u201cAndromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\u201d). Although \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" refers to *lunch*, it still involves the same restaurants and confirms they were under discussion for Day 2 meals \u2014 but since the question is strictly about *breakfast*, we exclude lunch-only references *unless* the restaurant itself appears elsewhere in a breakfast context. However, upon rechecking: \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" is explicitly lunch \u2014 so it\u2019s *not* relevant for breakfast. Let's correct: only candidates with *explicit or strongly implied breakfast relevance for Day 2* should be kept.\n\nRe-evaluating:\n- \u2705 \"Andromeda Star Feast\" \u2014 appears alone and in breakfast-linked composites.\n- \u2705 \"Chiron Sage Table\" \u2014 appears in \"Andromeda Star Feast and Chiron Sage Table\" (no meal qualifier, but plausible); also in \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues...)\" \u2192 lunch-only \u2192 exclude unless independently breakfast-linked. But \"Chiron Sage Table\" alone has no meal qualifier \u2014 however, it's listed among targets and commonly appears in Day 2 meal contexts; given no disambiguating info, safest to include *only if* explicitly tied to Day 2 breakfast. Looking again: only composite \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\" has explicit breakfast label. Also: \"Andromeda Star Feast and Chiron Sage Table\" has no meal qualifier \u2014 so ambiguous. But the question asks \u201cwhich restaurants were discussed for Day 2's breakfast?\u201d \u2014 so we want *any restaurant mentioned in a Day 2 breakfast context*, even implicitly via composite where at least one component is breakfast-qualified *and the composite suggests joint consideration*. However, strict interpretation: only those labels that *directly indicate Day 2 breakfast* should be selected \u2014 i.e., containing \"(both proposed as breakfast venues for Day 2)\" or unambiguous solo use *in that context*. Among solo names: none explicitly say \"breakfast\", but the composite with explicit breakfast mention includes Andromeda Star Feast and Themis Justice Banquet \u2014 so both those restaurants qualify. Also, \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\" is a valid target \u2014 includes two restaurants, both relevant. Similarly, \"Andromeda Star Feast and Chiron Sage Table\" has no meal label \u2014 exclude. \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues...)\" \u2014 lunch, exclude. So only:\n\n- \"Andromeda Star Feast\" (appears in breakfast composite \u2192 likely discussed)\n- \"Themis Justice Banquet\" (same)\n- \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\" (directly relevant composite)\n- Any other solo restaurant appearing *only* in that explicit breakfast phrase? No. \"Chiron Sage Table\" appears only in lunch or unlabeled composites \u2192 insufficient evidence for breakfast. Same for Poseidon. So only Andromeda Star Feast and Themis Justice Banquet are *confirmed* for Day 2 breakfast \u2014 plus their composite.\n\nBut wait: what about \"Lantern Lane Caf\u00e9\"? It\u2019s a restaurant name, but not accompanied by any Day 2 or breakfast qualifier \u2014 so excluded. \"Menelaus Spartan Grill\"? Appears only in \"Spartan Feast Platter...\" and \"bronze bell dessert ritual...\" \u2014 dessert/meal platter, no Day 2 breakfast link \u2192 exclude.\n\nAlso: \"morning light room at Penelope Loom House\" \u2014 accommodation, not restaurant \u2192 exclude.\n\nThus, confidently relevant:\n- \"Andromeda Star Feast\"\n- \"Themis Justice Banquet\"\n- \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\"\n\nAre there others? Let's scan again:  \n- \"Andromeda Star Feast and Chiron Sage Table\" \u2014 no meal qualifier \u2192 insufficient.  \n- \"Poseidon Seafood Tavern and Themis Justice Banquet\" \u2014 no meal qualifier \u2192 ambiguous, but Themis is already covered; however, this label doesn\u2019t specify breakfast, so don\u2019t add extra noise. Stick to *explicitly breakfast-qualified* mentions.\n\nSo final selected targets:\n- \"Andromeda Star Feast\"\n- \"Themis Justice Banquet\"\n- \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\"\n\nThat\u2019s three. All directly tied to Day 2 breakfast.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 directly relate to identifying restaurants discussed for Day 2's breakfast. The question is factual and time- and event-specific (Day 2, breakfast, restaurant names), requiring concrete contextual or temporal annotation (e.g., \"Meal Timing\", \"Location Mention\", \"Entity Type: Restaurant\", \"Day Reference\"), none of which are present in the given candidate list. Therefore, no candidates are relevant."
+  },
+  {
+    "question_id": "type_2-R-Charis Grace Hotel",
+    "question": "What is the rating of Charis Grace Hotel as mentioned in the conversation? Provide the numeric rating.",
+    "selected_context_scopes": [
+      "accommodation_search"
+    ],
+    "context_scope_reasoning": "The question asks for the numeric rating of \"Charis Grace Hotel\", which is an accommodation. The context scope \"accommodation_search\" is directly relevant because it likely contains information about hotels, including their ratings. The other scopes \u2014 \"day_1_itinerary_planning\" and \"day_2_itinerary_planning\" \u2014 pertain to daily activity planning and are unlikely to include hotel ratings.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description",
+      "Price Disclosure"
+    ],
+    "event_type_reasoning": "The question asks for the numeric rating of \"Charis Grace Hotel\" as mentioned in the conversation. Ratings are most likely to appear in contexts where a hotel is being recommended (which often includes explicit ratings or qualitative judgments that may imply or reference a numeric score), described in terms of atmosphere or quality (where ratings might be cited or alluded to), or disclosed alongside pricing information (as ratings sometimes accompany price details in travel discussions). Other event types like \"Activity Recommendation\" or \"Culinary Theme Exploration\" are unrelated to hotel ratings. \"Venue Detail Inquiry\" could potentially elicit a rating, but it\u2019s less directly associated than recommendation or description events \u2014 so it's excluded in favor of stronger candidates. Thus, the three most relevant event types are \"Accommodation Recommendation\", \"Hotel Atmosphere Description\", and \"Price Disclosure\".",
+    "selected_targets": [
+      "Charis Grace Hotel"
+    ],
+    "target_reasoning": "The question asks for the numeric rating of \"Charis Grace Hotel\" as mentioned in the conversation. Among the target candidates, only \"Charis Grace Hotel\" directly matches the entity whose rating is being queried. Other candidates either refer to different accommodations, combinations involving Charis Grace Hotel (e.g., \"Charis Grace Hotel and unnamed second Day 2 accommodation candidate\"), or unrelated venues/activities \u2014 none of which isolate the specific rating for Charis Grace Hotel alone. Since the question seeks *the* rating of *that hotel*, the singleton label \"Charis Grace Hotel\" is the only candidate that cleanly identifies the relevant target for filtering turns discussing its rating.",
+    "selected_functional_type_seeds": [],
+    "functional_type_reasoning": "None of the functional type seeds candidates \u2014 \"Comparative Value Indicator\", \"Cultural Ritual Reference\", \"Mythological Narrative Anchor\", \"Personal Preference Alignment\", \"Practical Constraint Specification\", \"Sensory-Ambiance Descriptor\" \u2014 are directly relevant to extracting a numeric rating for the Charis Grace Hotel. A hotel rating is typically a factual, quantitative attribute (e.g., 4.5/5 or 3 stars), and none of these labels imply or encode such objective numeric evaluation. They all refer to more abstract, interpretive, or contextual linguistic functions, not rating-specific annotation."
+  },
+  {
+    "question_id": "type_4-Day2",
+    "question": "What is the final travel plan for Day 2? Answer in the following format: Stay at [accommodation to be filled]; Breakfast at [breakfast to be filled]; Lunch at [lunch to be filled]; Dinner at [dinner to be filled]; Visit [attraction(s) to be filled]s",
+    "selected_context_scopes": [
+      "day_2_itinerary_planning"
+    ],
+    "context_scope_reasoning": "The question explicitly asks for the \"final travel plan for Day 2\", which directly matches the meaning of the context scope \"day_2_itinerary_planning\". The other candidates \u2014 \"accommodation_search\" is too generic and task-oriented (not plan-finalized), and \"day_1_itinerary_planning\" is irrelevant to Day 2. So only \"day_2_itinerary_planning\" is useful.",
+    "selected_event_types": [
+      "Accommodation Recommendation",
+      "Itinerary Planning",
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "event_type_reasoning": "The question asks for the *final travel plan for Day 2*, specifying accommodation, breakfast, lunch, dinner, and attractions \u2014 i.e., a structured daily itinerary with lodging and meal venues plus activities/attractions.  \n- \"Accommodation Recommendation\" is relevant for identifying where to stay.  \n- \"Itinerary Planning\" directly pertains to constructing or stating a day-by-day plan, including timing and sequencing of events.  \n- \"Restaurant Recommendation\" covers breakfast/lunch/dinner venues (as meals are tied to restaurants).  \n- \"Activity Recommendation\" maps to visiting attractions or experiences (e.g., museums, landmarks, tours).  \nOther candidates like \"Culinary Theme Exploration\", \"Menu or Dish Description\", or \"Hotel Atmosphere Description\" are too granular or descriptive rather than plan-defining; \"Trip Day Transition\" may be tangentially related but doesn\u2019t specify content for Day 2; \"Venue Detail Inquiry\" is user-initiated questioning, not plan provision. So we select only the four most directly functional types for assembling the requested plan.",
+    "selected_targets": [
+      "\"morning light room\" at Penelope Loom House",
+      "Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)",
+      "Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)",
+      "day_2_itinerary_planning"
+    ],
+    "target_reasoning": "The question asks for the *final travel plan for Day 2*, broken down into accommodation, breakfast, lunch, dinner, and attractions. To answer this, we need labels that explicitly pertain to Day 2 components and indicate finalized or proposed assignments\u2014not generic concepts (e.g., \u201caccommodation rating threshold\u201d) or Day 1 items.  \n- \"\\\"morning light room\\\" at Penelope Loom House\" directly names a specific Day 2 accommodation option (and matches the format expected in \u201cStay at [...]\u201d).  \n- \"Andromeda Star Feast and Themis Justice Banquet (both proposed as breakfast venues for Day 2)\" explicitly identifies breakfast venues *for Day 2*, with clarifying context \u2014 highly relevant to \u201cBreakfast at [...]\u201d.  \n- \"Poseidon Seafood Tavern and Chiron Sage Table (both proposed as lunch venues for day 2)\" similarly specifies lunch options *for Day 2*, matching \u201cLunch at [...]\u201d.  \n- \"day_2_itinerary_planning\" is a meta-label indicating planning activity for Day 2; while not a concrete venue, it\u2019s likely to contain synthesis-level information needed to determine the *final* plan (e.g., selection among candidates, timing, sequencing), making it uniquely useful for deriving the complete structured answer.  \nOther candidates are either ambiguous (e.g., unnamed/unlocated accommodations), overly broad (\"day 2 itinerary\"), irrelevant (Day 1 items), or refer to experiences/rituals rather than scheduled meals or stays (e.g., \"bronze bell dessert ritual\"). Dinner and attraction slots aren\u2019t explicitly covered by any candidate with clear Day 2 assignment + venue name \u2014 so no targets were selected for those, per instruction to only pick *useful* ones. Thus, exactly 4 targeted, Day-2-specific, role-aligned labels are selected.",
+    "selected_functional_type_seeds": [
+      "Practical Constraint Specification"
+    ],
+    "functional_type_reasoning": "The question asks for the final, concrete travel plan for Day 2 \u2014 specifically accommodation, meals, and visited attractions \u2014 which are factual, logistical, and schedule-bound details. Among the candidates, only \"Practical Constraint Specification\" relates to real-world operational elements like timing, location availability, booking status, or itinerary structure \u2014 all of which directly inform a finalized day plan. The other labels \u2014 e.g., \"Mythological Narrative Anchor\", \"Cultural Ritual Reference\", \"Sensory-Ambiance Descriptor\", etc. \u2014 pertain to interpretive, thematic, or experiential layers, not the concrete logistical skeleton required to answer the question. Thus, only \"Practical Constraint Specification\" is relevant."
+  }
+]

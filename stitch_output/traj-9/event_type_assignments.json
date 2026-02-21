@@ -1,0 +1,831 @@
+{
+  "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40": {
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-1": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-10": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-100": [
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-101": [
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-102": [
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-103": [
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-104": [
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-105": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-106": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-107": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-108": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-109": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-11": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-110": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-111": [
+      "Accommodation Recommendation",
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-112": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-113": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-114": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-115": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-116": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-117": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-118": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-119": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-12": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-120": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-121": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-122": [
+      "Accommodation Recommendation",
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-123": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-124": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-125": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-126": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-127": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-128": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-129": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-13": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-130": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-131": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-132": [
+      "Activity Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-133": [
+      "Accommodation Recommendation",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-134": [
+      "Accommodation Recommendation",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-135": [
+      "Accommodation Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-136": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-137": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-138": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-139": [
+      "Accommodation Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-14": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-140": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-141": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-142": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-143": [
+      "Itinerary Planning",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-144": [
+      "Natural Environment Description",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-145": [
+      "Natural Environment Description",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-146": [
+      "Natural Environment Description",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-147": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-148": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-149": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-15": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-150": [
+      "Accommodation Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-151": [
+      "Price Disclosure"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-152": [
+      "Price Disclosure"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-153": [
+      "Accommodation Recommendation",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-154": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-155": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-156": [
+      "Price Disclosure"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-157": [
+      "Price Disclosure"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-158": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-159": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-16": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-160": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-161": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-162": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-163": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-164": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-165": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-166": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-167": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-168": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-169": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-17": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-170": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-171": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-172": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-173": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-174": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-175": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-176": [
+      "Accommodation Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-177": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-178": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-179": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-18": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-180": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-181": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-182": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-183": [
+      "Restaurant Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-184": [
+      "Restaurant Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-185": [
+      "Restaurant Recommendation",
+      "Hotel Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-186": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-187": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-188": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-189": [
+      "Itinerary Planning",
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-19": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-190": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-191": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-192": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-193": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-194": [
+      "Accommodation Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-195": [
+      "Restaurant Recommendation",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-196": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-197": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-198": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-199": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-2": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-20": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-200": [
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-201": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-202": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-203": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-204": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-205": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-206": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-207": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-208": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-209": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-21": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-210": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-211": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-212": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-213": [
+      "Restaurant Recommendation",
+      "Price Disclosure"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-214": [
+      "Price Disclosure",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-215": [
+      "Price Disclosure",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-216": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-217": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-218": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-219": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-22": [
+      "Venue Detail Inquiry",
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-220": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-221": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-222": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-223": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-224": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-225": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-226": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-227": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-228": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-229": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-23": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-230": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-231": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-232": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-233": [
+      "Restaurant Recommendation",
+      "Menu or Dish Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-234": [
+      "Restaurant Recommendation",
+      "Restaurant Atmosphere Description"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-235": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-236": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-237": [
+      "Restaurant Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-238": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-24": [
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-25": [
+      "Itinerary Planning",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-26": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-27": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-28": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-29": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-3": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-30": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-31": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-32": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-33": [
+      "Itinerary Planning",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-34": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-35": [
+      "Trip Day Transition",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-36": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-37": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-38": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-39": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-4": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-40": [
+      "Itinerary Planning",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-41": [
+      "Cultural Experience Discussion",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-42": [
+      "Cultural Experience Discussion",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-43": [
+      "Cultural Experience Discussion",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-44": [
+      "Cultural Experience Discussion",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-45": [
+      "Activity Recommendation",
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-46": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-47": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-48": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-49": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-5": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-50": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-51": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-52": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-53": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-54": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-55": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-56": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-57": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-58": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-59": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-6": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-60": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-61": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-62": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-63": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-64": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-65": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-66": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-67": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-68": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-69": [
+      "Hotel Atmosphere Description",
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-7": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-70": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-71": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-72": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-73": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-74": [
+      "Accommodation Recommendation",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-75": [
+      "Accommodation Recommendation",
+      "Trip Day Transition"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-76": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-77": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-78": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-79": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-8": [
+      "Restaurant Recommendation",
+      "Culinary Theme Exploration"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-80": [
+      "Itinerary Planning"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-81": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-82": [
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-83": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-84": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-85": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-86": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-87": [
+      "Restaurant Recommendation",
+      "Activity Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-88": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-89": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-9": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-90": [
+      "Restaurant Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-91": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-92": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-93": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-94": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-95": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-96": [
+      "Accommodation Recommendation"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-97": [
+      "Accommodation Recommendation",
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-98": [
+      "Accommodation Recommendation",
+      "Venue Detail Inquiry"
+    ],
+    "trip-1be3ef25-7dd2-50b0-9822-607b8a9ebd40-turn-99": [
+      "Itinerary Planning"
+    ]
+  }
+}
